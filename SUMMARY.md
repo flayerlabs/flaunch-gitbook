@@ -19,7 +19,7 @@
 * [$FLAY](community/usdflay.md)
 * [Retardio Manifesto](community/retardio-manifesto.md)
 * [Telegram](https://t.me/flaunchgg)
-* [Discord (Flayer Labs)](https://discord.gg/flayer)
+* [Discord (Flayer Labs)](https://discord.gg/flaunch)
 
 ## Developer Resources
 
