@@ -42,7 +42,8 @@ CTOs on Flaunch are more concrete and meaningful than anywhere else. Furthermore
 
 ### Meme Management
 
-In a future release, the holder of the Memestream is also endowed with specific management rights that can help to accelerate their meme's culture and price. These include the ability to market buy their coin, airdrop tokens, or burn tokens they have bought back.
+<figure><img src="../.gitbook/assets/image (31).png" alt="" width="370"><figcaption><p>Meme Management for devs</p></figcaption></figure>
 
+The holder of the Memestream is also endowed with specific management rights that can help to accelerate their meme's culture and price. These include the ability to market buy their coin or burn tokens they have bought back. More actions are being developed to allow for use in liquidity management and airdrops.
 
-
+Want some more management functionality? Make a request [in the Discord](https://discord.gg/flaunch)!

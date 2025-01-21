@@ -18,4 +18,4 @@ If the price continues moving upwards, the PBW follows with more and more ETH be
 
 ### Turning off Progressive Bid Walls
 
-In a future release, devs will be able to turn off the PBW and begin using the ETH in other ways to expand the financial and cultural value of the meme. Watch this space.
+[Memestream](memestream.md) owners can disable their coin's Progressive Bid Wall to allow the ETH to accumulate in the coin's treasury. This ETH can be used for approved actions starting with Full Stack Churchills that market buy the token.
