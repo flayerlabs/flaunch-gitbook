@@ -26,7 +26,7 @@ This includes the token name, symbol (keep it to 6 characters or less to enable 
 {% step %}
 ### Set Revenue Split
 
-Use the slider to determine the share of the coin revenue between you and the community. Creators can take as much as 80% of the trading fees (paid every swap), leaving 20% for the community (buybacks).
+Use the slider to determine the share of the coin revenue between you and the community. Creators can take as much as 100% of the trading fees (paid every swap). What they don't take goes to [Automated Buybacks](../core-features/auto-buybacks.md).
 {% endstep %}
 
 {% step %}
