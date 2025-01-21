@@ -34,12 +34,6 @@ With Flaunch, transferring the Memestream is enough to send all future income of
 * Send the Memestream to vitalik.eth where he can donate on your coin's behalf.
 * Looking to fundraise for malaria treatment? Donate the Memestream to charity.
 
-### Community Take Overs (CTOs)
-
-By tokenizing the underlying value of the meme in the Memestream, anyone can put an offer to buy the meme's future income (and management - see below) on secondary markets. This creates a very real CTO market, where devs that abandon their meme can exit with some additional value by selling its Memestream and allowing the community to keep the culture alive (and getting paid to do so).
-
-CTOs on Flaunch are more concrete and meaningful than anywhere else. Furthermore, the Memestream's ownership can be shared across the community through DAOs, multi-sigs and fractionalization.
-
 ### Meme Management
 
 <figure><img src="../.gitbook/assets/image (31).png" alt="" width="370"><figcaption><p>Meme Management for devs</p></figcaption></figure>
@@ -47,3 +41,9 @@ CTOs on Flaunch are more concrete and meaningful than anywhere else. Furthermore
 The holder of the Memestream is also endowed with specific management rights that can help to accelerate their meme's culture and price. These include the ability to market buy their coin or burn tokens they have bought back. More actions are being developed to allow for use in liquidity management and airdrops.
 
 Want some more management functionality? Make a request [in the Discord](https://discord.gg/flaunch)!
+
+### Community Take Overs (CTOs)
+
+By tokenizing the underlying value of the meme in the Memestream, anyone can put an offer to buy the meme's future income (and management - see below) on secondary markets. This creates a very real CTO market, where devs that abandon their meme can exit with some additional value by selling its Memestream and allowing the community to keep the culture alive (and getting paid to do so).
+
+CTOs on Flaunch are more concrete and meaningful than anywhere else. Furthermore, the Memestream's ownership can be shared across the community through DAOs, multi-sigs and fractionalization.
