@@ -35,21 +35,21 @@ The [Memestream NFT](../core-features/memestream.md) can be traded on any second
 
 ### How are communities rewarded? <a href="#how-are-communities-rewarded" id="how-are-communities-rewarded"></a>
 
-Enough about devs, what's in it for the community? All Flaunched coins have a minimum of 20% of the revenue that will go to the community, and a maximum of 100%. By default, these fees are used exclusively for automated [Plunge Protection](https://docs.flaunch.gg/features/plunge-protection) that support the token's price from day 1.
+Enough about devs, what's in it for the community? All Flaunched can have up to 100% of the revenue sent to the community. By default, these fees are used exclusively for [Automated Buybacks](../core-features/auto-buybacks.md) that support the token's price from day 1.
 
-The dev can choose to turn off Plunge Protection and instead begin accumulating ETH that can be used for market buys, airdrops and more. This aspect is called Meme Management and will have a huge impact on how communities coordinate around their coin.
+The dev can choose to turn off Auto Buybacks and instead begin accumulating ETH that can be used for market buys, airdrops and more. This aspect is called Meme Management and will have a huge impact on how communities coordinate around their coin.
 
 If the community is led by a Galaxy Brain dev, the shared treasury could reach eye watering levels that even the greatest DAOs would not know what to do with.
 
 WIF's fundraise to buy a $650K ad on the Sphere would have been raised in a single day of trading volume had it been Flaunched instead of launched.
 
-[https://x.com/flaunchgg/status/1846620086854885640(opens in a new tab)](https://x.com/flaunchgg/status/1846620086854885640)
+{% embed url="https://x.com/flaunchgg/status/1846620086854885640" %}
 
 ### What is the Fixed Price Fair Launch? <a href="#fair-launch-explained" id="fair-launch-explained"></a>
 
 When a coin is Flaunched it starts with an initial 30 minute Fair Launch.
 
-During Fair Launch the price is fixed for everyone for 30 minutes and 200,000,000 tokens (20% of total supply) are available to purchase. The ETH raised during the Fair Launch is then placed immediately into a limit buy, ensuring that Fair Launch participants can exit at the same price (minus trading fees).
+During Fair Launch the price is fixed for everyone for 30 minutes and 75,000,000 tokens (7.5% of total supply) are available to purchase. The ETH raised during the Fair Launch is then placed immediately into a limit buy, ensuring that Fair Launch participants can exit at the same price (minus trading fees).
 
 After Fair Launch the coin moves into price discovery.
 
@@ -67,7 +67,9 @@ We add a little Uniswap V4 magic to the PBW as well, with a hook that ensures it
 
 ### Does Flaunch have a token? <a href="#does-flaunch-have-a-token" id="does-flaunch-have-a-token"></a>
 
-Flaunch is a decentralized protocol with a governance fee switch that is controlled by FLAY holders ([https://www.coingecko.com/en/coins/flayer](https://www.coingecko.com/en/coins/flayer)).
+Flaunch is a decentralized protocol with a governance fee switch that is controlled by FLAY holders.
+
+{% embed url="https://www.coingecko.com/en/coins/flayer" %}
 
 ### Does the team take any fees? <a href="#does-the-team-take-any-fees" id="does-the-team-take-any-fees"></a>
 
