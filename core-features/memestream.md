@@ -29,7 +29,6 @@ Selling, leveraging and fractionalizing the Memestream is one way to further gen
 
 With Flaunch, transferring the Memestream is enough to send all future income of the meme to the recipient—paid in ETH. There are no tokens to dump, and no permission needed.
 
-* Want to fund Ross Ulbricht's legal expenses? Send the Ulbricht family the Memestream.
 * Donate to the cause of your community's choice.
 * Send the Memestream to vitalik.eth where he can donate on your coin's behalf.
 * Looking to fundraise for malaria treatment? Donate the Memestream to charity.
