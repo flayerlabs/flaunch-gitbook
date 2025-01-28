@@ -20,6 +20,7 @@
 * [Retardio Manifesto](community/retardio-manifesto.md)
 * [Telegram](https://t.me/flaunchgg)
 * [Discord (Flayer Labs)](https://discord.gg/flaunch)
+* [Brand Kit](community/brand-kit.md)
 
 ## Developer Resources
 
@@ -35,7 +36,7 @@
   * [Flaunch & Buy](developer-resources/zaps/flaunch-and-buy.md)
 * [GitHub](https://github.com/flayerlabs/flaunch-contracts)
 * [Uniswap V4](https://docs.uniswap.org/contracts/v4/overview)
-* [Brand Kit](developer-resources/brand-kit.md)
+* [Bug Bounty](developer-resources/bug-bounty.md)
 
 ## Support and FAQ
 
