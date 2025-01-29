@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Fair Launch hook allows tokens that have just been flaunched to be purchased at a consisten token price before it is affected by liquidity supply.
+The Fair Launch hook allows tokens that have just been flaunched to be purchased at a consistent token price before it is affected by liquidity supply.
 
 This creates a time window right after the token is launched that keeps the token at the same price in a single tick position. Fees earned from this are kept within the position and cannot be sold into until the fair launch window has finished.
 
