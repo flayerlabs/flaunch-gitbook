@@ -1,11 +1,14 @@
 ---
-description: FLAY is the token of Flaunch.
 icon: coin-blank
+description: FLAY is the token of Flaunch.
 ---
 
 # $FLAY
 
-`CA: 0xf1a7000000950c7ad8aff13118bb7ab561a448ee`
+```
+CA (Ethereum) : 0xf1a7000000950c7ad8aff13118bb7ab561a448ee
+CA (Base)     : 0xf1a7000000950c7ad8aff13118bb7ab561a448ee
+```
 
 The Flaunch protocol has the option for a fee switch that can be turned on by FLAY holders through onchain governance. The fee switch, if activated through approval by FLAY holders, would collect up to 10% of the Flaunch protocol's trading fees.
 
