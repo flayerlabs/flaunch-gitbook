@@ -16,7 +16,7 @@ We strive to maintain uniformity in our deployment addresses, but always check b
 
 ### Referenced Contracts of Note
 
-<table><thead><tr><th width="243">Contract</th><th>Address</th></tr></thead><tbody><tr><td>Uniswap V4 Pool Manager</td><td></td></tr><tr><td>USDC</td><td></td></tr><tr><td>flETH</td><td>0x000000000d564d5be76f7f0d28fe52605afc7cf8</td></tr></tbody></table>
+<table><thead><tr><th width="243">Contract</th><th>Address</th></tr></thead><tbody><tr><td>Uniswap V4 Pool Manager</td><td>0x498581fF718922c3f8e6A244956aF099B2652b2b</td></tr><tr><td>USDC</td><td>0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913</td></tr><tr><td>flETH</td><td>0x000000000d564d5be76f7f0d28fe52605afc7cf8</td></tr></tbody></table>
 
 ***
 
@@ -28,7 +28,7 @@ We strive to maintain uniformity in our deployment addresses, but always check b
 
 ### Referenced Contracts of Note
 
-<table><thead><tr><th width="243">Contract</th><th>Address</th></tr></thead><tbody><tr><td>Uniswap V4 Pool Manager</td><td>0x7Da1D65F8B249183667cdE74C5CBD46dD38AA829</td></tr><tr><td>USDC</td><td>0x5d7fbE8a713bE0Cb6E177EB7028A9b0CA370AafC</td></tr><tr><td>flETH</td><td>0x79FC52701cD4BE6f9Ba9aDC94c207DE37e3314eb</td></tr></tbody></table>
+<table><thead><tr><th width="243">Contract</th><th>Address</th></tr></thead><tbody><tr><td>Uniswap V4 Pool Manager</td><td>0x05E73354cFDd6745C338b50BcFDfA3Aa6fA03408</td></tr><tr><td>USDC</td><td>0x5d7fbE8a713bE0Cb6E177EB7028A9b0CA370AafC</td></tr><tr><td>flETH</td><td>0x79FC52701cD4BE6f9Ba9aDC94c207DE37e3314eb</td></tr></tbody></table>
 
 
 
