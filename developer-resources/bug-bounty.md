@@ -8,7 +8,7 @@ The Flaunch Bounty program rewards users that discover and properly disclose fou
 
 The Flaunch Bounty program is derived from the Ethereum Bounty Program, an industry standard when it comes to rightfully rewarding bug bounty hunters.
 
-Please send vulnerability submissions to [bounty@flaunch.gg](mailto:bounty@flaunch.gg).
+Please send vulnerability submissions to [bounty@flayer.io](mailto:bounty@flayer.io)[.](mailto:bounty@flayer.io)
 
 ## Rules and Rewards
 
@@ -48,4 +48,4 @@ The bug bounty program is an experimental and discretionary rewards program for 
 
 The above mentioned bug bounty rules and rewards are applicable to all smart contracts that are actively being used and/or promoted by Flaunch.
 
-When in doubt about whether the bug applies to the bounty program, please contact the team by sending an email to [bounty@flayer.io](https://mailto:bounty@flayer.io).
+When in doubt about whether the bug applies to the bounty program, please contact the team by sending an email to [bounty@flayer.io](mailto:bounty@flayer.io).
