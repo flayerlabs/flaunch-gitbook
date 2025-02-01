@@ -8,7 +8,7 @@ icon: circle-check
 Flaunch in seconds.
 {% endembed %}
 
-Flaunching a coin takes seconds and costs only $5 to create.
+Flaunching a coin takes seconds and costs $30 to create.
 
 {% stepper %}
 {% step %}
