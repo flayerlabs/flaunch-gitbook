@@ -1,5 +1,9 @@
 # Frequently Asked Questions
 
+### What's the swap fee? <a href="#what-revenues-might-i-expect" id="what-revenues-might-i-expect"></a>
+
+1% on both buys and sells.
+
 ### What revenues might I expect from a Flaunched coin? <a href="#what-revenues-might-i-expect" id="what-revenues-might-i-expect"></a>
 
 Let's take a look at some of the outcomes for a profit maxi dev who chooses 80% revenue share, leaving 20% to the community.
