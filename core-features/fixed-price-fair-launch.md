@@ -12,6 +12,10 @@ When a coin is flaunched it enters into a Fixed Price Fair Launch. During this p
 Buys during Fixed Price Fair Launch can be sold at the same price (minus fees), removing price risk entirely.
 {% endhint %}
 
+{% hint style="danger" %}
+It is possible to buy more than the remaining Fair Launch amount, any additional amounts will not be protected by the fixed price.
+{% endhint %}
+
 While a Fair Launch is active, coins that are purchased cannot be sold. Coins that were purchased during Fair Launch can be sold at the same price they were bought for (minus fees). This reduces ape risk and gives early supporters a chance to enter before price discovery kicks in.
 
 Creators also have the option to buy up some of their Fair Launch tokens before they become available to the public (and at the same price). This gives creators the flexibility to ensure they have skin in the game or to use these early coins for distribution later on.
