@@ -4,16 +4,20 @@ icon: sack-dollar
 
 # Devs Get Revs
 
-Other launchpads extract millions. Flaunch sends it all (100%) back to the trenches.
+Swap fees are shared between creators (devs) and communities and the split is decided by the creator themselves. The dev can choose to take from 0% up to 100% of the coin's revenue.
 
-How those trading fees are shared between creators (devs) and coins is decided by the dev themselves. The dev can choose to take from 0% up to 100% of the coin's revenue.
+{% hint style="info" %}
+Revenue split is immutable and cannot be changed after the coin has launched.
+{% endhint %}
+
+* For creators, the revenue is streamed on every swap, paid in ETH
+* For communities, the revenue is streamed into [auto buybacks](auto-buybacks.md)
+
+The creator can choose to burn the tokens that are automatically bought back, or they can turn off auto buybacks to accumulate ETH that can be spent on market buying the coin.
 
 <figure><img src="../.gitbook/assets/image (25).png" alt="" width="563"><figcaption><p>Devs can choose their own adventure...</p></figcaption></figure>
 
-* For devs, revenues are streamed on every swap and **claimable in ETH**.
-* For coins, revenues are used to fill the automated **buybacks**.
-
-Revenue streams are fully decentralized and ownership of the “Meme Stream” is tokenized as an NFT. These NFTs are transferable. You can read about the implications of this in [The Meme Stream](memestream.md) section.
+Revenue streams are fully decentralized and ownership of the “Memestream” is tokenized as an NFT. These NFTs are transferable. You can read about the implications of this in the [Memestream](memestream.md) section.
 
 The right dev, flaunching the right coin, could find themselves with an annual revenue stream in the millions.
 
