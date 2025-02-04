@@ -34,9 +34,14 @@
   * [Progressive Bid Wall](developer-resources/hooks/progressive-bid-wall.md)
 * [Zaps](developer-resources/zaps/README.md)
   * [Flaunch & Buy](developer-resources/zaps/flaunch-and-buy.md)
-* [GitHub](https://github.com/flayerlabs/flaunch-contracts)
+* [GitHub](https://github.com/flayerlabs/flaunchgg-contracts)
 * [Uniswap V4](https://docs.uniswap.org/contracts/v4/overview)
 * [Bug Bounty](developer-resources/bug-bounty.md)
+* [Guides](developer-resources/guides/README.md)
+  * [Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
+  * [Making a Swap](developer-resources/guides/making-a-swap.md)
+  * [Setting a swap referrer](developer-resources/guides/setting-a-swap-referrer.md)
+  * [Calculating Memestream revenue](developer-resources/guides/calculating-memestream-revenue.md)
 
 ## Support and FAQ
 
