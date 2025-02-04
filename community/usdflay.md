@@ -10,6 +10,10 @@ CA (Ethereum) : 0xf1a7000000950c7ad8aff13118bb7ab561a448ee
 CA (Base)     : 0xf1a7000000950c7ad8aff13118bb7ab561a448ee
 ```
 
+{% hint style="info" %}
+Bridge between Base and Ethereum without slippage at [superbridge.app](https://superbridge.app/). For faster bridging (and fees) an option is [debridge.finance](https://debridge.finance/).
+{% endhint %}
+
 The Flaunch protocol has the option for a fee switch that can be turned on by FLAY holders through onchain governance. The fee switch, if activated through approval by FLAY holders, would collect up to 10% of the Flaunch protocol's trading fees.
 
 The governance steps for activating the fee switch will be documented after launch on Base mainnet.
