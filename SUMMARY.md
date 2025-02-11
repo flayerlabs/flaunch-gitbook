@@ -13,6 +13,7 @@
 * [Auto Buybacks](core-features/auto-buybacks.md)
 * [Devs Get Revs](core-features/devs-get-revs.md)
 * [Memestream](core-features/memestream.md)
+* [Fee Distribution](core-features/fee-distribution.md)
 
 ## Community
 
@@ -39,9 +40,10 @@
 * [Bug Bounty](developer-resources/bug-bounty.md)
 * [Guides](developer-resources/guides/README.md)
   * [Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
-  * [Making a Swap](developer-resources/guides/making-a-swap.md)
+  * [Making a swap](developer-resources/guides/making-a-swap.md)
   * [Setting a swap referrer](developer-resources/guides/setting-a-swap-referrer.md)
-  * [Calculating Memestream revenue](developer-resources/guides/calculating-memestream-revenue.md)
+  * [Memestream revenue](developer-resources/guides/memestream-revenue.md)
+  * [Creating Treasury Actions](developer-resources/guides/creating-treasury-actions.md)
 
 ## Support and FAQ
 

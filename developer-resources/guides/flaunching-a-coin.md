@@ -107,7 +107,7 @@ ipfs://QmScdsMTXWm3GUvzUwvQvYJLBQjtXwFjWvLgGvPBgipHmg
 
 The amount of tokens to add as single sided fair launch liquidity. This does not require any additional ETH to be sent.
 
-This value must be between 0% (`0`) - 69% (`69e27`).
+This value must be between 1% (`1e27`) - 69% (`69e27`).
 
 _**Example for 50% of total supply:**_
 
