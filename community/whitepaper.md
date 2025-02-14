@@ -2,13 +2,13 @@
 icon: book-open
 ---
 
-# Retardio Manifesto
+# Whitepaper
 
 
 
 The limits of degeneracy have been tested and broken. That red line was the extraction of hundreds of millions of dollars from unsuspecting degens who were paying hidden fees and playing into the hands of secretive cabals of influencers, bots and insiders.
 
-The Retardio Manifesto is a call to action for degens who want to take back control from the cabal. In this manifesto we outline a protocol for doing just that. Powered by Uniswap V4 hooks and the immutable blockchain, we have crafted the framework for a decentralized ecosystem that not only rewards devs (creators) and memecoin holders, but gives rise to a Meme Economy of tokenized revenue streams owned by the creators themselves…
+This whitepaper is a call to action for degens who want to take back control from the cabal. In this manifesto we outline a protocol for doing just that. Powered by Uniswap V4 hooks and the immutable blockchain, we have crafted the framework for a decentralized ecosystem that not only rewards devs (creators) and memecoin holders, but gives rise to a Meme Economy of tokenized revenue streams owned by the creators themselves…
 
 ### THE PROBLEM
 

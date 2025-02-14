@@ -18,7 +18,7 @@
 ## Community
 
 * [$FLAY](community/usdflay.md)
-* [Retardio Manifesto](community/retardio-manifesto.md)
+* [Whitepaper](community/whitepaper.md)
 * [Telegram](https://t.me/flaunchgg)
 * [Discord (Flayer Labs)](https://discord.gg/flaunch)
 * [Brand Kit](community/brand-kit.md)
