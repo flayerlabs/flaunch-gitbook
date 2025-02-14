@@ -53,14 +53,6 @@ This call does not bypass the buy price and requires additional ETH to be sent t
 * The `feeCalculatorParams` bytes are not used in current calculator implementations. For this reason, this can be left as bytes. This can be referenced as `abi.encode('')`
 * The `premineAmount` parameter is passed in the `PositionManager` flaunch call, but it won't actually be actioned unless this zap is called instead. The `premineAmount` attribute only allocates the buy that is then filled when called via the zap.
 
-## Deployment Addresses
-
-{% hint style="info" %}
-We strive to maintain uniformity in our deployment addresses, but always check before implementing across multiple chains.
-{% endhint %}
-
-<table><thead><tr><th width="214">Network</th><th>Address</th></tr></thead><tbody><tr><td>Base</td><td></td></tr><tr><td>Base Sepolia</td><td>0x60fc7d5F57082889F3faE31d844b1159A46105AF</td></tr></tbody></table>
-
 {% embed url="https://github.com/flayerlabs/flaunch-contracts/blob/main/src/contracts/zaps/FlaunchPremineZap.sol" %}
 Zap contract
 {% endembed %}
