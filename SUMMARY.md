@@ -37,6 +37,7 @@
   * [Flaunch & Buy](developer-resources/zaps/flaunch-and-buy.md)
 * [GitHub](https://github.com/flayerlabs/flaunchgg-contracts)
 * [Uniswap V4](https://docs.uniswap.org/contracts/v4/overview)
+* [Uniswap V4 Helpers](https://github.com/flayerlabs/uni-v4-helpers/blob/main/utils/liquidity.ts)
 * [Bug Bounty](developer-resources/bug-bounty.md)
 * [Guides](developer-resources/guides/README.md)
   * [Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
