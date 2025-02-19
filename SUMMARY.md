@@ -17,6 +17,7 @@
 ## Community
 
 * [$FLAY](community/usdflay.md)
+* [Flaunchy (AI)](community/flaunchy-ai.md)
 * [Whitepaper](community/whitepaper.md)
 * [Telegram](https://t.me/flaunchgg)
 * [Discord (Flayer Labs)](https://discord.gg/flaunch)
