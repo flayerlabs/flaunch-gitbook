@@ -15,6 +15,7 @@ Please send vulnerability submissions to [bounty@flayer.io](mailto:bounty@flayer
 Please have a look at the bullets below before starting your hunt!
 
 * Issues that have already been submitted by another user, or are already known to the Flaunch team, are not eligible for bounty rewards.
+* Only bugs found in deployed and utilised mainnet contracts, or code found in the `main` branch of the codebase will be eligible.
 * Public disclosure of a vulnerability makes it ineligible for a bounty.
 * You can start or fork a private chain for bug hunting. Please respect the Flaunch main and test networks and refrain from attacking them.
 * All paid Flaunch and Flayer Labs members are not eligible for rewards.
@@ -49,3 +50,7 @@ The bug bounty program is an experimental and discretionary rewards program for 
 The above mentioned bug bounty rules and rewards are applicable to all smart contracts that are actively being used and/or promoted by Flaunch.
 
 When in doubt about whether the bug applies to the bounty program, please contact the team by sending an email to [bounty@flayer.io](mailto:bounty@flayer.io).
+
+{% embed url="https://github.com/flayerlabs/flaunchgg-contracts" %}
+Flaunch Repoistory
+{% endembed %}

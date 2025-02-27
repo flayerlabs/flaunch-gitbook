@@ -39,6 +39,9 @@
 * [Uniswap V4](https://docs.uniswap.org/contracts/v4/overview)
 * [Uniswap V4 Helpers](https://github.com/flayerlabs/uni-v4-helpers/blob/main/utils/liquidity.ts)
 * [Bug Bounty](developer-resources/bug-bounty.md)
+* [Treasury Managers](developer-resources/treasury-managers/README.md)
+  * [RevenueManager](developer-resources/treasury-managers/revenuemanager.md)
+  * [OnboardingManager](developer-resources/treasury-managers/onboardingmanager.md)
 * [Guides](developer-resources/guides/README.md)
   * [Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
   * [Making a swap](developer-resources/guides/making-a-swap.md)
@@ -46,6 +49,8 @@
   * [Memestream revenue](developer-resources/guides/memestream-revenue.md)
   * [Creating Treasury Actions](developer-resources/guides/creating-treasury-actions.md)
   * [Fee Distribution](developer-resources/guides/fee-distribution.md)
+* [Flaunch API](developer-resources/flaunch-api/README.md)
+  * [Subgraph Query Examples](developer-resources/flaunch-api/subgraph-query-examples.md)
 
 ## Support and FAQ
 
