@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Subgraph Query Examples
 
 
