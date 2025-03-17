@@ -10,6 +10,7 @@ If you operate an external protocol, there are a number of benefits that can com
 1. Create your own launchpad that gives you full control of the business model
 2. Integrate your protocol's functionality into Flaunch's whitelisted treasury actions to build TVL
 3. Build popular money games with the tokenized revenue streams and profit
+4. Builders can take up to 100% of all fees generated, and the remaining will go to your token creator and [the community](../hooks/progressive-bid-wall.md).
 
 The Flaunch protocol is built in a way that directly rewards the token creator though, which won't benefit an external protocol. To alleviate this issue, we can use an escrow contract that will captures fees as a middleware and give more granular control over fee distribution in any way wanted.
 

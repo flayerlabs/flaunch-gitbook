@@ -25,6 +25,7 @@
 
 ## Developer Resources
 
+* [Quick Start](developer-resources/quick-start.md)
 * [Contract Addresses](developer-resources/contract-addresses.md)
 * [Market Cap Calculations](developer-resources/market-cap-calculations.md)
 * [Hooks](developer-resources/hooks/README.md)

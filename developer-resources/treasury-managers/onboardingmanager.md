@@ -1,5 +1,6 @@
 ---
 description: Bringing KOLs to platform.
+hidden: true
 icon: door-open
 ---
 
