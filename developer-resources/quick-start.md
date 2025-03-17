@@ -67,7 +67,7 @@ All of the [creator fees](../core-features/devs-get-revs.md) will be initially r
 
 Every time a user makes a swap on Flaunch, if there is a referrer set then 5% of the swap fee will be allocated to the specified address before other fee distribution. This will not always be ETH, but it will allow for a treasury to be steadily built. You can find out more about [setting a swap referrer](guides/setting-a-swap-referrer.md) in our documentation.
 
-## Can I build..
+## Can I build...
 
 Chances are: yes! Below are some example of integrations that you can make, along with some suggested approaches. At it's core level though, if you want to leverage a secure and scalable token that provides ongoing revenue in pure ETH, then it can be built.
 
