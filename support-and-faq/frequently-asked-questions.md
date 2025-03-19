@@ -53,7 +53,7 @@ WIF's fundraise to buy a $650K ad on the Sphere would have been raised in a sing
 
 When a coin is Flaunched it starts with an initial 30 minute Fair Launch.
 
-During Fair Launch the price is fixed for everyone for 30 minutes and 75,000,000 tokens (7.5% of total supply) are available to purchase. The ETH raised during the Fair Launch is then placed immediately into a limit buy, ensuring that Fair Launch participants can exit at the same price (minus trading fees).
+During Fair Launch the price is fixed for everyone for 30 minutes. The ETH raised during the Fair Launch is then placed immediately into a limit buy, ensuring that Fair Launch participants can exit at the same price (minus trading fees).
 
 After Fair Launch the coin moves into price discovery.
 
