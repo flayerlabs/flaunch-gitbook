@@ -145,7 +145,7 @@ We are currently working with a small number of launchpads to implement our Reve
 
 ### Deployment Address
 
-<table><thead><tr><th width="343">Chain</th><th>Address</th></tr></thead><tbody><tr><td>Base</td><td><em>Coming soon</em></td></tr><tr><td>Base Sepolia</td><td><em>Coming soon</em></td></tr></tbody></table>
+<table><thead><tr><th width="343">Chain</th><th>Address</th></tr></thead><tbody><tr><td>Base</td><td><em>Coming soon</em></td></tr><tr><td>Base Sepolia</td><td><code>0x08c2c76fd65866603d7b695971f52ff6d74e25e7</code></td></tr></tbody></table>
 
 ### Implementation Source
 

@@ -59,13 +59,9 @@ else {
 The **ReferralEscrow contract is currently enabled on the protocol**
 {% endhint %}
 
-{% hint style="info" %}
-**Current Referral Escrow contract addresses:**
+### **Referral Escrow Contract Addresses**
 
-Base: `0xBD39c7Be6D98BD1a3e4Ad482baF99d738947fE55`
-
-Base Sepolia: `0x0651cadC51b6a13CB3465C134A22154a2b633779`
-{% endhint %}
+<table><thead><tr><th width="182.1563720703125">Chain</th><th>Deployment Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0xBD39c7Be6D98BD1a3e4Ad482baF99d738947fE55</code></td></tr><tr><td>Base Sepolia</td><td><code>0x0651cadC51b6a13CB3465C134A22154a2b633779</code></td></tr></tbody></table>
 
 The claim process for referral fees is called by passing an array of token addresses to claim, and the recipient of the claim. Tokens can only be claimed from the allocation of the `msg.sender`.
 
