@@ -6,6 +6,7 @@
 
 * [Why Flaunch?](getting-started/why-flaunch.md)
 * [Flaunch a Coin](getting-started/flaunch-a-coin.md)
+* [Migrating into Flaunch](getting-started/migrating-into-flaunch.md)
 
 ## Core Features
 
@@ -50,6 +51,7 @@
   * [Memestream revenue](developer-resources/guides/memestream-revenue.md)
   * [Creating Treasury Actions](developer-resources/guides/creating-treasury-actions.md)
   * [Fee Distribution](developer-resources/guides/fee-distribution.md)
+  * [Lookup PoolId Onchain](developer-resources/guides/lookup-poolid-onchain.md)
 * [Flaunch API](developer-resources/flaunch-api/README.md)
   * [Subgraph Query Examples](developer-resources/flaunch-api/subgraph-query-examples.md)
 
