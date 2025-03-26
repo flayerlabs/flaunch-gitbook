@@ -6,7 +6,7 @@ description: >-
 icon: plane
 ---
 
-# Flaunch Memecoin API
+# Flaunch Create API
 
 By making a series of API calls any website, end-user or API can create a Flaunch memecoin in seconds, with zero deployment fees. There is no requirement for a wallet to be connected and instead a user can Flaunch a token connected to their email address, X (Twitter), Farcaster account or Base wallet address.
 
@@ -145,7 +145,7 @@ Creates a new memecoin token on the selected network with the following default 
 * 80% dev / 20% community split
 * No protocol fees
 
-After a token has been flaunched, a `jobId` will be returned in the response. This `jobId` signifies it's position in a queue to be flaunched. It can then be referenced when querying the `launch-status` endpoint to retrieve the status of the token and subsequent deployed contract address of the token.
+After a token has been flaunched, a `jobId` will be returned in the response. This `jobId` signifies its position in a queue to be flaunched. It can then be referenced when querying the `launch-status` endpoint to retrieve the status of the token and subsequent deployed contract address of the token.
 
 \
 **Required Fields**

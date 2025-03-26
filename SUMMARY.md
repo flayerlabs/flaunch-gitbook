@@ -55,7 +55,7 @@
   * [Lookup PoolId Onchain](developer-resources/guides/lookup-poolid-onchain.md)
 * [Flaunch API](developer-resources/flaunch-api/README.md)
   * [Subgraph Query Examples](developer-resources/flaunch-api/subgraph-query-examples.md)
-* [Flaunch Memecoin API](developer-resources/flaunch-memecoin-api.md)
+* [Flaunch Create API](developer-resources/flaunch-create-api.md)
 
 ## Support and FAQ
 
