@@ -37,6 +37,7 @@
   * [Progressive Bid Wall](developer-resources/hooks/progressive-bid-wall.md)
 * [Zaps](developer-resources/zaps/README.md)
   * [Flaunch & Buy](developer-resources/zaps/flaunch-and-buy.md)
+* [Flaunch JS SDK](https://www.npmjs.com/package/@flaunch/sdk)
 * [GitHub](https://github.com/flayerlabs/flaunchgg-contracts)
 * [Uniswap V4](https://docs.uniswap.org/contracts/v4/overview)
 * [Uniswap V4 Helpers](https://github.com/flayerlabs/uni-v4-helpers/blob/main/utils/liquidity.ts)
@@ -54,6 +55,7 @@
   * [Lookup PoolId Onchain](developer-resources/guides/lookup-poolid-onchain.md)
 * [Flaunch API](developer-resources/flaunch-api/README.md)
   * [Subgraph Query Examples](developer-resources/flaunch-api/subgraph-query-examples.md)
+* [Flaunch Memecoin API](developer-resources/flaunch-memecoin-api.md)
 
 ## Support and FAQ
 
