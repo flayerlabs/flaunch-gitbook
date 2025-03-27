@@ -56,6 +56,9 @@
 * [Uniswap V4 Helpers](https://github.com/flayerlabs/uni-v4-helpers/blob/main/utils/liquidity.ts)
 * [GitHub](https://github.com/flayerlabs/flaunchgg-contracts)
 * [Flaunch JS SDK](https://www.npmjs.com/package/@flaunch/sdk)
+* [Subgraph](developer-resources/subgraph/README.md)
+  * [Indexing Swaps](developer-resources/subgraph/indexing-swaps.md)
+  * [Flaunch Base Graph](https://thegraph.com/explorer/subgraphs/bbWLZuPrmoskDaU64xycxZFE6EvSkMQALKkDpsz5ifF)
 
 ## Support and FAQ
 
