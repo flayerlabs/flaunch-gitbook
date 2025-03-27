@@ -4,10 +4,6 @@ icon: file-signature
 
 # Contract Addresses
 
-{% hint style="warning" %}
-We strive to maintain uniformity in our deployment addresses, but always check before implementing across multiple chains.
-{% endhint %}
-
 ## Base
 
 ### Flaunch Contracts
