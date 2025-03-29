@@ -39,8 +39,7 @@
 * [Treasury Managers](developer-resources/treasury-managers/README.md)
   * [RevenueManager](developer-resources/treasury-managers/revenuemanager.md)
   * [OnboardingManager](developer-resources/treasury-managers/onboardingmanager.md)
-* [Flaunch API](developer-resources/flaunch-api/README.md)
-  * [Subgraph Query Examples](developer-resources/flaunch-api/subgraph-query-examples.md)
+* [Flaunch API](developer-resources/flaunch-api.md)
 * [Flaunch Create API](developer-resources/flaunch-memecoin-api.md)
 * [Hooks](developer-resources/hooks/README.md)
   * [Fair Launch](developer-resources/hooks/fair-launch.md)
@@ -57,6 +56,7 @@
 * [GitHub](https://github.com/flayerlabs/flaunchgg-contracts)
 * [Flaunch JS SDK](https://www.npmjs.com/package/@flaunch/sdk)
 * [Subgraph](developer-resources/subgraph/README.md)
+  * [Subgraph Query Examples](developer-resources/subgraph/subgraph-query-examples.md)
   * [Indexing Swaps](developer-resources/subgraph/indexing-swaps.md)
   * [Flaunch Base Graph](https://thegraph.com/explorer/subgraphs/bbWLZuPrmoskDaU64xycxZFE6EvSkMQALKkDpsz5ifF)
 
