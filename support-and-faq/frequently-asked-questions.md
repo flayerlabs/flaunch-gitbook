@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Frequently Asked Questions
 
 ### What's the swap fee? <a href="#what-revenues-might-i-expect" id="what-revenues-might-i-expect"></a>

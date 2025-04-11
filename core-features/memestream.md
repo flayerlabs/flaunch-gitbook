@@ -4,7 +4,7 @@ icon: hexagon-vertical-nft
 
 # Memestream
 
-When a coin is flaunched the creator (dev) takes ownership of an NFT—The Memestream—which grants the holder rights to the dev's share of the revenue.
+When a coin is flaunched the creator takes ownership of an NFT—The Memestream—which grants the holder rights to the creator's share of the revenue.
 
 By making revenue streams transferable as an NFT, creators can sell their meme's future income to another person, entity or DAO, allowing them to immediately realize future income. It's not just simple NFT trading that is unlocked, but leverage (borrowing against future income) and renting (interest rate swaps) are all possible too.
 
@@ -35,7 +35,7 @@ With Flaunch, transferring the Memestream is enough to send all future income of
 
 ### Meme Management
 
-<figure><img src="../.gitbook/assets/image (31).png" alt="" width="370"><figcaption><p>Meme Management for devs</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (31).png" alt="" width="370"><figcaption><p>Meme Management for creators</p></figcaption></figure>
 
 The holder of the Memestream is also endowed with specific management rights that can help to accelerate their meme's culture and price. These include the ability to market buy their coin or burn tokens they have bought back. More actions are being developed to allow for use in liquidity management and airdrops.
 
@@ -43,6 +43,6 @@ Want some more management functionality? Make a request [in the Discord](https:/
 
 ### Community Take Overs (CTOs)
 
-By tokenizing the underlying value of the meme in the Memestream, anyone can put an offer to buy the meme's future income (and management - see below) on secondary markets. This creates a very real CTO market, where devs that abandon their meme can exit with some additional value by selling its Memestream and allowing the community to keep the culture alive (and getting paid to do so).
+By tokenizing the underlying value of the meme in the Memestream, anyone can put an offer to buy the meme's future income (and management - see below) on secondary markets. This creates a very real CTO market, where creators that abandon their meme can exit with some additional value by selling its Memestream and allowing the community to keep the culture alive (and getting paid to do so).
 
 CTOs on Flaunch are more concrete and meaningful than anywhere else. Furthermore, the Memestream's ownership can be shared across the community through DAOs, multi-sigs and fractionalization.

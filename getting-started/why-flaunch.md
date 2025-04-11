@@ -6,11 +6,11 @@ icon: bullseye-arrow
 
 Other launchpads extract millions. Flaunch sends it all (100%) back to the trenches.
 
-* Devs get paid on every swap, aligning them with the coin's success
+* Coin creators get paid on every swap, aligning them with the coin's success
 * Automated buybacks protect the token price from falling
 
 {% hint style="success" %}
-Flaunched coins have a better hit rate thanks to aligned devs and automated buybacks.
+Flaunched coins have a better hit rate thanks to aligned creators and automated buybacks.
 {% endhint %}
 
 What else?

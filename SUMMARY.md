@@ -12,7 +12,7 @@
 
 * [Fixed Price Fair Launch](core-features/fixed-price-fair-launch.md)
 * [Auto Buybacks](core-features/auto-buybacks.md)
-* [Devs Get Revs](core-features/devs-get-revs.md)
+* [Creator Revenue](core-features/creator-revenue.md)
 * [Memestream](core-features/memestream.md)
 
 ## Community
@@ -51,14 +51,9 @@
   * [Flaunch & Buy](developer-resources/zaps/flaunch-and-buy.md)
 * [Market Cap Calculations](developer-resources/market-cap-calculations.md)
 * [Bug Bounty](developer-resources/bug-bounty.md)
-* [Uniswap V4](https://docs.uniswap.org/contracts/v4/overview)
-* [Uniswap V4 Helpers](https://github.com/flayerlabs/uni-v4-helpers/blob/main/utils/liquidity.ts)
-* [GitHub](https://github.com/flayerlabs/flaunchgg-contracts)
-* [Flaunch JS SDK](https://www.npmjs.com/package/@flaunch/sdk)
 * [Subgraph](developer-resources/subgraph/README.md)
   * [Subgraph Query Examples](developer-resources/subgraph/subgraph-query-examples.md)
   * [Indexing Swaps](developer-resources/subgraph/indexing-swaps.md)
-  * [Flaunch Base Graph](https://thegraph.com/explorer/subgraphs/bbWLZuPrmoskDaU64xycxZFE6EvSkMQALKkDpsz5ifF)
 
 ## Support and FAQ
 

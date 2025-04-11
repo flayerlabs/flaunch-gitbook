@@ -3,6 +3,7 @@ description: >-
   To reduce the friction of launching tokens we have released an API, allowing
   users to make standardised API calls to flaunch a token quickly and easily,
   without payment or even any web3 identity.
+hidden: true
 icon: plane
 ---
 

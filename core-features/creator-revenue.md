@@ -2,9 +2,9 @@
 icon: sack-dollar
 ---
 
-# Devs Get Revs
+# Creator Revenue
 
-Swap fees are shared between creators (devs) and communities and the split is decided by the creator themselves. The dev can choose to take from 0% up to 100% of the coin's revenue.
+Swap fees are shared between creators and communities and the split is decided by the creator themselves. The creator can choose to take from 0% up to 100% of the coin's revenue.
 
 {% hint style="info" %}
 Revenue split is immutable and cannot be changed after the coin has launched.

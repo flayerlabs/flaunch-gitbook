@@ -1,5 +1,6 @@
 ---
 description: Want to integrate with Flaunch?
+hidden: true
 icon: stopwatch
 ---
 
@@ -17,7 +18,7 @@ Our core features offer a range of benefits to supercharge your token. Some of t
 
 When a coin is flaunched it enters into a Fixed Price Fair Launch. During this period a set number of coins are available to buy at a fixed price _for everyone_. This levels the playing field for all traders—from degens to bots.
 
-#### [Untarnished Revenue Generation](../core-features/devs-get-revs.md)
+#### [Untarnished Revenue Generation](../core-features/creator-revenue.md)
 
 Swap fees are shared between creators (devs) and communities (auto buybacks) and the split is decided by the creator themselves. The dev can choose to take from 0% up to 100% of the coin's revenue. All revenue that is earned from the token is output as ETH, so you don't have to factor in logic to dump your token to realize revenue.
 
@@ -61,7 +62,7 @@ So how can using Flaunch generate revenue? There are a number of ways that Flaun
 
 ### Implement Treasury Managers
 
-All of the [creator fees](../core-features/devs-get-revs.md) will be initially received by your Treasury Manager before then being routed to your end-user. This is a great scalable solution, allowing you to customise and obfuscate your end-user experience.
+All of the [creator fees](../core-features/creator-revenue.md) will be initially received by your Treasury Manager before then being routed to your end-user. This is a great scalable solution, allowing you to customise and obfuscate your end-user experience.
 
 ### Referrer Swap Fees
 
