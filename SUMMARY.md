@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Welcome to Flaunch](README.md)
+* [Welcome Creators](README.md)
 
 ## Getting Started
 
