@@ -32,7 +32,7 @@ Use the slider to determine the share of the coin revenue between you and the co
 {% step %}
 ### Set Fee Receiver
 
-Who will receive the creator's share of the trading fees of the token? You can airdrop this to anyone—an influencer, a politician, a public good, an AI agent... or you can keep it for yourself. The fee receiver is transferrable (as an NFT) and can be sold on secondary markets (see the [Memestream](../core-features/memestream.md)).
+Who will receive the creator's share of the trading fees of the token? You can airdrop this to anyone—an influencer, a politician, a public good, an AI agent... or you can keep it for yourself. The fee receiver is transferrable (as an NFT) and can be sold on secondary markets (see the [Memestream](../core-features/revenue-stream-nft.md)).
 {% endstep %}
 
 {% step %}

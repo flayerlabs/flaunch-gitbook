@@ -17,7 +17,7 @@ The creator can choose to burn the tokens that are automatically bought back, or
 
 <figure><img src="../.gitbook/assets/image (25).png" alt="" width="563"><figcaption><p>Devs can choose their own adventure...</p></figcaption></figure>
 
-Revenue streams are fully decentralized and ownership of the “Memestream” is tokenized as an NFT. These NFTs are transferable. You can read about the implications of this in the [Memestream](memestream.md) section.
+Revenue streams are fully decentralized and ownership of the “Memestream” is tokenized as an NFT. These NFTs are transferable. You can read about the implications of this in the [Memestream](revenue-stream-nft.md) section.
 
 The right dev, flaunching the right coin, could find themselves with an annual revenue stream in the millions.
 

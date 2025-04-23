@@ -39,7 +39,7 @@ In fact, the protocol goes even further to protect your rewards. When you Flaunc
 
 ### How do I sell my revenue stream?
 
-The [Memestream NFT](../core-features/memestream.md) can be traded on any secondary marketplace like Magic Eden or OpenSea. There are no royalties on Memestream sales.
+The [Memestream NFT](../core-features/revenue-stream-nft.md) can be traded on any secondary marketplace like Magic Eden or OpenSea. There are no royalties on Memestream sales.
 
 ### How are communities rewarded? <a href="#how-are-communities-rewarded" id="how-are-communities-rewarded"></a>
 

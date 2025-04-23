@@ -13,7 +13,7 @@
 * [Fixed Price Fair Launch](core-features/fixed-price-fair-launch.md)
 * [Auto Buybacks](core-features/auto-buybacks.md)
 * [Creator Revenue](core-features/creator-revenue.md)
-* [Memestream](core-features/memestream.md)
+* [Revenue Stream NFT](core-features/revenue-stream-nft.md)
 
 ## Community
 
