@@ -1,12 +1,18 @@
 ---
 icon: cat
+cover: ../.gitbook/assets/image.png
+coverY: 0
 ---
 
 # Flaunchy
 
 ## Launch Types for Flaunchy
 
-#### 1️⃣ Fast Launch
+Twitter: [x.com/flaunchybot](https://x.com/flaunchybot)
+
+Farcaster: [farcaster.com/flaunchy](https://farcaster.xyz/flaunchy)
+
+#### 1. Fast Launch
 
 **Name and ticker (image optional)**
 
@@ -25,7 +31,7 @@ CA: 0x1234...
 
 ***
 
-#### 2️⃣ Standard Launch
+#### 2. Standard Launch
 
 **Set custom fee splits or receivers**
 
@@ -44,7 +50,7 @@ CA: 0x5678...
 
 ***
 
-#### 3️⃣ FlaunchIt Launch
+#### 3. FlaunchIt Launch
 
 **Reply to someone’s post to create a themed token**
 
@@ -69,7 +75,7 @@ CA: 0x9abc...
 
 ***
 
-#### 4️⃣ Multi-Receiver Launch
+#### 4. Multi-Receiver Launch
 
 **Split fees between multiple people**
 

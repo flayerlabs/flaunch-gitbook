@@ -1,6 +1,6 @@
 ---
-icon: coin-blank
 description: FLAY is the token of Flaunch.
+icon: coin-blank
 ---
 
 # $FLAY
@@ -20,7 +20,7 @@ The governance steps for activating the fee switch will be documented after laun
 
 ***
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>FLAY has migrated from NFTX and FLOOR</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>FLAY has migrated from NFTX and FLOOR</p></figcaption></figure>
 
 With a total supply of `1,000,000,000` tokens, `FLAY` has been carefully distributed to ensure long term sustainability and fair governance.
 
