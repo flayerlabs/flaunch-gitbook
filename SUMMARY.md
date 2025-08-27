@@ -20,6 +20,7 @@
 * [$FLAY](community/usdflay.md)
 * [Flaunchy](community/flaunchy.md)
 * [Flaunchy (AI)](community/flaunchy-ai.md)
+* [Proposals (Tally.xyz)](community/proposals-tally.xyz.md)
 * [Whitepaper](community/whitepaper.md)
 * [Telegram](https://t.me/flaunchgg)
 * [Discord (Flayer Labs)](https://discord.gg/flaunch)
