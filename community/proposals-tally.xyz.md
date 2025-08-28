@@ -62,6 +62,12 @@ Your proposal should include:\
 
 As a $FLAY holder, it would be our recommendation that any proposal should have the intention of benefitting the Flayer ecosystem in the longterm. Any proposals that don't align with this have a high likelihood of being voted down.
 
+### What happens when a proposal is executed?
+
+1. Proposals and votes are made on Ethereum Mainnet through delegation of $FLAY token.
+2. If proposal passes, the `TimelockController` on Ethereum Mainnet stores the executable calldata set by the proposal.
+3. After the timelock of 2 days has passed, the execution can be called on the Ethereum Mainnet `TimelockController`. This executes the proposal arbritrary calldata against the `L2Owner` contract on Base Mainnet.
+
 ## How the Fee Switch works
 
 When disabled, the protocol fee share will just be distributed amongst the other fee beneficiaries (token creator, etc). When enabled, the fees will instead first be portioned off to capture an allocation for the protocol.
@@ -103,15 +109,35 @@ Fees allocated to the protocol will be stored in the same `FeeEscrow` contract i
 <table><thead><tr><th width="229.1016845703125">Contract</th><th>Address</th></tr></thead><tbody><tr><td>FeeEscrow</td><td><code>0x72e6f7948b1B1A343B477F39aAbd2E35E6D27dde</code></td></tr><tr><td>ProtocolFeeRecipient</td><td><code>0x1150c53eB4cE3aDE47808D1D1Ac9636b774eE079</code></td></tr></tbody></table>
 
 {% hint style="warning" %}
-There is a singular exception to this. The first PositionManager contract deployed for Flaunch set the protocol fee recipient as the **Flayer Labs multisig**. This means that protocol fees from these tokens, if enabled, would need to be calculated and allocated on a rolling basis by the Flayer team.
+There is a singular exception to this. The first PositionManager contract deployed for Flaunch set the protocol fee recipient as the **Flayer Foundation** multisig. More information regarding this can be found below.
 {% endhint %}
+
+### Claiming Fees for proposal use
+
+To claim protocol fees, the `L2Owner` can call `claim` against the `ProtocolFeeRecipient` contract. This provides a simplified flow to call all fees. All fees, like any other fee allocation on Flaunch, are provided exclusively in native ETH.
+
+Due to a contract upgrade during the start of the Flaunch project, if the first PositionManager (`PositionManager1`) enables protocol fees then they will be allocated immutably to the **Flayer Foundation** multisig. At time of writing there are 4755 flaunched tokens on this PositionManager.
+
+For legal purposes, the foundation has **no** obligation to use these protocol fees for buybacks (but with obligations to be positive-sum for everything the Foundation builds).
+
+All future PositionManagers (post `PositionManager1`) _will_ be utilized at the discretion of $FLAY token holders to action on through onchain governance.
+
+#### Position Manager Addresses (Chain ID: 8453)
+
+<table><thead><tr><th width="229.1016845703125">Contract</th><th>Address</th></tr></thead><tbody><tr><td>PositionManager1</td><td><code>0x6A53F8b799bE11a2A3264eF0bfF183dCB12d9571</code></td></tr><tr><td>PositionManager2</td><td><code>0xB4512bf57d50fbcb64a3adF8b17a79b2A204C18C</code></td></tr></tbody></table>
 
 ### Are the fees safe?
 
-The ETH allocated to the protocol are only managed via $FLAY holder proposals, allowing the community to interact with the claims.
+The ETH allocated to the protocol are securely stored onchain in our battle-tested `FeeEscrow` contracts.
 
 This process has been extensively audited and shows no concerns.
 
 ## Contract Addresses
 
+#### Ethereum Mainnet (Chain ID: 1)
+
 <table><thead><tr><th width="229.1016845703125">Contract</th><th>Address</th></tr></thead><tbody><tr><td>Governor</td><td><code>0x8BA5eA8c8b1Aafe9dbcb7a36737AcfAd6afa5D38</code></td></tr><tr><td>Token</td><td><code>0xF1A7000000950C7ad8Aff13118Bb7aB561A448ee</code></td></tr><tr><td>Timelock</td><td><code>0x6c4c0CD7E0E5eeFfbd77AAfe1820d3b9B1ef27b0</code></td></tr></tbody></table>
+
+#### Base Mainnet (Chain ID: 8453)
+
+<table><thead><tr><th width="229.1016845703125">Contract</th><th>Address</th></tr></thead><tbody><tr><td>L2Owner</td><td><code>0x000000000Bb63D5c070d0D5791517886a4d8C545</code></td></tr></tbody></table>
