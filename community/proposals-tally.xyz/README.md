@@ -3,8 +3,6 @@ description: >-
   The Flaunch protocol has an option for a protocol fee to be enabled. When
   enabled, a percentage of swap fees are managed and used through Tally
   proposals via $FLAY holder voting.
-hidden: true
-noIndex: true
 icon: person-sign
 ---
 
