@@ -19,6 +19,8 @@
 
 ## Developer Resources
 
+* [Contract Addresses](https://docs.flaunch.gg/developer-resources/contract-addresses)
+* [Audits](https://docs.flaunch.gg/developer-resources/audits)
 * [Quick Start](developer-resources/quick-start.md)
 * [Contract Addresses](developer-resources/contract-addresses.md)
 * [Guides](developer-resources/guides/README.md)
@@ -51,6 +53,5 @@
 ## Support and FAQ
 
 * [Frequently Asked Questions](support-and-faq/frequently-asked-questions.md)
-* [Protocol Audits](support-and-faq/protocol-audits.md)
 * [Terms of Service](support-and-faq/terms-of-service.md)
 * [Privacy Policy](support-and-faq/privacy-policy.md)
