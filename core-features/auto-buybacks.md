@@ -1,5 +1,5 @@
 ---
-icon: shield-quartered
+icon: coins
 ---
 
 # Auto Buybacks
@@ -18,4 +18,4 @@ If the price continues moving upwards, the PBW follows with more and more ETH be
 
 ### Turning off Progressive Bid Walls
 
-[Memestream](revenue-stream-nft.md) owners can disable their coin's Progressive Bid Wall to allow the ETH to accumulate in the coin's treasury. This ETH can be used for approved actions starting with Full Stack Churchills that market buy the token.
+[Memestream](royalty-nft.md) owners can disable their coin's Progressive Bid Wall to allow the ETH to accumulate in the coin's treasury. This ETH can be used for approved actions starting with Full Stack Churchills that market buy the token.

@@ -1,51 +1,73 @@
 ---
-icon: circle-check
+icon: coin-blank
 ---
 
-# Flaunch a Coin
+# Launch a Coin
 
-{% embed url="https://drive.google.com/file/d/1CoRrwaeJpMgueggI39A-jgD6wJEycWNr/view?usp=sharing" %}
-Flaunch in seconds.
-{% endembed %}
+Launching a coin takes 30 seconds and is free!
 
-Flaunching a coin takes seconds and costs $30 to create.
+Other than setting a name, symbol and description, Flaunch offers a suite of tools that go far beyond what is possible elsewhere...
 
-{% stepper %}
-{% step %}
-### Go to Create Token
+### Custom fee split
 
-Head to [https://flaunch.gg/create](https://flaunch.gg/create) to start creating your token.
-{% endstep %}
+When launching a coin the Creator can choose to earn anything between 0% and 100% of the trading fees. Whatever the Creator doesn't take is sent to [automated buybacks](../core-features/auto-buybacks.md).
 
-{% step %}
-### Add Token Details
+The default settings are:
 
-This includes the token name, symbol (keep it to 6 characters or less to enable X.com's auto cashtags), and the image for your token.
-{% endstep %}
+* Creator share: 80%
+* Auto buybacks: 20%
 
-{% step %}
-### Set Revenue Split
+{% hint style="info" %}
+The creator share is paid out to the holder of the revenue stream NFT which could be a user, a multi-sig, a custom contract or a Group.
+{% endhint %}
 
-Use the slider to determine the share of the coin revenue between you and the community. Creators can take as much as 100% of the trading fees (paid every swap). What they don't take goes to [Automated Buybacks](../core-features/auto-buybacks.md).
-{% endstep %}
+### Fee receivers
 
-{% step %}
-### Set Fee Receiver
+By default the Creator share is paid out to the user that launches the coin, however there is a lot more flexibility available.
 
-Who will receive the creator's share of the trading fees of the token? You can airdrop this to anyone—an influencer, a politician, a public good, an AI agent... or you can keep it for yourself. The fee receiver is transferrable (as an NFT) and can be sold on secondary markets (see the [Memestream](../core-features/revenue-stream-nft.md)).
-{% endstep %}
+**Multiple Fee Receivers**
 
-{% step %}
-### Flaunch!
+Using the [Flaunch app](https://flaunch.gg/) it's possible to set an unlimited number of fee receivers for a given coin. These receivers can be wallet addresses, ENS or Basename and even X and Farcaster handles. This makes it possible to "airdrop" or sell fee receiver rights to users that may never have used crypto.
 
-Once you're happy with your token details, click the "Create" button to deploy your token to Base.
-{% endstep %}
+**Groups**
 
-{% step %}
-### What's the CA?
+Coins can share their trading fees with Groups, and Groups can contain an unlimited set of coins. It is possible to launch a coin into an existing Group, or you can [create a new Group](launch-a-group.md) and launch a coin into one that you own.
 
-Copy and share the CA on socials. The first 30 minutes are a Fixed Price Fair Launch, after that period the coin will automatically go into price discovery.
+The trading fees from coins inside Groups are rewarded in two ways:
 
-With your coin now in the wild, any trade will generate revenue for you and your community of holders. Get sharing!
-{% endstep %}
-{% endstepper %}
+1. Staking rewards
+
+Users that stake the "Group coin" receive the trading fees.
+
+2. Buybacks
+
+The "Group coin" is bought back with the trading fees.
+
+**Sniper Protection**
+
+Flaunch has created proprietary technology that allows web2 verification of a user to be embedded in the Flaunch AMM.
+
+Enabling Sniper Protection when launching a coin via the [Flaunch app](https://flaunch.gg/) requires the user to validate a CAPTCHA before being able to swap during the Fair Launch period (5 minutes by default).
+
+This allows the Creator to leverage the power of hardened web2 anti-bot/proof of humanity tooling to create a better initial distribution of the coin.
+
+{% hint style="success" %}
+A "per wallet cap" can also be set to facilitate a broader distribution amongst users at launch.
+{% endhint %}
+
+**Scheduling, Fair Launch supply and more**
+
+Under "Advanced Flaunch" there are more settings a Creator can choose from:
+
+* Prebuy (purchase tokens at the fair launch price)
+* Starting market cap (min $1,000)
+* Scheduling for launch at a future date
+* Fair launch supply (how much is available during fair launch)
+
+### Fair Launch Period
+
+The Fair Launch period on Flaunch is simple. For a given duration (default: 5 minutes) the supply available (default: 10%) is available to purchase at a _fixed price_. This means that any buyer during this period can also sell at the _same price_, removing the price risk of early entry.
+
+Once the Fair Launch period ends (after the duration finishes or the fair launch supply is sold) the liquidity moves into a standard xyk AMM price curve from the starting price to infinity.
+
+The Sniper Protection mentioned above is only applied during the Fair Launch period.

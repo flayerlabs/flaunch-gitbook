@@ -5,28 +5,17 @@
 ## Getting Started
 
 * [Why Flaunch?](getting-started/why-flaunch.md)
-* [Flaunch a Coin](getting-started/flaunch-a-coin.md)
-* [Migrating into Flaunch](getting-started/migrating-into-flaunch.md)
+* [Launch a Coin](getting-started/flaunch-a-coin.md)
+* [Launch a Group](getting-started/launch-a-group.md)
+* [Importing to Flaunch](getting-started/importing-to-flaunch.md)
 
 ## Core Features
 
 * [Fixed Price Fair Launch](core-features/fixed-price-fair-launch.md)
+* [Sniper Protection](core-features/sniper-protection.md)
 * [Auto Buybacks](core-features/auto-buybacks.md)
 * [Creator Revenue](core-features/creator-revenue.md)
-* [Revenue Stream NFT](core-features/revenue-stream-nft.md)
-
-## Community
-
-* [$FLAY](community/usdflay.md)
-* [Flaunchy](community/flaunchy.md)
-* [Flaunchy (AI)](community/flaunchy-ai.md)
-* [Proposals (Tally.xyz)](community/proposals-tally.xyz/README.md)
-  * [Proposals and Voting](community/proposals-tally.xyz/proposals-and-voting.md)
-  * [Protocol Fee Switch](community/proposals-tally.xyz/protocol-fee-switch.md)
-* [Whitepaper](community/whitepaper.md)
-* [Telegram](https://t.me/flaunchgg)
-* [Discord (Flayer Labs)](https://discord.gg/flaunch)
-* [Brand Kit](community/brand-kit.md)
+* [Royalty NFT](core-features/royalty-nft.md)
 
 ## Developer Resources
 

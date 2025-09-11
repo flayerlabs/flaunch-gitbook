@@ -2,7 +2,7 @@
 icon: web-awesome
 ---
 
-# Migrating into Flaunch
+# Importing to Flaunch
 
 Flaunching a token brings a range of ecosystem benefits, including automated buybacks, ETH yield without impacting the token, and more. Each traditional flaunch mints a supply of 100B fresh ERC20 tokens and enters a fresh price discovery phase, usually through a Fair Launch window.
 
@@ -54,7 +54,7 @@ If you are an onchain admin of a `ZoraCoin` (determined by `isOwner`) on the coi
 
 </details>
 
-As the creator, you will receive the [ERC721 memestream](../core-features/revenue-stream-nft.md) to prove ownership and drive revenue.
+As the creator, you will receive the [ERC721 memestream](../core-features/royalty-nft.md) to prove ownership and drive revenue.
 
 To import your token, you can use our frontend UI here:
 
@@ -66,14 +66,17 @@ You can also view the verified `TokenImporter` contracts below:
 
 ### Migrating ERC20 Tokens Not Listed Above
 
+Importing tokens from Zora, Clanker, Doppler or Virtuals is permissionless. Get started on the link below.
+
+{% embed url="https://flaunch.gg/import" %}
+
 As the tokens bridged will have non-flaunch ERC20 implementation logic, we strive to prevent malicious ERC20 contracts from entwining into our platform. For this reason, we created a whitelist approach for unknown tokens and run a vetting process before a token can be migrated into Flaunch.
 
 1. **Are you the owner** - Only the project team or owner can migrate the token into Flaunch.
-2. **Vibe Check** - Does the project suit the Flaunch vibe?
-3. **Contract Review** - Our protocol team will review your ERC20 token to ensure there are no malicious exploits present, and that all Flaunch functionality will gel smoothly.
+2. **Contract Review** - Our protocol team will review your ERC20 token to ensure there are no malicious exploits present, and then all Flaunch functionality will gel smoothly.
 
 {% hint style="success" %}
-If you are interested in migrating your existing ERC20 to the Flaunch ecosystem, **we are currently accepting applications**. Please reach out via any of our social networks to start up conversations.
+If you are interested in migrating your existing ERC20 to the Flaunch ecosystem please reach out on [Discord](https://discord.gg/flaunch).
 {% endhint %}
 
 If your token currently resides on a chain other than Base, we can assist you in bridging the token from other chains, including Solana.
