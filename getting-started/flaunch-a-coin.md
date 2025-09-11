@@ -31,6 +31,10 @@ Using the [Flaunch app](https://flaunch.gg/) it's possible to set an unlimited n
 
 **Groups**
 
+{% hint style="info" %}
+Groups are not yet live. [Follow on X for the latest](https://x.com/flaunchgg).
+{% endhint %}
+
 Coins can share their trading fees with Groups, and Groups can contain an unlimited set of coins. It is possible to launch a coin into an existing Group, or you can [create a new Group](launch-a-group.md) and launch a coin into one that you own.
 
 The trading fees from coins inside Groups are rewarded in two ways:
