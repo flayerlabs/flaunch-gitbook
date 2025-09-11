@@ -5,6 +5,10 @@ icon: users
 
 # Launch a Group
 
+{% hint style="info" %}
+Groups are not yet live. [Follow on X for the latest](https://x.com/flaunchgg).
+{% endhint %}
+
 Groups are a fundamentally new way to launch coins. This section does not go into detail about the Groups technology but is a practical guide to launching a Group with some explanation of the benefits.
 
 ### **Why launch a Group?**
