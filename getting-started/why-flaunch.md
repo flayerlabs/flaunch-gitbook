@@ -18,13 +18,15 @@ This first two points are straightforward, and unprecedented in the market. But 
 
 By tokenizing the rights to the coin's fees it's possible to create collections of coins (Groups) where all the trading fees are shared with the creator and community either through staking or automated buybacks.
 
-For instance, a Creator could start a staking Group for CULT and the ETH from the coins within that Group are rewarded to CULT stakers.
-
 {% hint style="success" %}
 Groups can be created for any ERC20, not just Flaunch coins.
 {% endhint %}
 
 Initially the assets deposited into Groups will just be Flaunch positions (trading fee NFTs), but in the future more assets and yield streams will be accepted.
+
+{% content-ref url="launch-a-group.md" %}
+[launch-a-group.md](launch-a-group.md)
+{% endcontent-ref %}
 
 **What else?**
 
