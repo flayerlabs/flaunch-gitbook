@@ -19,8 +19,9 @@
 
 ## Developer Resources
 
-* [Contract Addresses](https://docs.flaunch.gg/developer-resources/contract-addresses)
-* [Audits](https://docs.flaunch.gg/developer-resources/audits)
+* [Builder Docs](https://app.gitbook.com/o/RuFk7r0kW4myQxqnfkfM/s/T3jW1MHeHRSCtkN5uBiY/)
+* [Contract Addresses](https://github.com/flayerlabs/flaunchgg-contracts/releases)
+* [Audits](https://app.gitbook.com/s/oleIQgpsdD3uHYHcTay2/protocol/audits)
 * [Quick Start](developer-resources/quick-start.md)
 * [Contract Addresses](developer-resources/contract-addresses.md)
 * [Guides](developer-resources/guides/README.md)
