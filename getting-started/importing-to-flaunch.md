@@ -60,17 +60,13 @@ To import your token, you can use our frontend UI here:
 
 {% embed url="https://flaunch.gg/import" %}
 
-You can also view the verified `TokenImporter` contracts below:
+<figure><img src="../.gitbook/assets/Screenshot 2025-10-22 at 16.18.57.png" alt=""><figcaption></figcaption></figure>
 
-<table><thead><tr><th width="230.3734130859375">Chain</th><th>Contract Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0xb47af90ae61bc916ea4b4bacffae4570e7435842</code></td></tr><tr><td>Base Sepolia</td><td><code>0xb4955a396ef07c124a59164c30d63e96a103a98b</code></td></tr></tbody></table>
+#### Migrating ERC20 Tokens Not Listed Above
 
-### Migrating ERC20 Tokens Not Listed Above
+If you have an ERC20 token from a protocol not listed above, we created a whitelist approach to allow us to approve specific tokens to be imported by specific EOA addresses.
 
-Importing tokens from Zora, Clanker, Doppler or Virtuals is permissionless. Get started on the link below.
-
-{% embed url="https://flaunch.gg/import" %}
-
-As the tokens bridged will have non-flaunch ERC20 implementation logic, we strive to prevent malicious ERC20 contracts from entwining into our platform. For this reason, we created a whitelist approach for unknown tokens and run a vetting process before a token can be migrated into Flaunch.
+As the tokens bridged will have non-flaunch ERC20 implementation logic, we strive to prevent malicious ERC20 contracts from entwining into our platform. For this reason, we run a vetting process before a token can be migrated into Flaunch:
 
 1. **Are you the owner** - Only the project team or owner can migrate the token into Flaunch.
 2. **Contract Review** - Our protocol team will review your ERC20 token to ensure there are no malicious exploits present, and then all Flaunch functionality will gel smoothly.
@@ -81,7 +77,13 @@ If you are interested in migrating your existing ERC20 to the Flaunch ecosystem 
 
 If your token currently resides on a chain other than Base, we can assist you in bridging the token from other chains, including Solana.
 
-#### Whitelist Contract Addresses
+#### Token Importer Contract Addresses
+
+You can view the verified `TokenImporter` contracts below:
+
+<table><thead><tr><th width="230.3734130859375">Chain</th><th>Contract Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0xb47af90ae61bc916ea4b4bacffae4570e7435842</code></td></tr><tr><td>Base Sepolia</td><td><code>0xb4955a396ef07c124a59164c30d63e96a103a98b</code></td></tr></tbody></table>
+
+#### Whitelist Verifier Contract Addresses
 
 <table><thead><tr><th width="230.3734130859375">Chain</th><th>Contract Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0x7a04367563a65db574d6b7d084fdbcf4a570c5a6</code></td></tr><tr><td>Base Sepolia</td><td><code>0xfde5b79e3e2814edd5f91e8694ae400954d9cfaa</code></td></tr></tbody></table>
 
@@ -97,3 +99,21 @@ When a token is bridged into Flaunch:
 * With your new token, you will have a [Progressive Bid Wall](../developer-resources/hooks/progressive-bid-wall.md) that will facilitate buy positions from any community rev that you assign
 * All revenue will be distributed to the memestream owner solely in ETH, preserving your token floor and not requiring you to dump on your holders
 * The security and gas optimisations from being built on top of Flaunch and Uniswap V4
+
+### What Next?
+
+Once your token has been imported, you will now have a Flaunch token, but with no liquidity available to swap against. You can then add liquidity by going to the Add Liquidity URL and selecting your new token:
+
+{% embed url="https://flaunch.gg/add-liquidity" %}
+
+<figure><img src="../.gitbook/assets/Screenshot 2025-10-22 at 16.25.13.png" alt=""><figcaption></figcaption></figure>
+
+We have some helpers that will assist in setting a full range or concentrated liquidity position.
+
+#### Liquidity Recommendations
+
+The liquidity you add is completely up to you and the project that you are wanting to launch; however, we would propose the following suggestions:
+
+* Ideally adding full range liquidity to support both sides of the swap. If you **are** adding concentrated liquidity try to at least add some ETH to your position, ideally no less than 25% of the corresponding token value.
+* Supply sufficient liquidity to be picked up by routers and to support initial price discovery swaps when your listing appears.
+* The more liquidity added, the better!
