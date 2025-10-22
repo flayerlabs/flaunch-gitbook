@@ -62,6 +62,18 @@ To import your token, you can use our frontend UI here:
 
 <figure><img src="../.gitbook/assets/Screenshot 2025-10-22 at 16.18.57.png" alt=""><figcaption></figcaption></figure>
 
+{% hint style="info" %}
+To calculate the "Current Coin Price" then you can take the `totalSupply` response from the ERC20 and divide it by the market cap value.\
+\
+For example, if the `totalSupply()` is `1,000,000,000` and your market cap is `$50,000` , then the Current Coin Price should be:
+
+```
+50,000 USDC / 1,000,000,000 Total Supply = 0.00005
+```
+
+You do not need to factor in decimal accuracies in either the USDC coin or the coin being imported
+{% endhint %}
+
 #### Migrating ERC20 Tokens Not Listed Above
 
 If you have an ERC20 token from a protocol not listed above, we created a whitelist approach to allow us to approve specific tokens to be imported by specific EOA addresses.
