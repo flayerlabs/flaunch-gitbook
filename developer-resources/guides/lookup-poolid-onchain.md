@@ -102,5 +102,5 @@ function addIndex(PoolId[] calldata _poolId, address[] calldata _flaunch, uint[]
 
 ### Deployed Indexer Addresses
 
-<table><thead><tr><th width="182.1563720703125">Chain</th><th>Deployment Address</th></tr></thead><tbody><tr><td>Base</td><td><em>Coming soon</em></td></tr><tr><td>Base Sepolia</td><td><code>0x9709ca85be90fbe82bd4fc0bfa78f882c19fc211</code></td></tr></tbody></table>
+<table><thead><tr><th width="182.1563720703125">Chain</th><th>Deployment Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0x7C6088C1185FbB770deB1CA7DdeeD4ba57659663</code></td></tr><tr><td>Base Sepolia</td><td><code>0x9709ca85be90fbe82bd4fc0bfa78f882c19fc211</code></td></tr></tbody></table>
 
