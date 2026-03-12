@@ -10,9 +10,9 @@ Flaunch gives developers a fast way to integrate token launches, trading, and tr
 
 At a high level, there are three common integration paths:
 
-1. Launch Tokens Through The Web2 API
-2. Build Directly With The SDK
-3. Use A Treasury Manager When Revenue Or Ownership Needs Custom Behavior
+1. launch tokens through the Web2 API
+2. build directly with the SDK
+3. use a treasury manager when revenue or ownership needs custom behavior
 
 Flaunch is built on Uniswap V4 and supports launch flows that can continue into ongoing fee routing, treasury logic, and post-launch products.
 

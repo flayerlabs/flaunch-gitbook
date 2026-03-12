@@ -7,19 +7,10 @@
 * [What Is Flaunch?](getting-started/why-flaunch.md)
 * [Launch a Token](getting-started/flaunch-a-coin.md)
 * [Build a Launchpad](getting-started/launch-a-launchpad.md)
-* [AI Skills Quick Start](artificial-intelligence/vibe-guide.md)
-* [Understanding Skill Files](artificial-intelligence/skill-files.md)
 * [Launch a Group](getting-started/launch-a-group.md)
 * [Import a Token](getting-started/importing-to-flaunch.md)
 
-## Guides
-
-* [Quick Start](developer-resources/quick-start.md)
-* [SDK Guide: Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
-* [Making a Swap](developer-resources/guides/making-a-swap.md)
-* [Setting a Swap Referrer](developer-resources/guides/setting-a-swap-referrer.md)
-
-## Features
+## Core Concepts
 
 * [Creator Revenue](core-features/creator-revenue.md)
 * [Royalty NFT](core-features/royalty-nft.md)
@@ -27,13 +18,15 @@
 * [Auto Buybacks](core-features/auto-buybacks.md)
 * [Sniper Protection](core-features/sniper-protection.md)
 
-## Managers
+## Developers
 
-* [Manager Overview](manager-types/README.md)
-* [Revenue Manager](manager-types/revenuemanager.md)
-* [Staking Manager](manager-types/stakingmanager.md)
-* [Address Fee Split Manager](manager-types/addressfeesplitmanager.md)
-* [ERC721 Owner Fee Split Manager](manager-types/erc721ownerfeesplitmanager.md)
+* [Quick Start](developer-resources/quick-start.md)
+* [SDK Guide: Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
+* [Making a Swap](developer-resources/guides/making-a-swap.md)
+* [Setting a Swap Referrer](developer-resources/guides/setting-a-swap-referrer.md)
+* [Treasury Managers](developer-resources/treasury-managers/README.md)
+* [Hooks](developer-resources/hooks/README.md)
+* [Zaps](developer-resources/zaps/README.md)
 
 ## References
 
@@ -42,8 +35,6 @@
 * [REST Data API](references/restful-data-api.md)
 * [Subgraph](references/subgraph/README.md)
 * [Solidity Cookbook](references/solidity-cookbook.md)
-* [Hooks](developer-resources/hooks/README.md)
-* [Zaps](developer-resources/zaps/README.md)
 
 ## Protocol
 

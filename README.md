@@ -10,11 +10,11 @@ Flaunch combines token creation, launch mechanics, and ongoing fee routing in on
 
 When a token is launched on Flaunch, the launch can include:
 
-* A Fixed-Price Fair Launch Window
-* Creator Revenue Paid In ETH
-* Automatic Community Buybacks
-* Optional Scheduling For A Future Launch Time
-* Optional Treasury Manager Or Group Integration
+* a fixed-price fair launch window
+* creator revenue paid in ETH
+* automatic community buybacks
+* optional scheduling for a future launch time
+* optional treasury manager or group integration
 
 This lets a single token act as both a launch event and a long-term onchain revenue primitive.
 
@@ -40,9 +40,9 @@ This lets a single token act as both a launch event and a long-term onchain reve
 
 These docs are organized for three common goals:
 
-* Understanding What Makes Flaunch Different
-* Launching A Token Quickly
-* Building A Launchpad Or Treasury Product On Top Of The Protocol
+* understanding what makes Flaunch different
+* launching a token quickly
+* building a launchpad or treasury product on top of the protocol
 
 ## Product Story
 
