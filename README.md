@@ -1,14 +1,15 @@
----
-icon: hand-wave
----
+# 17 December: Flaunch Groups Launch on the Base App
 
-# Get Started
+## **What’s New**
 
-Flaunch is a launchpad protocol and product that maximizes value for creators, builders and traders.
+* **Flaunch Groups are now live inside the Base App**\
+  Groups are available as a **mini app** on Base, giving communities a new home to earn, trade, and coordinate directly where users already discover assets.
+* **Native Discovery + Earning**\
+  Group Coins and their ecosystems can now be discovered, traded, and earned from directly inside the Base App experience.
+* Try it now: [x.com/flaunchgg/status/2001742147763196286](https://x.com/flaunchgg/status/2001742147763196286?s=46\&t=UwOpwNOVe8JHdycxnEfQnQ)
 
-Learn how Flaunch is different and how you can leverage it to create value for you and/or your community.
+***
 
-### Jump right in
+## **Why it matters**
 
-<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden></th><th data-hidden data-type="content-ref"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h4><i class="fa-palette">:palette:</i></h4></td><td><strong>Creators</strong></td><td>Earn 100% of what you create. Passively paid in ETH.</td><td></td><td></td><td><a href="https://app.gitbook.com/o/RuFk7r0kW4myQxqnfkfM/s/Z7N2KDzpDSvxEq8jqwXq/">For Creators</a></td><td><a href="https://app.gitbook.com/s/Z7N2KDzpDSvxEq8jqwXq/">Welcome Creators</a></td></tr><tr><td><h4><i class="fa-wrench">:wrench:</i></h4></td><td><strong>Builders</strong></td><td>Take control of the revenue model and create unique launchpad features.</td><td></td><td></td><td><a href="https://github.com/GitbookIO/gitbook-templates/blob/main/product-docs/broken-reference/README.md">https://github.com/GitbookIO/gitbook-templates/blob/main/product-docs/broken-reference/README.md</a></td><td><a href="https://app.gitbook.com/s/T3jW1MHeHRSCtkN5uBiY/">Welcome Builders</a></td></tr><tr><td><h4><i class="fa-coins">:coins:</i></h4></td><td><strong>Traders</strong></td><td>Learn how Flaunch improves the Trenches and levels the playing field.</td><td></td><td></td><td></td><td><a href="readme/for-traders.md">for-traders.md</a></td></tr></tbody></table>
-
+Flaunch Groups move closer to where attention already lives. By being available inside the Base App, Groups gain built‑in distribution, social discovery, and instant trading—making it easier for communities to grow and earn together without leaving the app.
