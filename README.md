@@ -1,15 +1,22 @@
-# 17 December: Flaunch Groups Launch on the Base App
+---
+icon: hand-wave
+cover: .gitbook/assets/build-Banner.png
+coverY: 0
+---
 
-## **What’s New**
+# Welcome Builders
 
-* **Flaunch Groups are now live inside the Base App**\
-  Groups are available as a **mini app** on Base, giving communities a new home to earn, trade, and coordinate directly where users already discover assets.
-* **Native Discovery + Earning**\
-  Group Coins and their ecosystems can now be discovered, traded, and earned from directly inside the Base App experience.
-* Try it now: [x.com/flaunchgg/status/2001742147763196286](https://x.com/flaunchgg/status/2001742147763196286?s=46\&t=UwOpwNOVe8JHdycxnEfQnQ)
+Flaunch is a permissionless protocol and engine for all forms of tokenization — memes, AI agents, products, art, RWAs and more. The protocol allows builders to create their own [Token Managers](get-started.md), providing complete flexibility in the monetization of the assets launched.
 
-***
+Builders can integrate the Flaunch protocol and earn up to 100% of the available revenue from token trading fees.
 
-## **Why it matters**
+By using Flaunch, all of the heavy lifting of token creation and liquidity management is deferred to the protocol, allowing you to focus on value creation and monetization. Some examples of the business models that can be built using a Token Manager:
 
-Flaunch Groups move closer to where attention already lives. By being available inside the Base App, Groups gain built‑in distribution, social discovery, and instant trading—making it easier for communities to grow and earn together without leaving the app.
+* Launchpads (memes, AI agents, social content)
+* Tokenized user-generated content
+* Crowdfunding
+* Games and in-game items
+* Prediction markets
+
+If you are interested in monetization through tokenization, the docs here will provide you with everything you need to get set up.
+
