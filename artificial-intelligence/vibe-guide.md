@@ -134,7 +134,3 @@ Start with the umbrella skill. It will usually route to `skills/basic/token-laun
 {% content-ref url="../getting-started/launch-a-launchpad.md" %}
 [launch-a-launchpad.md](../getting-started/launch-a-launchpad.md)
 {% endcontent-ref %}
-
-## Vibe Showcase
-
-<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td><a href="https://fleets.wtf">fleets.wtf</a></td><td>Take a picture, tokenize and earn revenue from trading.</td><td><a href="../.gitbook/assets/Screenshot 2025-05-02 at 11.56.34.png">Screenshot 2025-05-02 at 11.56.34.png</a></td></tr></tbody></table>

@@ -8,6 +8,24 @@ Launching a token on Flaunch can be as simple or as configurable as you need.
 
 At minimum, a launch only needs token metadata and a creator. From there, Flaunch lets you control fair launch settings, revenue allocation, scheduling, and treasury routing.
 
+## Start With The Skill
+
+If you are building this flow with an AI coding agent, start with the Flaunch skill first.
+
+Install:
+
+```bash
+npx skills add https://github.com/flayerlabs/flaunch-skills --skill flaunch
+```
+
+Then prompt the agent with the token creation path:
+
+```text
+Use flaunch: Launch a memecoin on Base with the fewest decisions possible.
+```
+
+The token creation skill defaults to the Web2 API fast path and only switches to the SDK path when direct launch control is needed.
+
 ## Fast Path
 
 The fastest launch flow uses the default product settings:
@@ -96,6 +114,10 @@ If you are integrating Flaunch programmatically, use the SDK or API guides below
 
 {% content-ref url="../developer-resources/flaunch-memecoin-api.md" %}
 [flaunch-memecoin-api.md](../developer-resources/flaunch-memecoin-api.md)
+{% endcontent-ref %}
+
+{% content-ref url="../developer-resources/guides/token-images.md" %}
+[token-images.md](../developer-resources/guides/token-images.md)
 {% endcontent-ref %}
 
 ## Related Concepts

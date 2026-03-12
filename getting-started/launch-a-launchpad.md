@@ -12,6 +12,24 @@ Flaunch can power a launchpad in two ways.
 
 For most teams, the first path is the right one.
 
+## Start With The Skill
+
+If you are building a launchpad with an AI coding agent, start with the Flaunch skill first.
+
+Install:
+
+```bash
+npx skills add https://github.com/flayerlabs/flaunch-skills --skill flaunch
+```
+
+Then prompt the agent with the launchpad path:
+
+```text
+Use flaunch: Help me choose whether this launchpad should use the API, SDK, or a custom manager.
+```
+
+The launchpad skill classifies the build path first, then routes into the API, SDK, manager, or wrapper path as needed.
+
 ## Choose the Right Path
 
 ### Basic launchpad
