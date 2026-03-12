@@ -12,11 +12,11 @@ At minimum, a launch only needs token metadata and a creator. From there, Flaunc
 
 The fastest launch flow uses the default product settings:
 
-* token name and symbol
-* description and image
-* creator revenue enabled
-* community buybacks enabled
-* standard fair launch configuration
+* Token Name And Symbol
+* Description And Image
+* Creator Revenue Enabled
+* Community Buybacks Enabled
+* Standard Fair Launch Configuration
 
 This is the best path when speed matters most.
 
@@ -43,10 +43,10 @@ The creator side of revenue does not have to stay with a single wallet.
 
 Flaunch supports:
 
-* direct creator ownership
-* multiple fee receivers
-* revenue managers
-* groups and treasury managers
+* Direct Creator Ownership
+* Multiple Fee Receivers
+* Revenue Managers
+* Groups And Treasury Managers
 
 This makes it possible to launch for an individual, a team, or a product with custom revenue routing.
 
@@ -56,11 +56,11 @@ Every token can start with a fixed-price fair launch.
 
 The launch can define:
 
-* how much supply is available during fair launch
-* how long the fair launch lasts
-* the starting market cap
-* whether the creator prebuys part of the fair launch supply
-* whether the launch starts immediately or at a future time
+* How Much Supply Is Available During Fair Launch
+* How Long The Fair Launch Lasts
+* The Starting Market Cap
+* Whether The Creator Prebuys Part Of The Fair Launch Supply
+* Whether The Launch Starts Immediately Or At A Future Time
 
 During the fair launch window, buyers trade at the same fixed price. When the window ends, the token moves into normal AMM trading.
 
@@ -80,11 +80,11 @@ Use advanced settings when the launch needs more direct control.
 
 Common reasons:
 
-* launch at a scheduled time
-* set a custom market cap
-* change fair launch allocation
-* prebuy part of the supply
-* route revenue into a manager or group
+* Launch At A Scheduled Time
+* Set A Custom Market Cap
+* Change Fair Launch Allocation
+* Prebuy Part Of The Supply
+* Route Revenue Into A Manager Or Group
 
 ## For Developers
 
