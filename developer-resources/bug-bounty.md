@@ -1,6 +1,5 @@
 ---
 hidden: true
-icon: bug
 ---
 
 # Bug Bounty
@@ -16,9 +15,13 @@ Please send vulnerability submissions to [bounty@flayer.io](mailto:bounty@flayer
 Please have a look at the bullets below before starting your hunt!
 
 * Issues that have already been submitted by another user, or are already known to the Flaunch team, are not eligible for bounty rewards.
-* Only bugs found in deployed and utilised mainnet contracts, or code found in the `main` branch of the codebase will be eligible.
+* Bug reports are handled on a first-come, first-served basis. If another security researcher submits the same valid finding first, subsequent duplicate submissions will be rejected.
+* Only bugs found in deployed and utilized mainnet contracts, or code found in the `main` branch of the codebase will be eligible.
+* If a reported issue affects code that has not yet been deployed to mainnet, the awarded severity (and corresponding payout) may be reduced at the team's discretion.
+* Findings against deprecated codebases are not eligible and will be rejected.
 * Public disclosure of a vulnerability makes it ineligible for a bounty.
 * You can start or fork a private chain for bug hunting. Please respect the Flaunch main and test networks and refrain from attacking them.
+* Flaunch team has the discretion to remediate any confirmed live vulnerabilities before any payout is made.
 * All paid Flaunch and Flayer Labs members are not eligible for rewards.
 * Flaunch websites and organizational infrastructure in general, are NOT part of the bounty program.
 * The Flaunch Bounty program considers a number of variables in determining rewards. Determinations of eligibility, score and all terms related to an award are at the sole and final discretion of the Flaunch team.
@@ -29,7 +32,7 @@ The value of rewards paid out will vary depending on Severity. The severity is c
 
 Reward sizes are guided by the rules below, but are in the end, determined at the sole discretion of the Flaunch team.
 
-<table><thead><tr><th>Severity</th><th width="446">Max Bounty</th></tr></thead><tbody><tr><td><strong>Critical</strong></td><td>50,000 USDC</td></tr><tr><td><strong>High</strong></td><td>30,000 USDC</td></tr><tr><td><strong>Medium</strong></td><td>20,000 USDC</td></tr><tr><td><strong>Low</strong></td><td>4,000 USDC</td></tr><tr><td><strong>Note / Informational</strong></td><td>1,000 USDC</td></tr></tbody></table>
+<table><thead><tr><th>Severity</th><th width="446">Max Bounty</th></tr></thead><tbody><tr><td><strong>Critical</strong></td><td>25,000 USDC</td></tr><tr><td><strong>High</strong></td><td>15,000 USDC</td></tr><tr><td><strong>Medium</strong></td><td>10,000 USDC</td></tr><tr><td><strong>Low</strong></td><td>2,000 USDC</td></tr><tr><td><strong>Note / Informational</strong></td><td>500 USDC</td></tr></tbody></table>
 
 Bounties may be paid out in USDC, ETH or $FLAY tokens.
 

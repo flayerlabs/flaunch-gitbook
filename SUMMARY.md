@@ -1,58 +1,54 @@
 # Table of contents
 
-* [Welcome Creators](README.md)
+* [Welcome Builders](README.md)
+* [Builder Fund](builder-fund.md)
 
-## Getting Started
+## Token Managers
 
-* [Why Flaunch?](getting-started/why-flaunch.md)
-* [Launch a Coin](getting-started/flaunch-a-coin.md)
-* [Launch a Group](getting-started/launch-a-group.md)
-* [Importing to Flaunch](getting-started/importing-to-flaunch.md)
+***
 
-## Core Features
+* [Get Started](get-started.md)
+* [Implementation](implementation.md)
+* [Manager Types](manager-types/README.md)
+  * [RevenueManager](manager-types/revenuemanager.md)
+  * [StakingManager](manager-types/stakingmanager.md)
+  * [AddressFeeSplitManager](manager-types/addressfeesplitmanager.md)
+  * [ERC721OwnerFeeSplitManager](manager-types/erc721ownerfeesplitmanager.md)
 
-* [Fixed Price Fair Launch](core-features/fixed-price-fair-launch.md)
-* [Sniper Protection](core-features/sniper-protection.md)
-* [Auto Buybacks](core-features/auto-buybacks.md)
-* [Creator Revenue](core-features/creator-revenue.md)
-* [Royalty NFT](core-features/royalty-nft.md)
+## Non-native Tokens
+
+* [Getting Started](non-native-tokens/getting-started.md)
+* [Import Your Existing Token](non-native-tokens/import-your-existing-token.md)
+* [Import From Your Protocol](non-native-tokens/import-from-your-protocol.md)
+
+## References
+
+* [SDK](https://www.npmjs.com/package/@flaunch/sdk)
+* [API](references/api.md)
+* [RESTful Data API](references/restful-data-api.md)
+* [Solidity Cookbook](references/solidity-cookbook.md)
+* [Subgraph](references/subgraph/README.md)
+  * [Graph Explorer](https://thegraph.com/explorer/subgraphs/bbWLZuPrmoskDaU64xycxZFE6EvSkMQALKkDpsz5ifF?view=Query\&chain=arbitrum-one)
+  * [Subgraph Query Examples](references/subgraph/subgraph-query-examples.md)
+  * [Indexing Swaps](references/subgraph/indexing-swaps.md)
+
+## Artificial Intelligence
+
+* [Vibe Guide](artificial-intelligence/vibe-guide.md)
+* [Full Integration SKILL.md](https://github.com/flayerlabs/flaunch-sdk)
+* [AgentKit](https://github.com/coinbase/agentkit/tree/1bf82ff0ec4b51015fc9d2c762d7f4be64ed4af5/typescript/agentkit/src/action-providers/flaunch)
+* [MCP](https://github.com/base/base-mcp)
 
 ## Developer Resources
 
-* [Builder Docs](https://app.gitbook.com/o/RuFk7r0kW4myQxqnfkfM/s/T3jW1MHeHRSCtkN5uBiY/)
+* [GitHub](https://github.com/flayerlabs/flaunchgg-contracts)
 * [Contract Addresses](https://github.com/flayerlabs/flaunchgg-contracts/releases)
-* [Audits](https://app.gitbook.com/s/oleIQgpsdD3uHYHcTay2/protocol/audits)
-* [Quick Start](developer-resources/quick-start.md)
-* [Contract Addresses](developer-resources/contract-addresses.md)
-* [Guides](developer-resources/guides/README.md)
-  * [Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
-  * [Making a swap](developer-resources/guides/making-a-swap.md)
-  * [Setting a swap referrer](developer-resources/guides/setting-a-swap-referrer.md)
-  * [Memestream revenue](developer-resources/guides/memestream-revenue.md)
-  * [Creating Treasury Actions](developer-resources/guides/creating-treasury-actions.md)
-  * [Fee Distribution](developer-resources/guides/fee-distribution.md)
-  * [Lookup PoolId Onchain](developer-resources/guides/lookup-poolid-onchain.md)
-* [Treasury Managers](developer-resources/treasury-managers/README.md)
-  * [RevenueManager](developer-resources/treasury-managers/revenuemanager.md)
-  * [OnboardingManager](developer-resources/treasury-managers/onboardingmanager.md)
-* [Flaunch API](developer-resources/flaunch-api.md)
-* [Flaunch Create API](developer-resources/flaunch-memecoin-api.md)
-* [Hooks](developer-resources/hooks/README.md)
-  * [Fair Launch](developer-resources/hooks/fair-launch.md)
-  * [Fee Distributor](developer-resources/hooks/fee-distributor.md)
-  * [Internal Swap Pool](developer-resources/hooks/internal-swap-pool.md)
-  * [Notifier](developer-resources/hooks/notifier.md)
-  * [Progressive Bid Wall](developer-resources/hooks/progressive-bid-wall.md)
-* [Zaps](developer-resources/zaps/README.md)
-  * [Flaunch & Buy](developer-resources/zaps/flaunch-and-buy.md)
-* [Market Cap Calculations](developer-resources/market-cap-calculations.md)
+* [Uniswap V4 Helpers](https://github.com/flayerlabs/uni-v4-helpers/tree/main)
 * [Bug Bounty](developer-resources/bug-bounty.md)
-* [Subgraph](developer-resources/subgraph/README.md)
-  * [Subgraph Query Examples](developer-resources/subgraph/subgraph-query-examples.md)
-  * [Indexing Swaps](developer-resources/subgraph/indexing-swaps.md)
+* [Bug Bounty](https://docs.flaunch.gg/protocol/bug-bounty)
+* [Audits](https://app.gitbook.com/s/oleIQgpsdD3uHYHcTay2/protocol/audits)
 
-## Support and FAQ
+## Terms
 
-* [Frequently Asked Questions](support-and-faq/frequently-asked-questions.md)
-* [Terms of Service](support-and-faq/terms-of-service.md)
-* [Privacy Policy](support-and-faq/privacy-policy.md)
+* [Terms of Service](terms/terms-of-service.md)
+* [Privacy Policy](terms/privacy-policy.md)
