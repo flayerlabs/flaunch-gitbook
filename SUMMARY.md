@@ -1,45 +1,60 @@
 # Table of contents
 
-## December 2025
+* [Overview](README.md)
 
-* [17 December: Flaunch Groups Launch on the Base App](README.md)
+## Getting Started
+
+* [What Is Flaunch?](getting-started/why-flaunch.md)
+* [Launch a Token](getting-started/flaunch-a-coin.md)
+* [Build a Launchpad](getting-started/launch-a-launchpad.md)
+* [Launch a Group](getting-started/launch-a-group.md)
+* [Import a Token](getting-started/importing-to-flaunch.md)
+
+## Core Concepts
+
+* [Creator Revenue](core-features/creator-revenue.md)
+* [Royalty NFT](core-features/royalty-nft.md)
+* [Fixed Price Fair Launch](core-features/fixed-price-fair-launch.md)
+* [Auto Buybacks](core-features/auto-buybacks.md)
+* [Sniper Protection](core-features/sniper-protection.md)
+
+## Developers
+
+* [Quick Start](developer-resources/quick-start.md)
+* [SDK Guide: Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
+* [Making a Swap](developer-resources/guides/making-a-swap.md)
+* [Setting a Swap Referrer](developer-resources/guides/setting-a-swap-referrer.md)
+* [Treasury Managers](developer-resources/treasury-managers/README.md)
+* [Hooks](developer-resources/hooks/README.md)
+* [Zaps](developer-resources/zaps/README.md)
+
+## References
+
+* [Contract Addresses](developer-resources/contract-addresses.md)
+* [API](references/api.md)
+* [REST Data API](references/restful-data-api.md)
+* [Subgraph](references/subgraph/README.md)
+* [Solidity Cookbook](references/solidity-cookbook.md)
+
+## Protocol
+
+* [Audits](protocol/audits.md)
+* [Bug Bounty](protocol/bug-bounty.md)
+* [FAQ](support-and-faq/frequently-asked-questions.md)
+* [Privacy Policy](terms/privacy-policy.md)
+* [Terms of Service](terms/terms-of-service.md)
+
+## Community
+
+* [Whitepaper](community/whitepaper.md)
+* [Flaunchy](community/flaunchy.md)
+* [Brand Kit](community/brand-kit.md)
+* [Governance](community/proposals-tally.xyz/README.md)
+
+## Updates
+
 * [12 December: Solana Imports, Custom Token Supply, and Smarter Liquidity SDK Upgrades](december-2025/12-december-solana-imports-custom-token-supply-and-smarter-liquidity-sdk-upgrades.md)
 * [11 December: Flaunch Wrap Solana → Base Bridging for Token Creators](december-2025/11-december-flaunch-wrap-solana-base-bridging-for-token-creators.md)
-
-## November 2025
-
 * [17 November: Launch of Groups](november-2025/17-november-launch-of-groups.md)
-* [11 November: Buybacks, Single-Sided Liquidity, and Smarter Types SDK Upgrades](november-2025/11-november-buybacks-single-sided-liquidity-and-smarter-types-sdk-upgrades.md)
-
-## September 2025
-
-* [6 September: Faster Charts, Governance Docs, Import Pipeline](september-2025/6-september-faster-charts-governance-docs-import-pipeline.md)
-
-## August 2025
-
 * [23 August: Phase 2 — Groups & $1M Creator Revenue](august-2025/23-august-phase-2-groups-and-usd1m-creator-revenue.md)
-* [9 August: Sniper Protection + Coinbase Retail DEX](august-2025/9-august-sniper-protection-+-coinbase-retail-dex.md)
-
-## July 2025
-
-* [26 July: Flashblocks Go Live + Base App Features](july-2025/26-july-flashblocks-go-live-+-base-app-features.md)
-* [12 July: June Recap, Buyback Allocations, SDK Iterations](july-2025/12-july-june-recap-buyback-allocations-sdk-iterations.md)
-
-## June 2025
-
-* [28 June: Mini App + Multi-Receiver Revenue](june-2025/28-june-mini-app-+-multi-receiver-revenue.md)
-* [14 June: Web2 API Updates](june-2025/14-june-web2-api-updates.md)
-
-## April 2025
-
-* [10 April: Subgraph and NFT API updates](april-2025/10-april-subgraph-and-nft-api-updates.md)
-
-## March 2025
-
-* [27 March: Image Moderation, Social Lookups, Docs Overhaul](march-2025/27-march-image-moderation-social-lookups-docs-overhaul.md)
 * [13 March: Web2 API, New Homepage, Just Flaunch Launchpad](march-2025/13-march-web2-api-new-homepage-just-flaunch-launchpad.md)
-
-## FEBRUARY 2025
-
-* [27 February: Flaunchy Launched on Farcaster, Update Social Links, New Coin Layout, PnL Snapshots](february-2025/27-february-flaunchy-launched-on-farcaster-update-social-links-new-coin-layout-pnl-snapshots.md)
-* [14 February: Meme Manager, Swap Permit, Memecoin Preview, Performance fixes](february-2025/14-february-meme-manager-swap-permit-memecoin-preview-performance-fixes.md)

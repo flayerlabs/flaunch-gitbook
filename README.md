@@ -1,15 +1,65 @@
-# 17 December: Flaunch Groups Launch on the Base App
+# Flaunch
 
-## **What’s New**
+Flaunch is a token launch protocol for creators, communities, and developers.
 
-* **Flaunch Groups are now live inside the Base App**\
-  Groups are available as a **mini app** on Base, giving communities a new home to earn, trade, and coordinate directly where users already discover assets.
-* **Native Discovery + Earning**\
-  Group Coins and their ecosystems can now be discovered, traded, and earned from directly inside the Base App experience.
-* Try it now: [x.com/flaunchgg/status/2001742147763196286](https://x.com/flaunchgg/status/2001742147763196286?s=46\&t=UwOpwNOVe8JHdycxnEfQnQ)
+It gives users a fast way to launch tokens with fixed-price fair launch mechanics, creator revenue in ETH, and configurable treasury behavior. It also gives builders a clean foundation for launchpads, revenue products, and group-based token economies.
 
-***
+## What Flaunch Does
 
-## **Why it matters**
+Flaunch combines token creation, launch mechanics, and ongoing fee routing in one system.
 
-Flaunch Groups move closer to where attention already lives. By being available inside the Base App, Groups gain built‑in distribution, social discovery, and instant trading—making it easier for communities to grow and earn together without leaving the app.
+When a token is launched on Flaunch, the launch can include:
+
+* a fixed-price fair launch window
+* creator revenue paid in ETH
+* automatic community buybacks
+* optional scheduling for a future launch time
+* optional treasury manager or group integration
+
+This lets a single token act as both a launch event and a long-term onchain revenue primitive.
+
+## Start Here
+
+{% content-ref url="getting-started/why-flaunch.md" %}
+[why-flaunch.md](getting-started/why-flaunch.md)
+{% endcontent-ref %}
+
+{% content-ref url="getting-started/flaunch-a-coin.md" %}
+[flaunch-a-coin.md](getting-started/flaunch-a-coin.md)
+{% endcontent-ref %}
+
+{% content-ref url="getting-started/launch-a-launchpad.md" %}
+[launch-a-launchpad.md](getting-started/launch-a-launchpad.md)
+{% endcontent-ref %}
+
+{% content-ref url="getting-started/launch-a-group.md" %}
+[launch-a-group.md](getting-started/launch-a-group.md)
+{% endcontent-ref %}
+
+## Who These Docs Are For
+
+These docs are organized for three common goals:
+
+* understanding what makes Flaunch different
+* launching a token quickly
+* building a launchpad or treasury product on top of the protocol
+
+## Product Story
+
+Flaunch is designed around a simple idea: token launches should not end at minting.
+
+A Flaunch token can begin with a structured launch, generate ongoing fees, and route those fees to creators, communities, or external managers. That makes Flaunch useful both for token creators who want a better default launch and for developers who want programmable revenue infrastructure.
+
+## Key Concepts
+
+{% content-ref url="core-features/creator-revenue.md" %}
+[creator-revenue.md](core-features/creator-revenue.md)
+{% endcontent-ref %}
+
+{% content-ref url="core-features/fixed-price-fair-launch.md" %}
+[fixed-price-fair-launch.md](core-features/fixed-price-fair-launch.md)
+{% endcontent-ref %}
+
+{% content-ref url="core-features/auto-buybacks.md" %}
+[auto-buybacks.md](core-features/auto-buybacks.md)
+{% endcontent-ref %}

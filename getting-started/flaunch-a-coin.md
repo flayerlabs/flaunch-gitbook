@@ -2,76 +2,112 @@
 icon: coin-blank
 ---
 
-# Launch a Coin
+# Launch a Token
 
-Launching a coin takes 30 seconds and is free!
+Launching a token on Flaunch can be as simple or as configurable as you need.
 
-Other than setting a name, symbol and description, Flaunch offers a suite of tools that go far beyond what is possible elsewhere...
+At minimum, a launch only needs token metadata and a creator. From there, Flaunch lets you control fair launch settings, revenue allocation, scheduling, and treasury routing.
 
-### Custom fee split
+## Fast Path
 
-When launching a coin the Creator can choose to earn anything between 0% and 100% of the trading fees. Whatever the Creator doesn't take is sent to [automated buybacks](../core-features/auto-buybacks.md).
+The fastest launch flow uses the default product settings:
 
-The default settings are:
+* token name and symbol
+* description and image
+* creator revenue enabled
+* community buybacks enabled
+* standard fair launch configuration
+
+This is the best path when speed matters most.
+
+## What You Can Configure
+
+### Revenue split
+
+When launching a token, the creator can choose how much of trading fee revenue they want to keep.
+
+The default split is:
 
 * Creator share: 80%
-* Auto buybacks: 20%
+* Community buybacks: 20%
+
+Anything not allocated to the creator is routed to [auto buybacks](../core-features/auto-buybacks.md).
 
 {% hint style="info" %}
-The creator share is paid out to the holder of the revenue stream NFT which could be a user, a multi-sig, a custom contract or a Group.
+The creator share belongs to the holder of the revenue NFT. That can be a wallet, a multisig, a custom contract, or a group manager.
 {% endhint %}
 
 ### Fee receivers
 
-By default the Creator share is paid out to the user that launches the coin, however there is a lot more flexibility available.
+The creator side of revenue does not have to stay with a single wallet.
 
-**Multiple Fee Receivers**
+Flaunch supports:
 
-Using the [Flaunch app](https://flaunch.gg/) it's possible to set an unlimited number of fee receivers for a given coin. These receivers can be wallet addresses, ENS or Basename and even X and Farcaster handles. This makes it possible to "airdrop" or sell fee receiver rights to users that may never have used crypto.
+* direct creator ownership
+* multiple fee receivers
+* revenue managers
+* groups and treasury managers
 
-**Groups**
+This makes it possible to launch for an individual, a team, or a product with custom revenue routing.
 
-{% hint style="info" %}
-Groups are not yet live. [Follow on X for the latest](https://x.com/flaunchgg).
-{% endhint %}
+### Fair launch settings
 
-Coins can share their trading fees with Groups, and Groups can contain an unlimited set of coins. It is possible to launch a coin into an existing Group, or you can [create a new Group](launch-a-group.md) and launch a coin into one that you own.
+Every token can start with a fixed-price fair launch.
 
-The trading fees from coins inside Groups are rewarded in two ways:
+The launch can define:
 
-1. Staking rewards
+* how much supply is available during fair launch
+* how long the fair launch lasts
+* the starting market cap
+* whether the creator prebuys part of the fair launch supply
+* whether the launch starts immediately or at a future time
 
-Users that stake the "Group coin" receive the trading fees.
+During the fair launch window, buyers trade at the same fixed price. When the window ends, the token moves into normal AMM trading.
 
-2. Buybacks
+### Sniper protection
 
-The "Group coin" is bought back with the trading fees.
+Flaunch can apply bot-resistance during the fair launch period.
 
-**Sniper Protection**
-
-Flaunch has created proprietary technology that allows web2 verification of a user to be embedded in the Flaunch AMM.
-
-Enabling Sniper Protection when launching a coin via the [Flaunch app](https://flaunch.gg/) requires the user to validate a CAPTCHA before being able to swap during the Fair Launch period (5 minutes by default).
-
-This allows the Creator to leverage the power of hardened web2 anti-bot/proof of humanity tooling to create a better initial distribution of the coin.
+Using the [Flaunch app](https://flaunch.gg/), creators can enable CAPTCHA-based protection and per-wallet caps to support broader initial distribution.
 
 {% hint style="success" %}
-A "per wallet cap" can also be set to facilitate a broader distribution amongst users at launch.
+Sniper protection applies during the fair launch window, when launch quality matters most.
 {% endhint %}
 
-**Scheduling, Fair Launch supply and more**
+## Advanced Launches
 
-Under "Advanced Flaunch" there are more settings a Creator can choose from:
+Use advanced settings when the launch needs more direct control.
 
-* Prebuy (purchase tokens at the fair launch price)
-* Starting market cap (min $1,000)
-* Scheduling for launch at a future date
-* Fair launch supply (how much is available during fair launch)
+Common reasons:
 
-### Fair Launch Period
+* launch at a scheduled time
+* set a custom market cap
+* change fair launch allocation
+* prebuy part of the supply
+* route revenue into a manager or group
 
-The Fair Launch period on Flaunch is simple. For a given duration (default: 5 minutes) the supply available (default: 10%) is available to purchase at a _fixed price_. This means that any buyer during this period can also sell at the _same price_, removing the price risk of early entry.
+## For Developers
 
-Once the Fair Launch period ends (after the duration finishes or the fair launch supply is sold) the liquidity moves into a standard xyk AMM price curve from the starting price to infinity.
+If you are integrating Flaunch programmatically, use the SDK or API guides below.
 
-The Sniper Protection mentioned above is only applied during the Fair Launch period.
+{% content-ref url="../developer-resources/guides/flaunching-a-coin.md" %}
+[flaunching-a-coin.md](../developer-resources/guides/flaunching-a-coin.md)
+{% endcontent-ref %}
+
+{% content-ref url="../developer-resources/flaunch-memecoin-api.md" %}
+[flaunch-memecoin-api.md](../developer-resources/flaunch-memecoin-api.md)
+{% endcontent-ref %}
+
+## Related Concepts
+
+{% content-ref url="../core-features/fixed-price-fair-launch.md" %}
+[fixed-price-fair-launch.md](../core-features/fixed-price-fair-launch.md)
+{% endcontent-ref %}
+
+{% content-ref url="../core-features/creator-revenue.md" %}
+[creator-revenue.md](../core-features/creator-revenue.md)
+{% endcontent-ref %}
+
+{% content-ref url="launch-a-group.md" %}
+[launch-a-group.md](launch-a-group.md)
+{% endcontent-ref %}
