@@ -1,22 +1,14 @@
 ---
 icon: hand-wave
-cover: .gitbook/assets/build-Banner.png
-coverY: 0
 ---
 
-# Welcome Builders
+# Get Started
 
-Flaunch is a permissionless protocol and engine for all forms of tokenization — memes, AI agents, products, art, RWAs and more. The protocol allows builders to create their own [Token Managers](get-started.md), providing complete flexibility in the monetization of the assets launched.
+Flaunch is a launchpad protocol and product that maximizes value for creators, builders and traders.
 
-Builders can integrate the Flaunch protocol and earn up to 100% of the available revenue from token trading fees.
+Learn how Flaunch is different and how you can leverage it to create value for you and/or your community.
 
-By using Flaunch, all of the heavy lifting of token creation and liquidity management is deferred to the protocol, allowing you to focus on value creation and monetization. Some examples of the business models that can be built using a Token Manager:
+### Jump right in
 
-* Launchpads (memes, AI agents, social content)
-* Tokenized user-generated content
-* Crowdfunding
-* Games and in-game items
-* Prediction markets
-
-If you are interested in monetization through tokenization, the docs here will provide you with everything you need to get set up.
+<table data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden></th><th data-hidden data-type="content-ref"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><h4><i class="fa-palette">:palette:</i></h4></td><td><strong>Creators</strong></td><td>Earn 100% of what you create. Passively paid in ETH.</td><td></td><td></td><td><a href="https://app.gitbook.com/o/RuFk7r0kW4myQxqnfkfM/s/Z7N2KDzpDSvxEq8jqwXq/">For Creators</a></td><td><a href="https://app.gitbook.com/s/Z7N2KDzpDSvxEq8jqwXq/">Welcome Creators</a></td></tr><tr><td><h4><i class="fa-wrench">:wrench:</i></h4></td><td><strong>Builders</strong></td><td>Take control of the revenue model and create unique launchpad features.</td><td></td><td></td><td><a href="https://github.com/GitbookIO/gitbook-templates/blob/main/product-docs/broken-reference/README.md">https://github.com/GitbookIO/gitbook-templates/blob/main/product-docs/broken-reference/README.md</a></td><td><a href="https://app.gitbook.com/s/T3jW1MHeHRSCtkN5uBiY/">Welcome Builders</a></td></tr><tr><td><h4><i class="fa-coins">:coins:</i></h4></td><td><strong>Traders</strong></td><td>Learn how Flaunch improves the Trenches and levels the playing field.</td><td></td><td></td><td></td><td><a href="readme/for-traders.md">for-traders.md</a></td></tr></tbody></table>
 
