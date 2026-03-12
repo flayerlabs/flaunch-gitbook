@@ -5,6 +5,10 @@ icon: file-signature
 
 # Contract Addresses
 
+The public source of truth for current deployments is the GitHub releases page:
+
+[View public releases](https://github.com/flayerlabs/flaunchgg-contracts/releases)
+
 ## Base
 
 ### Flaunch Contracts
@@ -26,5 +30,4 @@ icon: file-signature
 ### Referenced Contracts of Note
 
 <table><thead><tr><th width="243">Contract</th><th>Address</th></tr></thead><tbody><tr><td>Uniswap V4 Pool Manager</td><td>0x05E73354cFDd6745C338b50BcFDfA3Aa6fA03408</td></tr><tr><td>USDC</td><td>0x5d7fbE8a713bE0Cb6E177EB7028A9b0CA370AafC</td></tr><tr><td>flETH</td><td>0x79FC52701cD4BE6f9Ba9aDC94c207DE37e3314eb</td></tr></tbody></table>
-
 

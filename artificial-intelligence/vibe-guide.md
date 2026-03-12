@@ -34,6 +34,10 @@ The installed skill can guide an AI coding agent through:
 * Choosing Between The API, SDK, And Manager Paths
 * Working With Revenue, Staking, Or Buyback Managers
 
+The main manager-development skill is `skills/core/manager/SKILL.md`.
+
+Use the wrapper-zap skill only when the launch flow itself must enforce a manager policy.
+
 ## Quick Start
 
 {% stepper %}
@@ -133,4 +137,8 @@ Start with the umbrella skill. It will usually route to `skills/basic/token-laun
 
 {% content-ref url="../getting-started/launch-a-launchpad.md" %}
 [launch-a-launchpad.md](../getting-started/launch-a-launchpad.md)
+{% endcontent-ref %}
+
+{% content-ref url="../manager-types/custom-managers.md" %}
+[custom-managers.md](../manager-types/custom-managers.md)
 {% endcontent-ref %}

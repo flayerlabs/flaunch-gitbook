@@ -28,6 +28,8 @@
 ## Guides
 
 * [Quick Start](developer-resources/quick-start.md)
+* [SDK Package](https://www.npmjs.com/package/@flaunch/sdk)
+* [API Reference](references/api.md)
 * [Token Images](developer-resources/guides/token-images.md)
 * [SDK Guide: Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
 * [Making a Swap](developer-resources/guides/making-a-swap.md)
@@ -36,16 +38,15 @@
 ## Managers
 
 * [Manager Overview](manager-types/README.md)
-* [Manager Wrapper](manager-types/manager-wrapper.md)
+* [Custom Managers](manager-types/custom-managers.md)
 * [Revenue Manager](manager-types/revenuemanager.md)
 * [Staking Manager](manager-types/stakingmanager.md)
 * [Address Fee Split Manager](manager-types/addressfeesplitmanager.md)
-* [ERC721 Owner Fee Split Manager](manager-types/erc721ownerfeesplitmanager.md)
 
 ## Support
 
-* [Discord](support-and-faq/discord.md)
-* [Telegram](support-and-faq/telegram.md)
+* [Discord](https://discord.gg/QPxV8bMk)
+* [Telegram](https://t.me/flaunchgg/1)
 
 ## Protocol
 

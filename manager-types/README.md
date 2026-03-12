@@ -40,8 +40,8 @@ Flaunch currently documents the following manager types:
 [stakingmanager.md](stakingmanager.md)
 {% endcontent-ref %}
 
-{% content-ref url="erc721ownerfeesplitmanager.md" %}
-[erc721ownerfeesplitmanager.md](erc721ownerfeesplitmanager.md)
+{% content-ref url="custom-managers.md" %}
+[custom-managers.md](custom-managers.md)
 {% endcontent-ref %}
 
 ## Which Manager Should I Use?
@@ -58,9 +58,9 @@ Use this when revenue should be split across multiple wallets or recipients.
 
 Use this when value should flow toward stakers of an ecosystem token.
 
-### ERC721 Owner Fee Split Manager
+### Custom Managers
 
-Use this when revenue should be distributed based on NFT ownership.
+Use this when the project needs treasury behavior that is not covered by the standard manager set.
 
 ## Factory Addresses
 

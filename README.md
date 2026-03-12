@@ -12,6 +12,15 @@ For a single install target, install the top-level `flaunch` skill:
 npx skills add https://github.com/flayerlabs/flaunch-skills --skill flaunch
 ```
 
+## Choose Your Path
+
+Use these entrypoints depending on what you are building:
+
+* [AI Skills Quick Start](artificial-intelligence/vibe-guide.md)
+* [SDK Package](https://www.npmjs.com/package/@flaunch/sdk)
+* [API Reference](references/api.md)
+* [Custom Managers](manager-types/custom-managers.md)
+
 ## What Flaunch Does
 
 When a token is launched on Flaunch, the launch can include:

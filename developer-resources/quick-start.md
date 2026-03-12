@@ -8,6 +8,15 @@ icon: stopwatch
 
 Flaunch gives developers a fast way to integrate token launches, trading, and treasury behavior without rebuilding the protocol layer from scratch.
 
+## Choose Your Path
+
+Start with the entrypoint that matches the job:
+
+* [AI Skills Quick Start](../artificial-intelligence/vibe-guide.md)
+* [SDK Package](https://www.npmjs.com/package/@flaunch/sdk)
+* [API Reference](../references/api.md)
+* [Custom Managers](../manager-types/custom-managers.md)
+
 At a high level, there are three common integration paths:
 
 1. Launch Tokens Through The Web2 API
@@ -82,6 +91,10 @@ Use a treasury manager when revenue should be captured or controlled by another 
 
 {% content-ref url="../getting-started/launch-a-launchpad.md" %}
 [launch-a-launchpad.md](../getting-started/launch-a-launchpad.md)
+{% endcontent-ref %}
+
+{% content-ref url="../manager-types/custom-managers.md" %}
+[custom-managers.md](../manager-types/custom-managers.md)
 {% endcontent-ref %}
 
 ## Additional Support
