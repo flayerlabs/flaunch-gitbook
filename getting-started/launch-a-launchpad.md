@@ -20,11 +20,11 @@ Use the basic path when you want to launch tokens through Flaunch without writin
 
 This path is best for:
 
-* standard token launch flows
-* creator launchpads
-* branded consumer apps
-* backend-assisted launch flows
-* products that want to launch into an existing revenue split or treasury manager
+* Standard Token Launch Flows
+* Creator Launchpads
+* Branded Consumer Apps
+* Backend-Assisted Launch Flows
+* Products That Want To Launch Into An Existing Revenue Split Or Treasury Manager
 
 You have two ways to build it:
 
@@ -37,10 +37,10 @@ Use the advanced path when the launchpad itself needs custom onchain behavior.
 
 This path is best for:
 
-* custom treasury behavior at launch
-* project-specific permissioning
-* launchpads that must route every launch through a custom manager
-* wrapper contracts around `FlaunchZap`
+* Custom Treasury Behavior At Launch
+* Project-Specific Permissioning
+* Launchpads That Must Route Every Launch Through A Custom Manager
+* Wrapper Contracts Around `FlaunchZap`
 
 ## Fastest Path: Web2 API
 
@@ -64,22 +64,22 @@ Use the SDK when you want your app to control the launch experience directly.
 
 The SDK supports:
 
-* direct token launches
-* fee split launches
-* revenue manager launches
-* launching into an existing group or treasury manager
-* parsing launch results from transaction logs
-* trading, liquidity, and import flows around the launch
+* Direct Token Launches
+* Fee Split Launches
+* Revenue Manager Launches
+* Launching Into An Existing Group Or Treasury Manager
+* Parsing Launch Results From Transaction Logs
+* Trading, Liquidity, And Import Flows Around The Launch
 
 At the protocol layer, a launch is centered around the `FlaunchParams` fields used by the position manager, including:
 
-* token name and symbol
-* metadata URI
-* fair launch allocation and duration
-* creator address
-* creator fee allocation
-* optional scheduled launch time
-* initial pricing parameters
+* Token Name And Symbol
+* Metadata URI
+* Fair Launch Allocation And Duration
+* Creator Address
+* Creator Fee Allocation
+* Optional Scheduled Launch Time
+* Initial Pricing Parameters
 
 {% content-ref url="../developer-resources/guides/flaunching-a-coin.md" %}
 [flaunching-a-coin.md](../developer-resources/guides/flaunching-a-coin.md)
@@ -91,16 +91,16 @@ Managers are used when revenue rights or treasury behavior need to be handled by
 
 Common examples:
 
-* a revenue-sharing launchpad
-* a group or staking-based launchpad
-* a split manager for multiple recipients
-* a custom treasury contract controlled by your product
+* A Revenue-Sharing Launchpad
+* A Group Or Staking-Based Launchpad
+* A Split Manager For Multiple Recipients
+* A Custom Treasury Contract Controlled By Your Product
 
 Flaunch already supports this model directly. A launchpad can:
 
-* deploy a manager first, then launch into it
-* launch a token and create a new manager in the same flow
-* add existing Flaunch positions into a manager later
+* Deploy A Manager First, Then Launch Into It
+* Launch A Token And Create A New Manager In The Same Flow
+* Add Existing Flaunch Positions Into A Manager Later
 
 {% content-ref url="../developer-resources/treasury-managers/README.md" %}
 [README.md](../developer-resources/treasury-managers/README.md)
