@@ -1,5 +1,7 @@
 # Table of contents
 
+* [Quick Start](README.md)
+
 ## Getting Started
 
 * [What Is Flaunch?](getting-started/why-flaunch.md)

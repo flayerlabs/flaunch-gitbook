@@ -4,6 +4,16 @@ Flaunch is a token launch protocol for creators, communities, and developers.
 
 It gives users a fast way to launch tokens with fixed-price fair launch mechanics, creator revenue in ETH, and configurable treasury behavior. It also gives builders a clean foundation for launchpads, revenue products, and group-based token economies.
 
+## Install The Flaunch Skill
+
+For a single install target, install the top-level `flaunch` skill:
+
+```bash
+npx skills add https://github.com/flayerlabs/flaunch-skills --skill flaunch
+```
+
+That installs the umbrella router skill, which then routes the agent to the right deeper skill for the task.
+
 ## What Flaunch Does
 
 Flaunch combines token creation, launch mechanics, and ongoing fee routing in one system.
@@ -18,7 +28,7 @@ When a token is launched on Flaunch, the launch can include:
 
 This lets a single token act as both a launch event and a long-term onchain revenue primitive.
 
-## Start Here
+## Getting Started
 
 {% content-ref url="getting-started/why-flaunch.md" %}
 [why-flaunch.md](getting-started/why-flaunch.md)
