@@ -1,6 +1,8 @@
 # Table of contents
 
-* [Quick Start](README.md)
+## Quick Start
+
+* [Flaunch the token launchpad](README.md)
 
 ## Getting Started
 

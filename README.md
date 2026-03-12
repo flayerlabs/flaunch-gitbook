@@ -12,11 +12,7 @@ For a single install target, install the top-level `flaunch` skill:
 npx skills add https://github.com/flayerlabs/flaunch-skills --skill flaunch
 ```
 
-That installs the umbrella router skill, which then routes the agent to the right deeper skill for the task.
-
 ## What Flaunch Does
-
-Flaunch combines token creation, launch mechanics, and ongoing fee routing in one system.
 
 When a token is launched on Flaunch, the launch can include:
 
@@ -53,12 +49,6 @@ These docs are organized for three common goals:
 * Understanding What Makes Flaunch Different
 * Launching A Token Quickly
 * Building A Launchpad Or Treasury Product On Top Of The Protocol
-
-## Product Story
-
-Flaunch is designed around a simple idea: token launches should not end at minting.
-
-A Flaunch token can begin with a structured launch, generate ongoing fees, and route those fees to creators, communities, or external managers. That makes Flaunch useful both for token creators who want a better default launch and for developers who want programmable revenue infrastructure.
 
 ## Key Concepts
 
