@@ -30,7 +30,7 @@ If a referrer is specified during the swap, then an amount will be taken from th
 {% step %}
 ### Protocol Fee
 
-The protocol fee is a value set between 0% - 10%, which can be updated via an onchain governance call by [$FLAY](https://dexscreener.com/base/0xf1a7000000950c7ad8aff13118bb7ab561a448ee) token holders.
+The protocol fee is a value set between 0% - 10%, which can be updated via an onchain governance call by $FLAY token holders.
 
 {% hint style="success" %}
 This is currently set at 0%, so all fees will be passed on from this point to Dev Revs and the Bid Wall.

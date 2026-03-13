@@ -38,10 +38,10 @@
 ## Managers
 
 * [Manager Overview](manager-types/README.md)
-* [Custom Managers](manager-types/custom-managers.md)
 * [Revenue Manager](manager-types/revenuemanager.md)
 * [Staking Manager](manager-types/stakingmanager.md)
 * [Address Fee Split Manager](manager-types/addressfeesplitmanager.md)
+* [Custom Managers](manager-types/custom-managers.md)
 
 ## Support
 
@@ -65,13 +65,14 @@
 
 ## References
 
-* [Contract Addresses](developer-resources/contract-addresses.md)
+* [Contract Addresses](https://github.com/flayerlabs/flaunchgg-contracts/releases)
 * [API](references/api.md)
 * [REST Data API](references/restful-data-api.md)
 * [Subgraph](references/subgraph/README.md)
 * [Solidity Cookbook](references/solidity-cookbook.md)
 * [Hooks](developer-resources/hooks/README.md)
 * [Zaps](developer-resources/zaps/README.md)
+* [Old Contract Addresses](developer-resources/contract-addresses.md)
 
 ## Updates
 

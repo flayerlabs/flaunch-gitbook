@@ -1,14 +1,6 @@
----
-icon: wand-magic-sparkles
----
-
 # Custom Managers
 
 Custom managers let builders define treasury behavior outside the standard approved manager set.
-
-You do not need an approved manager just to build locally, integrate, or launch through your own custom flow.
-
-Approval only matters when a manager needs to be surfaced through the official factory and official supported manager flows.
 
 ## What A Custom Manager Is
 
@@ -23,10 +15,7 @@ Builders use custom managers when they need:
 
 ## How It Connects To Flaunch
 
-A custom manager can connect to Flaunch in two common ways:
-
-1. Through a manager-aware launch flow that passes manager data during launch
-2. Through a wrapper around `FlaunchZap` that enforces the manager path automatically
+Through a wrapper around `FlaunchZap` that enforces the manager path automatically.
 
 The wrapper path is useful when the launch flow itself must guarantee the correct manager setup for every launch.
 
@@ -38,17 +27,25 @@ Use a standard manager when one of the existing manager types already matches th
 
 This is the simplest path when you want a supported manager flow with less custom contract work.
 
+Example: a launchpad that wants to use the existing RevenueManager so it can take a protocol fee without writing a new treasury contract.
+
 ### Custom managers
 
 Use a custom manager when the treasury behavior itself is unique to the product.
 
 This is the right path when the post-launch logic cannot be expressed through the existing manager set.
 
+Custom managers will usually also need a wrapper around `FlaunchZap` so the intended manager setup is applied consistently during token creation.
+
+Example: a product that wants fees to unlock over time, route to a game treasury, or follow custom creator payout rules that the standard managers do not support.
+
 ### Wrappers around `FlaunchZap`
 
 Use a wrapper when the launch entrypoint itself needs to enforce a chosen manager policy for every launch.
 
 This is not the first step for most builders. It is an advanced pattern on top of the custom manager model.
+
+Example: a branded launchpad where every token launch must use the same custom manager and the team does not want integrators setting manager parameters manually.
 
 ## What A Wrapper Does
 
@@ -61,52 +58,6 @@ A wrapper around `FlaunchZap` can:
 * Ensure New Launches Bind To The Right Manager Path
 
 This is useful when a product does not want users or integrators to configure manager parameters by hand.
-
-## Standard Pattern
-
-The wrapper skill describes the usual advanced flow:
-
-1. Deploy the custom manager implementation
-2. Approve it in `TreasuryManagerFactory`
-3. Deploy a wrapper around `FlaunchZap`
-4. Force the manager-related defaults inside the wrapper
-5. Launch through the wrapper
-6. Confirm the launched token is bound to the intended manager
-
-## Approval And Official Support
-
-Approval is only required when a manager should be deployed through the official factory or treated as part of the official supported manager set.
-
-If you are building your own custom integration path, approval is not required just to develop or use the manager.
-
-## When To Use It
-
-Use this page when the project needs:
-
-* A Custom Treasury Contract
-* A Manager-Aware Launch Flow
-* A Clear Path Between Standard And Custom Manager Behavior
-* A Wrapper That Enforces Manager Defaults At Launch
-
-## Why It Is Advanced
-
-The wrapper path is advanced because it depends on:
-
-* Manager Internals
-* Launch Orchestration
-* Post-Launch Manager Initialization Or Deposit Logic
-* Manager-Specific Testing
-
-It should only be used when the launch flow itself needs to enforce the manager behavior.
-
-## Required Validation
-
-The wrapper skill calls for tests that prove:
-
-* The Happy Path Binds The Intended Manager
-* Invalid Params Or Unauthorized Configurations Fail
-* Post-Launch Init Or Deposit Logic Works
-* The Payout And Accounting Policy Is Actually Enforced
 
 ## Related Docs
 
@@ -121,3 +72,9 @@ The wrapper skill calls for tests that prove:
 {% content-ref url="../artificial-intelligence/vibe-guide.md" %}
 [vibe-guide.md](../artificial-intelligence/vibe-guide.md)
 {% endcontent-ref %}
+
+## Creating Your Own Manager
+
+If you need bespoke logic, you can build your own manager and deposit tokens into it directly.
+
+If you want to share it with the community, get in touch. Flaunch can help fund an audit and approve the manager on the Token Manager Factory.

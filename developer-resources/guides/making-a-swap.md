@@ -40,20 +40,20 @@ address referrer = address(0);
 
 // Define the PoolKey for ETH/FLETH
 PoolKey memory ethPoolKey = PoolKey({
-    currency0: 0x0000000000000000000000000000000000000000, // ETH
-    currency1: 0x000000000d564d5be76f7f0d28fe52605afc7cf8, // FLETH
+    currency0: ETH_ADDRESS,
+    currency1: FLETH_ADDRESS,
     fee: 0,
     tickSpacing: 60,
-    hooks: IHooks(0x9e433f32bb5481a9ca7dff5b3af74a7ed041a888)
+    hooks: IHooks(POOL_MANAGER_HOOK_ADDRESS)
 });
 
 // Define the PoolKey for FLETH/MEME
 PoolKey memory memePoolKey = PoolKey({
-    currency0: 0x000000000d564d5be76f7f0d28fe52605afc7cf8, // FLETH
+    currency0: FLETH_ADDRESS,
     currency1: TOKEN,
     fee: 0,
     tickSpacing: 60,
-    hooks: IHooks(0x51Bba15255406Cfe7099a42183302640ba7dAFDC)
+    hooks: IHooks(POSITION_MANAGER_HOOK_ADDRESS)
 });
 
 // Prepare parameters for each action

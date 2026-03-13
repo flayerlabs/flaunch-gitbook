@@ -62,10 +62,6 @@ Use this when value should flow toward stakers of an ecosystem token.
 
 Use this when the project needs treasury behavior that is not covered by the standard manager set.
 
-## Factory Addresses
-
-<table><thead><tr><th width="149.55841064453125">Chain</th><th>Contract Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0x48af8b28DDC5e5A86c4906212fc35Fa808CA8763</code></td></tr><tr><td>Base Sepolia</td><td><code>0xd2f3c6185e06925dcbe794c6574315b2202e9ccd</code></td></tr></tbody></table>
-
 ## Creating Your Own Manager
 
 If you need bespoke logic, you can build your own manager and deposit tokens into it directly.
