@@ -25,6 +25,14 @@
 * [AI Skills Quick Start](artificial-intelligence/vibe-guide.md)
 * [Understanding Skill Files](artificial-intelligence/skill-files.md)
 
+## Managers
+
+* [Manager Overview](manager-types/README.md)
+* [Revenue Manager](manager-types/revenuemanager.md)
+* [Staking Manager](manager-types/stakingmanager.md)
+* [Address Fee Split Manager](manager-types/addressfeesplitmanager.md)
+* [Custom Managers](manager-types/custom-managers.md)
+
 ## Guides
 
 * [Quick Start](developer-resources/quick-start.md)
@@ -34,14 +42,6 @@
 * [SDK Guide: Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
 * [Making a Swap](developer-resources/guides/making-a-swap.md)
 * [Setting a Swap Referrer](developer-resources/guides/setting-a-swap-referrer.md)
-
-## Managers
-
-* [Manager Overview](manager-types/README.md)
-* [Revenue Manager](manager-types/revenuemanager.md)
-* [Staking Manager](manager-types/stakingmanager.md)
-* [Address Fee Split Manager](manager-types/addressfeesplitmanager.md)
-* [Custom Managers](manager-types/custom-managers.md)
 
 ## Support
 
