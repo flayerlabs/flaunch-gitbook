@@ -12,6 +12,11 @@
 * [Launch a Group](getting-started/launch-a-group.md)
 * [Import a Token](getting-started/importing-to-flaunch.md)
 
+## A.I. Skills
+
+* [AI Skills Quick Start](artificial-intelligence/vibe-guide.md)
+* [Understanding Skill Files](artificial-intelligence/skill-files.md)
+
 ## Features
 
 * [Creator Revenue](core-features/creator-revenue.md)
@@ -19,11 +24,6 @@
 * [Fixed Price Fair Launch](core-features/fixed-price-fair-launch.md)
 * [Auto Buybacks](core-features/auto-buybacks.md)
 * [Sniper Protection](core-features/sniper-protection.md)
-
-## A.I. Skills
-
-* [AI Skills Quick Start](artificial-intelligence/vibe-guide.md)
-* [Understanding Skill Files](artificial-intelligence/skill-files.md)
 
 ## Managers
 
