@@ -1,54 +1,83 @@
 # Table of contents
 
-* [Welcome Builders](README.md)
-* [Builder Fund](builder-fund.md)
+## Quick Start
 
-## Token Managers
+* [Flaunch the token launchpad](README.md)
 
-***
+## Getting Started
 
-* [Get Started](get-started.md)
-* [Implementation](implementation.md)
-* [Manager Types](manager-types/README.md)
-  * [RevenueManager](manager-types/revenuemanager.md)
-  * [StakingManager](manager-types/stakingmanager.md)
-  * [AddressFeeSplitManager](manager-types/addressfeesplitmanager.md)
-  * [ERC721OwnerFeeSplitManager](manager-types/erc721ownerfeesplitmanager.md)
+* [What Is Flaunch?](getting-started/why-flaunch.md)
+* [Launch a Token](getting-started/flaunch-a-coin.md)
+* [Build a Launchpad](getting-started/launch-a-launchpad.md)
+* [Launch a Group](getting-started/launch-a-group.md)
+* [Import a Token](getting-started/importing-to-flaunch.md)
 
-## Non-native Tokens
+## Features
 
-* [Getting Started](non-native-tokens/getting-started.md)
-* [Import Your Existing Token](non-native-tokens/import-your-existing-token.md)
-* [Import From Your Protocol](non-native-tokens/import-from-your-protocol.md)
+* [Creator Revenue](core-features/creator-revenue.md)
+* [Royalty NFT](core-features/royalty-nft.md)
+* [Fixed Price Fair Launch](core-features/fixed-price-fair-launch.md)
+* [Auto Buybacks](core-features/auto-buybacks.md)
+* [Sniper Protection](core-features/sniper-protection.md)
+
+## A.I. Skills
+
+* [AI Skills Quick Start](artificial-intelligence/vibe-guide.md)
+* [Understanding Skill Files](artificial-intelligence/skill-files.md)
+
+## Guides
+
+* [Quick Start](developer-resources/quick-start.md)
+* [SDK Package](https://www.npmjs.com/package/@flaunch/sdk)
+* [API Reference](references/api.md)
+* [Token Images](developer-resources/guides/token-images.md)
+* [SDK Guide: Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
+* [Making a Swap](developer-resources/guides/making-a-swap.md)
+* [Setting a Swap Referrer](developer-resources/guides/setting-a-swap-referrer.md)
+
+## Managers
+
+* [Manager Overview](manager-types/README.md)
+* [Revenue Manager](manager-types/revenuemanager.md)
+* [Staking Manager](manager-types/stakingmanager.md)
+* [Address Fee Split Manager](manager-types/addressfeesplitmanager.md)
+* [Custom Managers](manager-types/custom-managers.md)
+
+## Support
+
+* [Discord](https://discord.gg/QPxV8bMk)
+* [Telegram](https://t.me/flaunchgg/1)
+
+## Protocol
+
+* [Audits](protocol/audits.md)
+* [Bug Bounty](protocol/bug-bounty.md)
+* [FAQ](support-and-faq/frequently-asked-questions.md)
+* [Privacy Policy](terms/privacy-policy.md)
+* [Terms of Service](terms/terms-of-service.md)
+
+## Community
+
+* [Whitepaper](community/whitepaper.md)
+* [Flaunchy](community/flaunchy.md)
+* [Brand Kit](community/brand-kit.md)
+* [Governance](community/proposals-tally.xyz/README.md)
 
 ## References
 
-* [SDK](https://www.npmjs.com/package/@flaunch/sdk)
-* [API](references/api.md)
-* [RESTful Data API](references/restful-data-api.md)
-* [Solidity Cookbook](references/solidity-cookbook.md)
-* [Subgraph](references/subgraph/README.md)
-  * [Graph Explorer](https://thegraph.com/explorer/subgraphs/bbWLZuPrmoskDaU64xycxZFE6EvSkMQALKkDpsz5ifF?view=Query\&chain=arbitrum-one)
-  * [Subgraph Query Examples](references/subgraph/subgraph-query-examples.md)
-  * [Indexing Swaps](references/subgraph/indexing-swaps.md)
-
-## Artificial Intelligence
-
-* [Vibe Guide](artificial-intelligence/vibe-guide.md)
-* [Full Integration SKILL.md](https://github.com/flayerlabs/flaunch-sdk)
-* [AgentKit](https://github.com/coinbase/agentkit/tree/1bf82ff0ec4b51015fc9d2c762d7f4be64ed4af5/typescript/agentkit/src/action-providers/flaunch)
-* [MCP](https://github.com/base/base-mcp)
-
-## Developer Resources
-
-* [GitHub](https://github.com/flayerlabs/flaunchgg-contracts)
 * [Contract Addresses](https://github.com/flayerlabs/flaunchgg-contracts/releases)
-* [Uniswap V4 Helpers](https://github.com/flayerlabs/uni-v4-helpers/tree/main)
-* [Bug Bounty](developer-resources/bug-bounty.md)
-* [Bug Bounty](https://docs.flaunch.gg/protocol/bug-bounty)
-* [Audits](https://app.gitbook.com/s/oleIQgpsdD3uHYHcTay2/protocol/audits)
+* [API](references/api.md)
+* [REST Data API](references/restful-data-api.md)
+* [Subgraph](references/subgraph/README.md)
+* [Solidity Cookbook](references/solidity-cookbook.md)
+* [Hooks](developer-resources/hooks/README.md)
+* [Zaps](developer-resources/zaps/README.md)
+* [Old Contract Addresses](developer-resources/contract-addresses.md)
 
-## Terms
+## Updates
 
-* [Terms of Service](terms/terms-of-service.md)
-* [Privacy Policy](terms/privacy-policy.md)
+* [12 December: Solana Imports, Custom Token Supply, and Smarter Liquidity SDK Upgrades](december-2025/12-december-solana-imports-custom-token-supply-and-smarter-liquidity-sdk-upgrades.md)
+* [11 December: Flaunch Wrap Solana → Base Bridging for Token Creators](december-2025/11-december-flaunch-wrap-solana-base-bridging-for-token-creators.md)
+* [17 November: Launch of Groups](november-2025/17-november-launch-of-groups.md)
+* [23 August: Phase 2 — Groups & $1M Creator Revenue](august-2025/23-august-phase-2-groups-and-usd1m-creator-revenue.md)
+* [13 March: Web2 API, New Homepage, Just Flaunch Launchpad](march-2025/13-march-web2-api-new-homepage-just-flaunch-launchpad.md)

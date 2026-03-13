@@ -192,10 +192,6 @@ Transfers ownership of the contract to a new account (`newOwner`).
 We are currently working with a small number of launchpads to implement our RevenueManager. When they are released as public code repositories, we will share and document the implementations. Check back soon!
 {% endhint %}
 
-### Contract Addresses
-
-<table><thead><tr><th width="160.4202880859375">Chain</th><th>Implementation Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0x1af9B9f168bFd2046f45E0Ce03972864BcE7eE36</code></td></tr><tr><td>Base Sepolia</td><td><code>0xE1bb2e5F4dBf4e45EAC329e234FB8D4D1a16E634</code></td></tr></tbody></table>
-
 ### ABI
 
 {% file src="../.gitbook/assets/RevenueManager.json" %}

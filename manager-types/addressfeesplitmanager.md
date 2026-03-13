@@ -234,10 +234,6 @@ Transfers ownership of the contract to a new account (`newOwner`).
 We are currently working with a small number of launchpads to implement our AddressFeeSplitManager. When they are released as public code repositories, we will share and document the implementations. Check back soon!
 {% endhint %}
 
-### Contract Addresses
-
-<table><thead><tr><th width="160.4202880859375">Chain</th><th>Implementation Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0xf6d8018450109A68acfBCD2523dc43fB31920a7D</code></td></tr><tr><td>Base Sepolia</td><td><code>0xcBcBFaB4Fa7Bab64E202027f46c400CdC285eEF0</code></td></tr></tbody></table>
-
 ### ABI
 
 {% file src="../.gitbook/assets/AddressFeeSplitManager.json" %}
