@@ -61,9 +61,3 @@ Use this when value should flow toward stakers of an ecosystem token.
 ### Custom Managers
 
 Use this when the project needs treasury behavior that is not covered by the standard manager set.
-
-## Creating Your Own Manager
-
-If you need bespoke logic, you can build your own manager and deposit tokens into it directly.
-
-If you want to share it with the community, [get in touch](https://x.com/buildonflaunch). Flaunch can help fund an audit and approve the manager on the Token Manager Factory.
