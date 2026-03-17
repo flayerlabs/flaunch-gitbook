@@ -11,7 +11,7 @@ The protocol has a small trade off between the freedom for creators to do what t
 Treasury actions are extremely simple to create, but equally powerful. During the length of the transaction, the action receives full allowance for both flETH and memecoin tokens from the treasury. These approvals are then revoked after the action transaction.
 
 {% hint style="info" %}
-If your treasury action wants to interact with external protocols using native ETH, then the flETH in the treasury will first need to be withdrawn. This can be done using the [`flETH.withdraw()`](https://basescan.org/token/0x000000000d564d5be76f7f0d28fe52605afc7cf8#writeContract#F16) function call.
+If your treasury action wants to interact with external protocols using native ETH, then the flETH in the treasury will first need to be withdrawn. This can be done using the `flETH.withdraw()` function call.
 {% endhint %}
 
 The following steps should be follwed to ensure that created hooks can be integrated into Flaunch seamlessly.

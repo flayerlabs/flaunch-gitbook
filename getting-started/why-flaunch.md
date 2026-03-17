@@ -2,41 +2,70 @@
 icon: bullseye-arrow
 ---
 
-# Why Flaunch?
+# What Is Flaunch?
 
-Flaunch is a protocol dedicated to maximizing value for Creators.
+Flaunch is a protocol for launching tokens and routing the value they generate after launch.
 
-Value is maximized in three simple ways:
+It is built around three core mechanics:
 
-1. 100% of fees are paid to you, the Creator
-2. All fees are paid in ETH (not tokens)
-3. The rights to these fees are tokenized as an NFT, opening up secondary markets that extend value.
+1. Trading fees can be allocated to the creator.
+2. Creator revenue is paid in ETH.
+3. The rights to that revenue are represented by an NFT that can be held, transferred, or managed by another contract.
 
-This first two points are straightforward, and unprecedented in the market. But the third is where the magic happens.
+This means a Flaunch token is not only a token launch. It is also a revenue position that can be used by creators, groups, launchpads, and treasury products.
 
-### Flaunch Groups
+## What Flaunch Does
 
-By tokenizing the rights to the coin's fees it's possible to create collections of coins (Groups) where all the trading fees are shared with the creator and community either through staking or automated buybacks.
+When a token is launched on Flaunch, the creator can define:
+
+* The Token Metadata
+* The Starting Market Cap
+* The Fair Launch Supply And Duration
+* The Creator Revenue Allocation
+* The Launch Time
+* Whether Revenue Should Flow To A Wallet, A Group, Or A Manager
+
+After launch, fees continue to flow according to those settings.
+
+## Groups
+
+Because revenue rights can be tokenized and routed, Flaunch can support Groups.
+
+A Group can collect value from multiple tokens and direct that value toward staking rewards or automated buybacks around a shared community coin.
 
 {% hint style="success" %}
-Groups can be created for any ERC20, not just Flaunch coins.
+Groups can be created for any ERC20, not only Flaunch-native coins.
 {% endhint %}
-
-Initially the assets deposited into Groups will just be Flaunch positions (trading fee NFTs), but in the future more assets and yield streams will be accepted.
 
 {% content-ref url="launch-a-group.md" %}
 [launch-a-group.md](launch-a-group.md)
 {% endcontent-ref %}
 
-**What else?**
+## What Else It Enables
 
-* Fixed price fair launches removes early price risk
-* Auto buybacks follow the price as it goes up
-* Creators can transfer or donate their meme revenues to better stewards
-* Community Take Overs (CTOs) are unlocked by secondary markets
+* Fixed-Price Fair Launches That Remove Early Price Risk
+* Auto Buybacks That Follow The Price Upward
+* Transferable Revenue Rights That Can Move To Better Stewards
+* Community-Owned Structures Built Around Shared Fee Flows
 
-**Give me more!**
+## Why Builders Use It
 
-* Flaunched memecoins become 24/7 fundraising tools
-* Meme revenues are tokenized (ERC721) and composable in DeFi
-* Onchain referrals pay swap fees on every trade
+Flaunch gives builders more than a token launcher.
+
+It can be used to:
+
+* Launch Tokens Quickly
+* Build Launchpads On Top Of The API Or SDK
+* Route Revenue Into Treasury Managers
+* Create Group-Based Economies Around Shared Assets
+* Build Products Around Tokenized Revenue Rights
+
+## Continue Reading
+
+{% content-ref url="flaunch-a-coin.md" %}
+[flaunch-a-coin.md](flaunch-a-coin.md)
+{% endcontent-ref %}
+
+{% content-ref url="launch-a-launchpad.md" %}
+[launch-a-launchpad.md](launch-a-launchpad.md)
+{% endcontent-ref %}

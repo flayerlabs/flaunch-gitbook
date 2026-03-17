@@ -144,7 +144,7 @@ An address must be provided. If a zero address is provided then the call will re
 _**Example:**_
 
 ```
-0x498E93Bc04955fCBAC04BCF1a3BA792f01Dbaa96
+0xYourCreatorAddress
 ```
 
 </details>

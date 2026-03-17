@@ -20,8 +20,6 @@ If you launched your ERC20 through one of these existing launchpads and you are 
 
 If you are the onchain `admin` of the `ClankerToken` then you can import your token without any additional verification.
 
-<table><thead><tr><th width="212.9293212890625">Chain</th><th width="459.8172607421875">Verifier Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0xf6ddfcb093be0cd0c015590cb6c5127d9ff2a20b</code></td></tr><tr><td>Base Sepolia</td><td><code>0x2874f9a30348acaaad55d74b0bec9c18f04b471a</code></td></tr></tbody></table>
-
 </details>
 
 <details>
@@ -29,8 +27,6 @@ If you are the onchain `admin` of the `ClankerToken` then you can import your to
 <summary>Doppler</summary>
 
 If you are the onchain `integrator` of the `DopplerAirlock` token's `AssetData`, then you can import your token without any additional verification.
-
-<table><thead><tr><th width="212.9293212890625">Chain</th><th width="459.8172607421875">Verifier Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0xedd66b080b8e9425c39d349a3fb69f480580f993</code></td></tr><tr><td>Base Sepolia</td><td><code>0x6428b5C4da36ecB070aBdcB5E1939244A3cC7fb5</code></td></tr></tbody></table>
 
 </details>
 
@@ -40,8 +36,6 @@ If you are the onchain `integrator` of the `DopplerAirlock` token's `AssetData`,
 
 If you are an onchain admin of a `AgentToken` (determined by `owner`) on the token contract, then you can import your token without any additional verification.
 
-<table><thead><tr><th width="212.9293212890625">Chain</th><th width="459.8172607421875">Verifier Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0x06a089fa231aca48d2aa77365123ad9aca43d3a4</code></td></tr><tr><td>Base Sepolia</td><td><code>0x6582d2bc6a7eba3b40bdf46b3868fc7ec2ff96ec</code></td></tr></tbody></table>
-
 </details>
 
 <details>
@@ -49,8 +43,6 @@ If you are an onchain admin of a `AgentToken` (determined by `owner`) on the tok
 <summary>Zora</summary>
 
 If you are an onchain admin of a `ZoraCoin` (determined by `isOwner`) on the coin contract, then you can import your token without any additional verification.
-
-<table><thead><tr><th width="212.9293212890625">Chain</th><th width="459.8172607421875">Verifier Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0x656047fd43d2c3a121f2ef859d7171d7dd59f8b9</code></td></tr><tr><td>Base Sepolia</td><td><code>0x05a5763e9199b88bb591c6b112d0424b2cd7a99e</code></td></tr></tbody></table>
 
 </details>
 
@@ -88,16 +80,6 @@ If you are interested in migrating your existing ERC20 to the Flaunch ecosystem 
 {% endhint %}
 
 If your token currently resides on a chain other than Base, we can assist you in bridging the token from other chains, including Solana.
-
-#### Token Importer Contract Addresses
-
-You can view the verified `TokenImporter` contracts below:
-
-<table><thead><tr><th width="230.3734130859375">Chain</th><th>Contract Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0xb47af90ae61bc916ea4b4bacffae4570e7435842</code></td></tr><tr><td>Base Sepolia</td><td><code>0xb4955a396ef07c124a59164c30d63e96a103a98b</code></td></tr></tbody></table>
-
-#### Whitelist Verifier Contract Addresses
-
-<table><thead><tr><th width="230.3734130859375">Chain</th><th>Contract Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0x7a04367563a65db574d6b7d084fdbcf4a570c5a6</code></td></tr><tr><td>Base Sepolia</td><td><code>0xfde5b79e3e2814edd5f91e8694ae400954d9cfaa</code></td></tr></tbody></table>
 
 ### What Flaunch Unlocks for Existing Tokens
 
