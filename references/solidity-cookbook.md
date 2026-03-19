@@ -22,7 +22,7 @@ All of the Flaunch liquidity is powered by Uniswap V4, meaning that swaps can be
 
 All liquidity on Flaunch is created as FLETH : COIN, meaning that to make a swap between ETH and Token, we will need an intermediary step to either wrap or unwrap ETH <> FLETH.
 
-### Swapping ETH to / from Token
+#### Swapping ETH to / from Token
 
 In the following example we make a 2-step swap to convert ETH to FLETH to COIN.
 
@@ -116,7 +116,7 @@ In an effort to simplify the user claiming experience of revenue, as well as to 
 
 Revenue from coins are allocated and are claimable per-user, as opposed to per-coin or per-user-per-coin. This is beneficial from a protocol perspective, but external protocols may find it hard to track and query fees onchain.
 
-When fees are allocated we assign them to the owner of the coin at the time of allocation, and we also track the total amount of fees that a `PoolId` has generated.  These attributes are tracked both onchain in the `FeeEscrow` contract, and in the subgraph.
+When fees are allocated we assign them to the owner of the coin at the time of allocation, and we also track the total amount of fees that a `PoolId` has generated. These attributes are tracked both onchain in the `FeeEscrow` contract, and in the subgraph.
 
 ```solidity
 /// Maps a user to an ETH equivalent token balance available in escrow
@@ -130,7 +130,7 @@ mapping (PoolId _poolId => uint _amount) public totalFeesAllocated;
 
 If you are wanting to query the amount that an individual coin has earned, that it would be recommended to take one of two approaches.
 
-### Approach 1: Subgraph Queries
+#### Approach 1: Subgraph Queries
 
 Although this can't be queried directly onchain (without using a platform like [**Chainlink**](https://chain.link/)) it is possible to pull through a coin's lifetime fees via [**The Graph**](https://thegraph.com/).
 
@@ -150,7 +150,7 @@ You can check out our subgraphs below for both mainnet and sepolia:
 [https://g.flayerlabs.xyz/flaunch/base-sepolia/graphql](https://g.flayerlabs.xyz/flaunch/base-sepolia/graphql)
 {% endhint %}
 
-### Approach 2: Check the onchain FeeEscrow mapping
+#### Approach 2: Check the onchain FeeEscrow mapping
 
 If you want to be able to query the revenue of the coin onchain, then the mapping in the `FeeEscrow` contract can be used
 
@@ -196,7 +196,7 @@ struct Index {
 }
 ```
 
-### I have a PoolId and want to...
+#### I have a PoolId and want to...
 
 **Find the Pool Key**
 
@@ -244,7 +244,7 @@ IndexerSubscriber indexer = IndexerSubscriber(0x..);
 address owner = IERC721(flaunch).ownerOf(tokenId);
 ```
 
-### Indexing a Legacy Token
+#### Indexing a Legacy Token
 
 If your token was deployed before the indexed was registered, then it can be added by making a public call to the `addIndex` function on the Indexer. The data is validated internally to confirm that the mapping is legitimate before storing.
 
@@ -261,7 +261,7 @@ If your token was deployed before the indexed was registered, then it can be add
 function addIndex(PoolId[] calldata _poolId, address[] calldata _flaunch, uint[] calldata _tokenId) external;
 ```
 
-### Deployed Indexer Addresses
+#### Deployed Indexer Addresses
 
 <table><thead><tr><th width="182.1563720703125">Chain</th><th>Deployment Address</th></tr></thead><tbody><tr><td>Base</td><td><em>Coming soon</em></td></tr><tr><td>Base Sepolia</td><td><code>0x9fa6c64c5fe954f7da1832dc190bbabc0c234989</code></td></tr></tbody></table>
 

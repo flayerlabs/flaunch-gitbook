@@ -42,13 +42,13 @@ Use the wrapper-zap skill only when the launch flow itself must enforce a manage
 
 {% stepper %}
 {% step %}
-### Install the skill
+#### Install the skill
 
 Install the umbrella `flaunch` skill so the agent can route itself to the right path.
 {% endstep %}
 
 {% step %}
-### Pick the goal
+#### Pick the goal
 
 The two most common outcomes are:
 
@@ -57,7 +57,7 @@ The two most common outcomes are:
 {% endstep %}
 
 {% step %}
-### Prompt the agent clearly
+#### Prompt the agent clearly
 
 Use a direct prompt that includes the desired outcome.
 
@@ -69,7 +69,7 @@ Use flaunch: Help me choose whether this launchpad should use the API, SDK, or a
 {% endstep %}
 
 {% step %}
-### Follow the suggested path
+#### Follow the suggested path
 
 For basic launch flows, the skill will usually route toward the API or SDK.
 

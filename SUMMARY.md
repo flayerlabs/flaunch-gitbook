@@ -36,9 +36,6 @@
 ## Guides
 
 * [Quick Start](developer-resources/quick-start.md)
-* [SDK Package](https://www.npmjs.com/package/@flaunch/sdk)
-* [API Reference](references/api.md)
-* [Token Images](developer-resources/guides/token-images.md)
 * [SDK Guide: Flaunching a Coin](developer-resources/guides/flaunching-a-coin.md)
 * [Making a Swap](developer-resources/guides/making-a-swap.md)
 * [Setting a Swap Referrer](developer-resources/guides/setting-a-swap-referrer.md)
@@ -47,6 +44,7 @@
 
 * [Discord](https://discord.gg/QPxV8bMk)
 * [Telegram](https://t.me/flaunchgg/1)
+* [Token Images](support/token-images.md)
 
 ## Protocol
 
@@ -66,7 +64,9 @@
 ## References
 
 * [Contract Addresses](https://github.com/flayerlabs/flaunchgg-contracts/releases)
+* [SDK Package](https://www.npmjs.com/package/@flaunch/sdk)
 * [API](references/api.md)
+* [API Reference](references/api.md)
 * [REST Data API](references/restful-data-api.md)
 * [Subgraph](references/subgraph/README.md)
 * [Solidity Cookbook](references/solidity-cookbook.md)

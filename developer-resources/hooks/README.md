@@ -11,10 +11,9 @@ Flaunch extensively uses Uniswap V4 hooks in the `PositionManager` to allow for 
 
 > Uniswap V4 introduces Hooks, a system that allows developers to customize and extend the behavior of liquidity pools.
 >
-> Hooks are external smart contracts that can be attached to individual pools. Every pool can have one hook but a hook can serve an infinite amount of pools to intercept and modify the execution flow at specific points during pool-related actions.\
+> Hooks are external smart contracts that can be attached to individual pools. Every pool can have one hook but a hook can serve an infinite amount of pools to intercept and modify the execution flow at specific points during pool-related actions.\\
 >
->
-> ### Key Concepts[​](https://docs.uniswap.org/contracts/v4/concepts/hooks#key-concepts) <a href="#key-concepts" id="key-concepts"></a>
+> #### Key Concepts[​](https://docs.uniswap.org/contracts/v4/concepts/hooks#key-concepts) <a href="#key-concepts" id="key-concepts"></a>
 >
 > * Each liquidity pool in Uniswap V4 can have its own hook contract attached to it. Hooks are optional for Uniswap V4 pools.
 > * The hook contract is specified when creating a new pool in the `PoolManager.initialize` function.
@@ -213,4 +212,3 @@ This breaks down the functionality included on each Uniswap V4 hook call.
 {% embed url="https://github.com/flayerlabs/flaunch-contracts/blob/main/src/contracts/PositionManager.sol" %}
 PositionManager.sol
 {% endembed %}
-

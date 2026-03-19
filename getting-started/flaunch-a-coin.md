@@ -20,7 +20,7 @@ npx skills add https://github.com/flayerlabs/flaunch-skills --skill flaunch
 
 Then prompt the agent with the token creation path:
 
-```text
+```
 Use flaunch: Launch a memecoin on Base with the fewest decisions possible.
 ```
 
@@ -116,8 +116,8 @@ If you are integrating Flaunch programmatically, use the SDK or API guides below
 [flaunch-memecoin-api.md](../developer-resources/flaunch-memecoin-api.md)
 {% endcontent-ref %}
 
-{% content-ref url="../developer-resources/guides/token-images.md" %}
-[token-images.md](../developer-resources/guides/token-images.md)
+{% content-ref url="../support/token-images.md" %}
+[token-images.md](../support/token-images.md)
 {% endcontent-ref %}
 
 ## Related Concepts

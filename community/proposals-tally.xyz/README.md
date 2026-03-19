@@ -6,7 +6,7 @@ description: >-
 icon: person-sign
 ---
 
-# Proposals (tally.xyz)
+# Governance
 
 ## Introduction
 
@@ -23,12 +23,12 @@ The token governance has two key areas of control in the Flaunch protocol:
 
 ## Governance Resources
 
-{% content-ref url="proposals-and-voting.md" %}
-[proposals-and-voting.md](proposals-and-voting.md)
+{% content-ref url="/broken/pages/VIP3t7PwvubACv9D5l4v" %}
+[Broken link](/broken/pages/VIP3t7PwvubACv9D5l4v)
 {% endcontent-ref %}
 
-{% content-ref url="protocol-fee-switch.md" %}
-[protocol-fee-switch.md](protocol-fee-switch.md)
+{% content-ref url="/broken/pages/gWOe3qRmvFVCBHxVJjbh" %}
+[Broken link](/broken/pages/gWOe3qRmvFVCBHxVJjbh)
 {% endcontent-ref %}
 
 ## Contract Addresses

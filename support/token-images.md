@@ -22,8 +22,8 @@ The Web2 API expects images in two steps:
 
 The image upload endpoint validates the image and stores it on IPFS before launch.
 
-{% content-ref url="../flaunch-memecoin-api.md" %}
-[flaunch-memecoin-api.md](../flaunch-memecoin-api.md)
+{% content-ref url="../developer-resources/flaunch-memecoin-api.md" %}
+[flaunch-memecoin-api.md](../developer-resources/flaunch-memecoin-api.md)
 {% endcontent-ref %}
 
 ## SDK Path
@@ -70,10 +70,10 @@ For lower-level onchain flows, you can work from a prepared metadata URI, but th
 
 ## Related Guides
 
-{% content-ref url="flaunching-a-coin.md" %}
-[flaunching-a-coin.md](flaunching-a-coin.md)
+{% content-ref url="../developer-resources/guides/flaunching-a-coin.md" %}
+[flaunching-a-coin.md](../developer-resources/guides/flaunching-a-coin.md)
 {% endcontent-ref %}
 
-{% content-ref url="../../artificial-intelligence/vibe-guide.md" %}
-[vibe-guide.md](../../artificial-intelligence/vibe-guide.md)
+{% content-ref url="../artificial-intelligence/vibe-guide.md" %}
+[vibe-guide.md](../artificial-intelligence/vibe-guide.md)
 {% endcontent-ref %}

@@ -1,7 +1,6 @@
 ---
 metaLinks:
-  canonical: >-
-    https://app.gitbook.com/s/T3jW1MHeHRSCtkN5uBiY/developer-resources/bug-bounty
+  canonical: https://app.gitbook.com/s/T3jW1MHeHRSCtkN5uBiY/protocol/bug-bounty
 ---
 
 # Bug Bounty
