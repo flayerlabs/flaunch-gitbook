@@ -6,22 +6,14 @@ icon: rectangles-mixed
 
 ### **Logo**
 
-<figure><img src="../.gitbook/assets/Flaunch-Logo.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/logos.png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../.gitbook/assets/Flaunch Logos Files.zip" %}
+{% file src="../.gitbook/assets/Flaunch-Logos.zip" %}
 
 ### Color Palette
 
-<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-cover data-type="image">Cover image</th></tr></thead><tbody><tr><td>Blue<br>Hex: #4BA5F2</td><td><a href="../.gitbook/assets/Blue.png">Blue.png</a></td></tr><tr><td>Pink<br>Hex: #EB88EF</td><td><a href="../.gitbook/assets/Pink.png">Pink.png</a></td></tr><tr><td>Orange<br>Hex: #E7692C</td><td><a href="../.gitbook/assets/Orange.png">Orange.png</a></td></tr><tr><td>Yellow<br>Hex: #EFBC41</td><td><a href="../.gitbook/assets/Yellow.png">Yellow.png</a></td></tr><tr><td>Gradient 1<br>Hex: #E7692C - EB88EF</td><td><a href="../.gitbook/assets/Gradient-1.png">Gradient-1.png</a></td></tr><tr><td>Gradient 2<br>Hex: #B685F5 - EB88EF</td><td><a href="../.gitbook/assets/gradient2 (1).png">gradient2 (1).png</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-cover data-type="image">Cover image</th></tr></thead><tbody><tr><td>Magenta<br>Hex: #FF49B4</td><td><a href="../.gitbook/assets/magenta.png">magenta.png</a></td></tr><tr><td>Purple<br>Hex: #B280FF</td><td><a href="../.gitbook/assets/purple.png">purple.png</a></td></tr><tr><td>Black<br>Hex: #0A0A0A</td><td><a href="../.gitbook/assets/black.png">black.png</a></td></tr><tr><td>Blue<br>Hex: #00B6DD</td><td><a href="../.gitbook/assets/Blue.png">Blue.png</a></td></tr><tr><td>Emerald<br>Hex: #00A473</td><td><a href="../.gitbook/assets/emerald.png">emerald.png</a></td></tr><tr><td>White<br>Hex: #FFFFFF</td><td><a href="../.gitbook/assets/white.png">white.png</a></td></tr></tbody></table>
 
 ### Typography
 
-<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-cover data-type="files"></th></tr></thead><tbody><tr><td>Headings + Body<br>Suisse Int'l</td><td><a href="../.gitbook/assets/Body.png">Body.png</a></td></tr></tbody></table>
-
-### Icon Variations
-
-<figure><img src="../.gitbook/assets/Icons.png" alt=""><figcaption></figcaption></figure>
-
-{% file src="../.gitbook/assets/Icons Variants.zip" %}
-Icon Variations
-{% endfile %}
+<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-cover data-type="image">Cover image</th></tr></thead><tbody><tr><td>Headings<br>BB TORSOS</td><td><a href="../.gitbook/assets/bbtorsos.png">bbtorsos.png</a></td></tr><tr><td>Body<br>Basier Circle</td><td><a href="../.gitbook/assets/basier.png">basier.png</a></td></tr></tbody></table>
