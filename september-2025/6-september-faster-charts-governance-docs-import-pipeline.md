@@ -12,5 +12,5 @@
 
 #### Links
 
-* Governance / Tally docs: [https://docs.flaunch.gg/for-creators/community/proposals-tally.xyz](https://docs.flaunch.gg/for-creators/community/proposals-tally.xyz)
+* Governance / Tally docs: [https://docs.flaunch.gg/for-creators/community/governance](https://docs.flaunch.gg/for-creators/community/governance)
 * Importing & Add Liquidity posts: [https://x.com/flaunchgg](https://x.com/flaunchgg?utm_source=chatgpt.com)
