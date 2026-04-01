@@ -59,7 +59,9 @@
 * [Whitepaper](community/whitepaper.md)
 * [Flaunchy](community/flaunchy.md)
 * [Brand Kit](community/brand-kit.md)
-* [Governance](community/proposals-tally.xyz/README.md)
+* [Governance](community/governance/README.md)
+  * [Proposals and Voting](community/governance/proposals-and-voting.md)
+  * [Protocol Fee Switch](community/governance/protocol-fee-switch.md)
 
 ## References
 

@@ -15,7 +15,7 @@ Bridge between Base and Ethereum without slippage at [superbridge.app](https://s
 
 The Flaunch protocol has the option for a fee switch that can be turned on by FLAY holders through onchain governance. The fee switch, if activated through approval by FLAY holders, would collect up to 10% of the Flaunch protocol's trading fees.
 
-The governance steps for activating the fee switch are documented in [protocol-fee-switch.md](proposals-tally.xyz/protocol-fee-switch.md "mention").
+The governance steps for activating the fee switch are documented in [protocol-fee-switch.md](governance/protocol-fee-switch.md "mention").
 
 ***
 
@@ -51,7 +51,6 @@ The Foundation treasury is simply the capital held and managed by the Foundation
 
 At the moment, the Foundation uses revenue generated from certain liquidity positions—such as those associated with NFTX and the FLAY liquidity pool on Uniswap—in a specific, discretionary way. That revenue is periodically used to purchase $FLAY from the open market. These purchases are executed using TWAP-based strategies via CoWSwap, which helps spread execution over time rather than concentrating it at a single price point. It’s important to note that this approach reflects a current operational choice rather than a fixed protocol rule. There is no guarantee that this mechanism will continue indefinitely, and it can be adjusted or discontinued by the Foundation as circumstances evolve.
 
-In terms of longer-term, token-holder–governed value flows, the protocol already includes a different mechanism: the fee switch. While this fee switch is currently disabled, it can be [enabled through a governance vote](proposals-tally.xyz/) conducted on [Tally.xyz](https://www.tally.xyz/gov/flayer). If activated, protocol fees would begin flowing into a treasury that is directly governed by $FLAY holders via on-chain voting. In that setup, decisions around the use of those funds would be made collectively through governance rather than through Foundation discretion.
+In terms of longer-term, token-holder-governed value flows, the protocol already includes a different mechanism: the fee switch. While this fee switch is currently disabled, it can be [enabled through a governance vote](governance/) conducted on [Tally.xyz](https://www.tally.xyz/gov/flayer). If activated, protocol fees would begin flowing into a treasury that is directly governed by $FLAY holders via on-chain voting. In that setup, decisions around the use of those funds would be made collectively through governance rather than through Foundation discretion.
 
 Taken together, this means there is a clear distinction between what exists today and what can exist through governance. The Foundation treasury and its current use of LP revenue operate independently from token market metrics, while the fee switch represents the path toward a fully community-governed treasury structure, should token holders choose to enable it.
-
