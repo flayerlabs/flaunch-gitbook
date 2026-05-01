@@ -1,6 +1,6 @@
 ---
 metaLinks:
-  canonical: bug-bounty.md
+  canonical: https://app.gitbook.com/s/T3jW1MHeHRSCtkN5uBiY/protocol/bug-bounty
 ---
 
 # Bug Bounty

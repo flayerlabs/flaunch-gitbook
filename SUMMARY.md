@@ -68,7 +68,7 @@
 * [Contract Addresses](https://github.com/flayerlabs/flaunchgg-contracts/releases)
 * [SDK Package](https://www.npmjs.com/package/@flaunch/sdk)
 * [API](references/api.md)
-* [API Reference](/broken/pages/ZqW0TDwrmQ7QNblGO5jB)
+* [API Reference](/broken/pages/OecTl3agSjI1noXmynhY)
 * [REST Data API](references/restful-data-api.md)
 * [Subgraph](references/subgraph/README.md)
 * [Solidity Cookbook](references/solidity-cookbook.md)
