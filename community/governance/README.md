@@ -21,6 +21,16 @@ The token governance has two key areas of control in the Flaunch protocol:
 1. Control of enabling and disabling a protocol fee
 2. Utilizing ETH earned from protocol fees
 
+## Governance Resources
+
+{% content-ref url="/broken/pages/VIP3t7PwvubACv9D5l4v" %}
+[Broken link](/broken/pages/VIP3t7PwvubACv9D5l4v)
+{% endcontent-ref %}
+
+{% content-ref url="/broken/pages/gWOe3qRmvFVCBHxVJjbh" %}
+[Broken link](/broken/pages/gWOe3qRmvFVCBHxVJjbh)
+{% endcontent-ref %}
+
 ## Contract Addresses
 
 #### Ethereum Mainnet (Chain ID: 1)
