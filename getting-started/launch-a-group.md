@@ -54,7 +54,7 @@ The default permission models are:
 * Closed: Only The Group Owner Can Add Coins
 
 {% hint style="info" %}
-Permissions are modular and can be changed after creation. If you want a new type of permission please reach out on [Discord](https://discord.gg/flaunch).
+Permissions are modular and can be changed after creation. If you want a new type of permission please reach out on [Discord](https://discord.gg/PcSmznqqqb).
 {% endhint %}
 
 ## Ownership of Group Assets

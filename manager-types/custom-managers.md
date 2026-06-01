@@ -61,8 +61,8 @@ This is useful when a product does not want users or integrators to configure ma
 
 ## Related Docs
 
-{% content-ref url="README.md" %}
-[README.md](README.md)
+{% content-ref url="./" %}
+[.](./)
 {% endcontent-ref %}
 
 {% content-ref url="../getting-started/launch-a-launchpad.md" %}
@@ -75,4 +75,4 @@ This is useful when a product does not want users or integrators to configure ma
 
 ## Need Support Building Custom Manager?
 
-Support is available in the [Flaunch Discord](https://discord.gg/QPxV8bMk) and [Telegram](https://t.me/flaunchgg/1).
+Support is available in the [Flaunch Discord](https://discord.gg/PcSmznqqqb) and [Telegram](https://t.me/flaunchgg/1).

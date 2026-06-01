@@ -39,7 +39,7 @@ With Flaunch, transferring the Royalty stream is enough to send all future incom
 
 The holder of the Royalty stream is also endowed with specific management rights that can help to accelerate their coin's culture and price. These include the ability to market buy their coin or burn tokens they have bought back. More actions are being developed to allow for use in liquidity management and airdrops.
 
-Want some more management functionality? Make a request [in the Discord](https://discord.gg/flaunch)!
+Want some more management functionality? Make a request [in the Discord](https://discord.gg/PcSmznqqqb)!
 
 ### Community Take Overs (CTOs)
 

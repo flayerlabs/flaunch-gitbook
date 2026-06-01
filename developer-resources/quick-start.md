@@ -101,7 +101,7 @@ Use a treasury manager when revenue should be captured or controlled by another 
 
 If you're looking for some additional support from the team, be sure to reach out in the **#builders** channel in Discord, or in the Telegram chat below.
 
-{% embed url="http://discord.gg/flaunch" %}
+{% embed url="https://discord.gg/PcSmznqqqb" %}
 Join the #builders channel
 {% endembed %}
 
