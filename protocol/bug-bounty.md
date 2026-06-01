@@ -5,6 +5,10 @@ metaLinks:
 
 # Bug Bounty
 
+{% hint style="danger" %}
+We are currently in the process of releasing an updated version of the Flaunch contracts. During this time, our bug bounty program will be paused until it is released.
+{% endhint %}
+
 {% hint style="warning" %}
 We are receiving a greatly increased number of bug bounty submissions with the recent surge of AI assisted auditing. Responses to bug bounty submissions may be delayed, so please bear with us whilst we resolve backlog.
 {% endhint %}
