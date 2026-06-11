@@ -1,12 +1,13 @@
 ---
 description: >-
   The Flaunch MCP server lets AI agents launch, discover, and trade Flaunch
-  tokens on Base. It exposes the Flaunch launch flow, IPFS uploads, and coin
-  discovery as Model Context Protocol tools, and pair
+  tokens on Base through natural conversation.
 icon: brain
 ---
 
 # Flaunch MCP
+
+The Flaunch MCP server lets AI agents launch, discover, and trade Flaunch tokens on Base. It exposes the Flaunch launch flow, IPFS uploads, and coin discovery as [Model Context Protocol](https://modelcontextprotocol.io) tools, and pairs with [Base MCP](https://mcp.base.org) for wallet signing and swaps.
 
 ### Endpoint
 
@@ -94,6 +95,43 @@ The response shape is:
 ```
 
 `prepare_base_launch` only prepares unsigned calldata — it never submits the transaction. The user must approve it in their wallet.
+
+### Running on Base
+
+Flaunch MCP is designed to run alongside [Base MCP](https://mcp.base.org). Flaunch prepares everything — metadata, IPFS uploads, unsigned launch calldata, swap inputs — while Base MCP owns the wallet: account onboarding, transaction approval, and submission. The agent never signs or broadcasts through Flaunch.
+
+All production launches and swaps target the `base` chain. `base-sepolia` is available for the Web2 launch path only — do not use Base MCP `swap` with `base-sepolia` addresses.
+
+#### Launching a token
+
+1. Run Base MCP onboarding first.
+2. If the user did not provide a `creatorAddress`, call Base MCP `get_wallets` and use their Base Account address.
+3. Collect token details and upload the image with `upload_image` if it is not already an IPFS CID.
+4. Show the final launch details and ask the user to confirm.
+5. Call `prepare_base_launch` and verify the response has `tool: "send_calls"` and `input.chain: "base"`.
+6. Ask for explicit confirmation, then call Base MCP `send_calls` with the returned `input`.
+7. Surface the approval URL as "Approve Transaction" and wait for the user to act.
+8. Call Base MCP `get_request_status` once after the user acts and report the confirmed result.
+
+Do not submit launches silently, and do not report success until Base MCP request status confirms completion.
+
+#### Discovering and buying coins
+
+1. Call `get_new_coins` for fresh launches or `get_market_cap_coins` for top coins.
+2. Show a compact list: symbol, name, contract address, and market data when present.
+3. Do not auto-buy. Ask the user which token and what amount.
+4. On explicit confirmation, call `swap_guidance` and pass its `input` to Base MCP `swap` with a funding asset such as `ETH` or `USDC`.
+5. Surface the approval URL and poll request status only after the user acts.
+
+#### Swapping by contract address
+
+Tokens can be traded directly by Base contract address — no launch flow required. For buys, set `fromAsset` to `ETH` or `USDC` and `toAsset` to the token address; for sells, reverse them. If an address came directly from the user, describe it as a user-provided Base token address — do not claim it is a Flaunch token unless Flaunch discovery verified it. If Base MCP `swap` cannot quote or route the token, report that it is not currently swappable rather than improvising raw calldata.
+
+#### Risks
+
+* **Low liquidity** — newly launched memecoins can have thin liquidity, volatile prices, and user-supplied metadata. Never present a discovery result as endorsed or vetted.
+* **Slippage** — swaps on new tokens can fill materially worse than quoted or fail to route. Do not auto-raise slippage or retry failed swaps without explicit user confirmation.
+* **Irreversible** — once the user approves a `send_calls` launch or `swap`, the onchain result cannot be undone. Always confirm chain, token details, creator address, and amount before any write action.
 
 ### Tools
 
