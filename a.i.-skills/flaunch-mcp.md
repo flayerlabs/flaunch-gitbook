@@ -1,7 +1,4 @@
 ---
-description: >-
-  The Flaunch MCP server lets AI agents launch, discover, and trade Flaunch
-  tokens on Base through natural conversation.
 icon: brain
 ---
 

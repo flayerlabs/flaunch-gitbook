@@ -16,4 +16,4 @@ This allows the Creator to leverage the power of hardened web2 anti-bot/proof of
 A "per wallet cap" can also be set to facilitate a broader distribution amongst users at launch.
 {% endhint %}
 
-If you are a builder, it's possible to create your own custom implementation of Sniper Protection that can use any offchain data to grant access to the Fair Launch period. Reach out on [Discord](https://discord.gg/flaunch) to discuss implementation.
+If you are a builder, it's possible to create your own custom implementation of Sniper Protection that can use any offchain data to grant access to the Fair Launch period. Reach out on [Discord](https://discord.gg/PcSmznqqqb) to discuss implementation.
