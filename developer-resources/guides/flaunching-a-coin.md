@@ -2,7 +2,7 @@
 icon: up
 ---
 
-# SDK Guide: Flaunching a Coin
+# Flaunching a Coin
 
 Launching a token should comprise of three steps. Firstly we will need to upload a coin image to IPFS, followed by uploading the token metadata to IPFS. Once we have our data available, we can make the onchain call to flaunch the token.
 
@@ -22,7 +22,7 @@ With our image, we will now need to upload a JSON metadata structure to IPFS tha
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc efficitur ut orci.",
   "image": "ipfs://ImageCID",
   "external_link": "https://flaunch.gg",
-  "discordUrl": "https://discord.gg/PcSmznqqqb",
+  "discordUrl": "https://discord.gg/flaunchgg",
   "twitterUrl": "https://x.com/flaunchgg",
   "telegramUrl": "https://t.me/flaunchgg",
   "collaborators": []

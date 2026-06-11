@@ -16,6 +16,7 @@
 
 * [AI Skills Quick Start](artificial-intelligence/vibe-guide.md)
 * [Understanding Skill Files](artificial-intelligence/skill-files.md)
+* [Flaunch MCP](a.i.-skills/flaunch-mcp.md)
 
 ## Features
 
@@ -42,7 +43,7 @@
 
 ## Support
 
-* [Discord](https://discord.gg/PcSmznqqqb)
+* [Discord](https://discord.gg/QPxV8bMk)
 * [Telegram](https://t.me/flaunchgg/1)
 * [Token Images](support/token-images.md)
 
@@ -68,7 +69,7 @@
 * [Contract Addresses](https://github.com/flayerlabs/flaunchgg-contracts/releases)
 * [SDK Package](https://www.npmjs.com/package/@flaunch/sdk)
 * [API](references/api.md)
-* [API Reference](references/api.md)
+* [API Reference](/broken/pages/OecTl3agSjI1noXmynhY)
 * [REST Data API](references/restful-data-api.md)
 * [Subgraph](references/subgraph/README.md)
 * [Solidity Cookbook](references/solidity-cookbook.md)

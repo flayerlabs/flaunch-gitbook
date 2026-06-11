@@ -19,7 +19,7 @@ So whether you're extending your existing platform to benefit from token launche
 
 ## API Keys
 
-No API keys are required for the use of the Web 2 API endpoint. If you are hitting the current rate limits [reach out on discord](https://discord.gg/PcSmznqqqb) for increased access.
+No API keys are required for the use of the Web 2 API endpoint. If you are hitting the current rate limits [reach out on discord](https://discord.gg/flaunch) for increased access.
 
 ## Example Integration
 
@@ -151,6 +151,8 @@ Checks if the API is running and returns the network configuration.
 
 Create a reusable fee split manager contract that can be used across multiple token launches.
 
+
+
 **Required Fields**
 
 | Name                     | Type   | Description                                                                                           |
@@ -224,6 +226,8 @@ Create a reusable fee split manager contract that can be used across multiple to
 }
 ```
 
+
+
 ## Token Metadata Upload
 
 The `/api/v1/upload-metadata` endpoint uploads token metadata to IPFS via Pinata and returns the IPFS hash and token URI. This endpoint is similar to the metadata upload step in the Launch Token flow but is available as a standalone service.
@@ -257,6 +261,8 @@ Required.
 | `symbol`      | The token symbol                                                                                                                    |
 | `description` | Token description                                                                                                                   |
 | `imageIpfs`   | IPFS hash of the token image (without ipfs:// prefix). Use [Image Upload](api.md#image-upload) endpoint to generate an `imageIPFS`. |
+
+
 
 Optional.
 
@@ -316,6 +322,8 @@ The endpoint creates ERC-20/ERC-721 compatible metadata with this structure:
     }
   }
 ```
+
+
 
 ## Image Upload
 
@@ -379,7 +387,11 @@ Uploads and validates an image before creating a memecoin. Images are checked fo
 {% endtab %}
 {% endtabs %}
 
+
+
 ## Video Upload
+
+
 
 Upload a video file to Cloudflare Stream for use in token creation.
 
@@ -394,6 +406,8 @@ POST /api/v1/upload-video
 | `maxDurationSeconds` | `number` | Maximum video duration in seconds (default: 300, max: 300)               |
 | `maxSizeBytes`       | `number` | Maximum file size in bytes (default: 52,428,800, max: 52,428,800 = 50MB) |
 | `userId`             | `string` | User identifier for tracking (default: "anonymous")                      |
+
+
 
 #### Rate Limiting
 
@@ -597,7 +611,7 @@ Tokens can be launched on either `base` or `base-sepolia` based on the parameter
 {% hint style="success" %}
 ANTISNIPE protection now available!\
 \
-Default behaviour is maintained, add `sniperProtection: true` to the optional fields will add
+Default behaviour is maintained, add  `sniperProtection: true` to the optional fields will add&#x20;
 {% endhint %}
 
 Creates a new memecoin token on the selected network with the following default parameters:
@@ -621,7 +635,7 @@ If no creator authentication option is provided, the creator fees will go to the
 
 **Optional Fields**
 
-<table><thead><tr><th width="270.21417236328125">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>sniperProtection</code></td><td><code>boolean</code> : Enable wallet cap during fair<br>launch (default: <code>false</code> )<br><strong>NOTE:</strong> the default launch will change to <code>true</code> for default protection on all new tokens on the <strong>13th August 2025</strong></td></tr><tr><td><code>revenueManagerAddress</code></td><td>Ethereum address of a deployed revenue manager (must be valid address format)</td></tr><tr><td><code>feeSplitManagerAddress</code></td><td>Ethereum address of a deployed fee split manager (must be valid address format)</td></tr><tr><td><code>feeSplitRecipients</code></td><td>An array of Ethereum wallet addresses that will automatically receive an equal share of fees from the launched token <code>[0x123..., 0xabc...]</code></td></tr><tr><td><code>creatorShare</code></td><td>Only include when specifying <code>feeSplitRecipients</code> if you also want the creator to take a portion of the fees. (default: 0, basis points so 8000 = 80%)</td></tr><tr><td><code>marketCap</code></td><td>Initial market cap in USDC<br>(default: 10,000 = 10000000000)</td></tr><tr><td><code>creatorFeeSplit</code></td><td>Creator fee allocation in basis points<br>(default: 8000 = 80%)</td></tr><tr><td><code>websiteUrl</code></td><td>Website URL</td></tr><tr><td><code>telegramUrl</code></td><td>Telegram group URL</td></tr><tr><td><code>discordUrl</code></td><td>Discord server URL</td></tr><tr><td><code>twitterUrl</code></td><td>Twitter/X URL</td></tr></tbody></table>
+<table><thead><tr><th width="270.21417236328125">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>sniperProtection</code></td><td><code>boolean</code> : Enable wallet cap during fair<br>launch (default: <code>false</code> ) <br><strong>NOTE:</strong> the default launch will change to <code>true</code> for default protection on all new tokens on the <strong>13th August 2025</strong></td></tr><tr><td><code>revenueManagerAddress</code></td><td>Ethereum address of a deployed revenue manager (must be valid address format)</td></tr><tr><td><code>feeSplitManagerAddress</code></td><td>Ethereum address of a deployed fee split manager (must be valid address format)</td></tr><tr><td><code>feeSplitRecipients</code></td><td>An array of Ethereum wallet addresses that will automatically receive an equal share of fees from the launched token <code>[0x123..., 0xabc...]</code></td></tr><tr><td><code>creatorShare</code></td><td>Only include when specifying <code>feeSplitRecipients</code> if you also want the creator to take a portion of the fees. (default: 0, basis points so 8000 = 80%)</td></tr><tr><td><code>marketCap</code></td><td>Initial market cap in USDC<br>(default: 10,000 = 10000000000)</td></tr><tr><td><code>creatorFeeSplit</code></td><td>Creator fee allocation in basis points<br>(default: 8000 = 80%)</td></tr><tr><td><code>websiteUrl</code></td><td>Website URL</td></tr><tr><td><code>telegramUrl</code></td><td>Telegram group URL</td></tr><tr><td><code>discordUrl</code></td><td>Discord server URL</td></tr><tr><td><code>twitterUrl</code></td><td>Twitter/X URL</td></tr></tbody></table>
 
 {% hint style="info" %}
 **Rate Limits:** Maximum 2 memecoin launches per minute per IP address
@@ -765,6 +779,8 @@ If you also want the `creatorAddress` to receive a portion of the fees you need 
 | `twitter`   | Alphanumeric + underscores, max 15 chars           | "justinavery"                                |
 | `farcaster` | Alphanumeric + underscores, 1+ chars               | "javery"                                     |
 |             |                                                    |                                              |
+
+
 
 **Headers**
 
@@ -932,13 +948,12 @@ If you also want the `creatorAddress` to receive a portion of the fees you need 
 {% endtab %}
 
 {% tab title="[400] Missing Data" %}
-```json
-{
+<pre class="language-json"><code class="lang-json">{
   "success": false,
   "error": "Missing required fields: name, symbol, description, imageIpfs"
 }
-
-{
+<strong>
+</strong>{
   "success": false,
   "error": "Cannot specify both revenueManagerAddress and feeSplitRecipients. Choose only one treasury option."
 }
@@ -952,7 +967,7 @@ If you also want the `creatorAddress` to receive a portion of the fees you need 
   "success": false,
   "error": "Duplicate addresses found in fee split recipients"
 }
-```
+</code></pre>
 {% endtab %}
 {% endtabs %}
 
