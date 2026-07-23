@@ -9,7 +9,6 @@
 * [What Is Flaunch?](getting-started/why-flaunch.md)
 * [Launch a Token](getting-started/flaunch-a-coin.md)
 * [Build a Launchpad](getting-started/launch-a-launchpad.md)
-* [Launch a Group](getting-started/launch-a-group.md)
 * [Import a Token](getting-started/importing-to-flaunch.md)
 
 ## AI
@@ -79,6 +78,7 @@
 * [Hooks](developer-resources/hooks/README.md)
 * [Zaps](developer-resources/zaps/README.md)
 * [Old Contract Addresses](developer-resources/contract-addresses.md)
+* [Groups (Legacy)](https://legacy.flaunch.gg)
 
 ## Updates
 
