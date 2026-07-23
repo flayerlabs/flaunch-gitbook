@@ -100,10 +100,6 @@ Our `TreasuryManagerFactory` can be found at the following addresses:
 
 <table><thead><tr><th width="158">Chain</th><th>Address</th></tr></thead><tbody><tr><td>Base</td><td><code>0x48af8b28ddc5e5a86c4906212fc35fa808ca8763</code></td></tr><tr><td>Base Sepolia</td><td><code>0x98afe08a4a0abc7019ed70e58b08229e1a680683</code></td></tr><tr><td>Robinhood</td><td><code>0x25f39fe1769d1a1fd622a41030d47314b338b2bf</code></td></tr></tbody></table>
 
-Our `CreateWithManagerZap` can be found at the following addresses:
-
-<table><thead><tr><th width="158">Chain</th><th>Address</th></tr></thead><tbody><tr><td>Base</td><td><em>Coming soon</em></td></tr><tr><td>Base Sepolia</td><td><em>Coming soon</em></td></tr><tr><td>Robinhood</td><td><em>Coming soon</em></td></tr></tbody></table>
-
 ### Source Code
 
 {% embed url="https://github.com/flayerlabs/flaunchgg-contracts/blob/dev/src/contracts/treasury/managers/TreasuryManagerFactory.sol" %}
