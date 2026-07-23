@@ -1,102 +1,57 @@
 ---
+description: Flaunch's mascot and AI token launcher. Tweet him a name, he launches the coin.
 icon: paw-simple
-cover: >-
-  https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FZ7N2KDzpDSvxEq8jqwXq%2Fuploads%2Fd8Ck5nWb4T6UuTuMHXIN%2Fimage.png?alt=media&token=6f091c8a-2645-430e-ba4b-06a5561cd06d
+cover: ../.gitbook/assets/Flaunchy-portal.png
 coverY: 0
 ---
 
 # Flaunchy
 
-## Launch Types for Flaunchy
+Flaunchy is Flaunch's mascot and AI token launcher. Mention him on X with a token name and he launches a memecoin for you onchain, then replies with the contract address and a link to its flaunch.gg coin page. No wallet connect, no forms, no gas.
 
-Twitter: [x.com/flaunchybot](https://x.com/flaunchybot)
+Talk to Flaunchy on Twitter/X: [x.com/flaunchybot](https://x.com/flaunchybot)
 
-Farcaster: [farcaster.com/flaunchy](https://farcaster.xyz/flaunchy)
+## How to launch
 
-#### 1. Fast Launch
-
-**Name and ticker (image optional)**
+The whole flow is one tweet. Mention [@flaunchybot](https://x.com/flaunchybot) and tell him what to launch. A name is all he needs; everything else has a default.
 
 ```
-💬 User: @Flaunchy launch Timer (TIME)
-🐈‍⬛ Flaunchy: gmeow! Timer ($TIME) ready to launch on base. launching now...
-🐈‍⬛ Flaunchy: Timer ($TIME) launched on base! check it: https://flaunch.gg/base/coin/0x1234...  
-CA: 0x1234...
+💬 you: @flaunchybot launch Timer (TIME)
+🐈‍⬛ flaunchy: gmeow. launching $TIME on base...
+🐈‍⬛ flaunchy: $TIME is live: https://flaunch.gg/base/coins/0x1234...
 ```
 
-**Other examples:**
-
-* `Flaunchy create SpaceToken with ticker SPACE`
-* `@flaunchybot launch a token called Moonshot`
-* `hey Flaunchy, launch DOGE token`
-
-***
-
-#### 2. Standard Launch
-
-**Set custom fee splits or receivers**
+You can also reply "flaunch it" under any post, and Flaunchy will spin a coin out of it:
 
 ```
-💬 User: @Flaunchy launch Timer (TIME) with 50% fees to vitalik.eth
-🐈‍⬛ Flaunchy: henlo! Timer ($TIME) with custom fee setup. launching...
-🐈‍⬛ Flaunchy: Timer ($TIME) launched! check: https://flaunch.gg/base/coin/0x5678...  
-CA: 0x5678...
+💬 alice: someone should make a rocket coin 🚀
+💬 you: @flaunchybot flaunch it
+🐈‍⬛ flaunchy: $RCKT is live: https://flaunch.gg/base/coins/0x9abc...
 ```
 
-**Other examples:**
+### What Flaunchy needs from you
 
-* `Flaunchy create SpaceToken, send 25% fees to alice.eth`
-* `launch Moonshot with 60% fee share to 0x1234...`
-* `@flaunchybot launch DOGE, receiver is bob.eth, 40% fees`
+* **Name** - required. Used exactly as you write it.
+* **Ticker** - optional. Leave it out and Flaunchy picks one (1 to 8 characters).
+* **Image** - optional. Attach one and it becomes the coin's art. Otherwise the default Flaunch token image is used.
+* **Everything else** - description, fee setup, and which chain to use are all handled automatically.
 
-***
+You don't need a wallet to launch. Flaunchy creates a claimable wallet tied to your X account, so your fees are waiting for you when you log in at flaunch.gg.
 
-#### 3. FlaunchIt Launch
+## What you get
 
-**Reply to someone’s post to create a themed token**
+* **Free to launch** - no cost, no gas, no wallet setup.
+* **$10K starting market cap, straight to market** - there is no fair-launch period, so price discovery starts the moment the coin goes live.
+* **80% of trading fees, paid in ETH** - streamed for the life of the coin and claimable at flaunch.gg by logging in with your X account.
+* Coins launch on **Base** and **Robinhood Chain**. Flaunchy picks a live chain for you.
 
-```
-💬 Alice: I wish there was a rocket token 🚀  
-💬 Bob: @Flaunchy flaunch it  
-🐈‍⬛ Flaunchy: gmeow! Rocket ($RCKT) flaunched on base! check it: https://flaunch.gg/base/coin/0x9abc...  
-CA: 0x9abc...
-```
+Every launch reply includes the coin's flaunch.gg link and its `$TICKER`, so you can trade and share it right away. Coin pages live at `flaunch.gg/{chain}/coins/<address>`, for example `flaunch.gg/base/coins/<address>`.
 
-**How it works:**
+### About the fees
 
-* Bot auto-generates token from original post
-* Poster gets 60% of fees
-* You get 30% for replying
-* Flaunchy gets 10%
+You keep 80% of your coin's trading fees, in ETH, for as long as it trades. Flaunchy keeps the other 20% for running the launch. If you would rather keep 100%, you can launch directly on flaunch.gg and configure the coin yourself; going through Flaunchy is the free, one-tweet path, and the cut is what keeps him running.
 
-**Other examples:**
+## Coming soon
 
-* `Reply to meme: Flaunchy flaunch it!`
-* `Reply to image: @flaunchybot flaunch it with this vibe`
-
-***
-
-#### 4. Multi-Receiver Launch
-
-**Split fees between multiple people**
-
-```
-💬 User: @Flaunchy launch TeamToken for alice.eth, bob.eth, charlie.eth
-🐈‍⬛ Flaunchy: yo! TeamToken with 3 receivers. need a ticker
-💬 User: TEAM  
-🐈‍⬛ Flaunchy: launching TeamToken ($TEAM) with multi-receiver split...
-🐈‍⬛ Flaunchy: TeamToken ($TEAM) deployed! check: https://flaunch.gg/base/coin/0xdef0...  
-CA: 0xdef0...
-```
-
-**Custom percentages:**
-
-```
-💬 User: launch ProjectToken for alice.eth (40%), bob.eth (30%), charlie.eth (20%)
-🐈‍⬛ Flaunchy: ProjectToken with custom splits launching...
-```
-
-**Other examples:**
-
-* `Flaunchy create SpaceToken with receivers: @user1, @user2, vitalik.eth`
-* `@flaunchybot launch DOGE for alice.eth, bob.eth (equal split)`
+* **Fee splitting** - split your 80% share across multiple wallets. Today the full creator share goes to the launcher.
+* **Custom pairing** - launch a coin paired against a token other than ETH. Today every coin pairs against ETH.
