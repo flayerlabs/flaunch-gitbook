@@ -1,5 +1,5 @@
 ---
-description: The AI agent that launches memecoins from a single message on X and Farcaster.
+description: The AI agent that launches memecoins from a single message on X.
 icon: paw-simple
 cover: ../.gitbook/assets/Flaunchy-portal.png
 coverY: 0
@@ -9,10 +9,7 @@ coverY: 0
 
 Flaunchy is the Flaunch AI agent. Tell it what you want in plain language and it launches a coin onchain for you, sets up the fee split, and replies with the contract address and a link to the coin page. No wallet connect, no forms, no deploy scripts.
 
-Talk to Flaunchy where you already post:
-
-* Twitter/X: [x.com/flaunchybot](https://x.com/flaunchybot)
-* Farcaster: [farcaster.com/flaunchy](https://farcaster.xyz/flaunchy)
+Talk to Flaunchy on Twitter/X: [x.com/flaunchybot](https://x.com/flaunchybot)
 
 Flaunchy launches on **Base** and on the **Robinhood chain**. Every launch uses the same fair-launch mechanics as the rest of Flaunch, so creator revenue, auto buybacks, and sniper protection all apply out of the box.
 
