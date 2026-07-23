@@ -85,7 +85,7 @@ The SDK supports:
 * Direct Token Launches
 * Fee Split Launches
 * Revenue Manager Launches
-* Launching Into An Existing Group Or Treasury Manager
+* Launching Into An Existing Treasury Manager
 * Parsing Launch Results From Transaction Logs
 * Trading, Liquidity, And Import Flows Around The Launch
 
@@ -110,7 +110,7 @@ Managers are used when revenue rights or treasury behavior need to be handled by
 Common examples:
 
 * A Revenue-Sharing Launchpad
-* A Group Or Staking-Based Launchpad
+* A Staking-Based Launchpad
 * A Split Manager For Multiple Recipients
 * A Custom Treasury Contract Controlled By Your Product
 
@@ -136,10 +136,6 @@ This keeps the launchpad simple at first while preserving a clear upgrade path a
 
 {% content-ref url="flaunch-a-coin.md" %}
 [flaunch-a-coin.md](flaunch-a-coin.md)
-{% endcontent-ref %}
-
-{% content-ref url="launch-a-group.md" %}
-[launch-a-group.md](launch-a-group.md)
 {% endcontent-ref %}
 
 {% content-ref url="../developer-resources/quick-start.md" %}

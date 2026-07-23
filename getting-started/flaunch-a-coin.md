@@ -52,7 +52,7 @@ The default split is:
 Anything not allocated to the creator is routed to [auto buybacks](../core-features/auto-buybacks.md).
 
 {% hint style="info" %}
-The creator share belongs to the holder of the revenue NFT. That can be a wallet, a multisig, a custom contract, or a group manager.
+The creator share belongs to the holder of the revenue NFT. That can be a wallet, a multisig, a custom contract, or a treasury manager.
 {% endhint %}
 
 ### Fee receivers
@@ -64,7 +64,7 @@ Flaunch supports:
 * Direct Creator Ownership
 * Multiple Fee Receivers
 * Revenue Managers
-* Groups And Treasury Managers
+* Treasury Managers
 
 This makes it possible to launch for an individual, a team, or a product with custom revenue routing.
 
@@ -102,7 +102,7 @@ Common reasons:
 * Set A Custom Market Cap
 * Change Fair Launch Allocation
 * Prebuy Part Of The Supply
-* Route Revenue Into A Manager Or Group
+* Route Revenue Into A Manager
 
 ## For Developers
 
@@ -128,8 +128,4 @@ If you are integrating Flaunch programmatically, use the SDK or API guides below
 
 {% content-ref url="../core-features/creator-revenue.md" %}
 [creator-revenue.md](../core-features/creator-revenue.md)
-{% endcontent-ref %}
-
-{% content-ref url="launch-a-group.md" %}
-[launch-a-group.md](launch-a-group.md)
 {% endcontent-ref %}

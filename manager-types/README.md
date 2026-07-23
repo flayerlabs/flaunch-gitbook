@@ -2,7 +2,7 @@
 
 Managers control what happens to value after launch.
 
-They sit on the treasury side of Flaunch and define how revenue rights are held, routed, claimed, or shared. This is what makes Flaunch useful not just for token launches, but also for launchpads, group products, and custom treasury systems.
+They sit on the treasury side of Flaunch and define how revenue rights are held, routed, claimed, or shared. This is what makes Flaunch useful not just for token launches, but also for launchpads and custom treasury systems.
 
 ## What A Manager Does
 
@@ -20,7 +20,7 @@ Use a manager when the product needs more than a standard launch.
 Common cases:
 
 * A Launchpad That Takes A Share Of Revenue
-* A Group That Routes Value To Stakers Or Buybacks
+* A Treasury That Routes Value To Stakers Or Buybacks
 * A Team Treasury With Multiple Recipients
 * A Project That Needs Custom Post-Launch Ownership Logic
 

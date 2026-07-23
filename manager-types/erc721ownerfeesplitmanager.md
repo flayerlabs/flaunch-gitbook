@@ -240,7 +240,7 @@ We are currently working with a small number of launchpads to implement our Addr
 
 ### Contract Addresses
 
-<table><thead><tr><th width="160.4202880859375">Chain</th><th>Implementation Address</th></tr></thead><tbody><tr><td>Base</td><td><em><code>coming soon</code></em></td></tr><tr><td>Base Sepolia</td><td><code>0x365EE5307C84b37CE3DC66E689e514219dA3968E</code></td></tr></tbody></table>
+<table><thead><tr><th width="160.4202880859375">Chain</th><th>Implementation Address</th></tr></thead><tbody><tr><td>Base</td><td><em><code>coming soon</code></em></td></tr><tr><td>Base Sepolia</td><td><code>0x365EE5307C84b37CE3DC66E689e514219dA3968E</code></td></tr><tr><td>Robinhood</td><td><em><code>coming soon</code></em></td></tr></tbody></table>
 
 ### ABI
 

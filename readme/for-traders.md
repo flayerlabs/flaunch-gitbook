@@ -39,13 +39,13 @@ Unlike traditional launches, Flaunch:
 
 ### Network Effects & Longer-Term Holds
 
-Flaunch isn’t just a one-off launch platform. Every new coin launched through Flaunch plugs into the same developing infrastructure. For instance Flaunch introduced [Groups](https://docs.flaunch.gg/for-creators/getting-started/launch-a-group), allowing creators, and traders to share in trading fees from tokenized content across the ecosystem.
+Flaunch isn’t just a one-off launch platform. Every new coin launched through Flaunch plugs into the same developing infrastructure, allowing creators and traders to share in trading fees across the ecosystem.
 
 For traders, this means:
 
 * **Ecosystem spillover:** as more creators launch and import to Flaunch, more trading activity flows through the same network of contracts, improving liquidity and price discovery.
-* **Shared upside:** Flaunch and Flaunch Groups create community incentives for healthy, sustained growth rather than short-term pumps.
-* **More reasons to hold:** by holding tokens from active Groups you’re participating in a wider economy with compounding network effects, not just a single isolated project.
+* **Shared upside:** Flaunch creates community incentives for healthy, sustained growth rather than short-term pumps.
+* **More reasons to hold:** by holding tokens from active projects you’re participating in a wider economy with compounding network effects, not just a single isolated project.
 
 This structure gives traders who want to build a portfolio or take a longer-term view more opportunities than a typical coin launch.
 
@@ -99,7 +99,6 @@ Yes. All contracts are open-source and have been [audited by reputable teams](..
 
 * **Launch window:** The period during which the token supply is sold at a fixed price.
 * **Auto buybacks:** An optional creator setting that uses profits to buyback tokens from the pool.
-* **Groups:** Flaunch’s system for sharing revenue from tokenized content between creators, traders, and groups.
 * **Surge fee:** A dynamic fee that increases if trading volume spikes to keep access fair.
 
 ***

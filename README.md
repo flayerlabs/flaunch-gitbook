@@ -2,7 +2,7 @@
 
 Flaunch is a token launch protocol for creators, communities, and developers.
 
-It gives users a fast way to launch tokens with fixed-price fair launch mechanics, creator revenue in ETH, and configurable treasury behavior. It also gives builders a clean foundation for launchpads, revenue products, and group-based token economies.
+It gives users a fast way to launch tokens with fixed-price fair launch mechanics, creator revenue in ETH, and configurable treasury behavior. It also gives builders a clean foundation for launchpads and revenue products.
 
 ## Install The Flaunch Skill
 
@@ -29,7 +29,7 @@ When a token is launched on Flaunch, the launch can include:
 * Creator Revenue Paid In ETH
 * Automatic Community Buybacks
 * Optional Scheduling For A Future Launch Time
-* Optional Treasury Manager Or Group Integration
+* Optional Treasury Manager Integration
 
 This lets a single token act as both a launch event and a long-term onchain revenue primitive.
 
@@ -45,10 +45,6 @@ This lets a single token act as both a launch event and a long-term onchain reve
 
 {% content-ref url="getting-started/launch-a-launchpad.md" %}
 [launch-a-launchpad.md](getting-started/launch-a-launchpad.md)
-{% endcontent-ref %}
-
-{% content-ref url="getting-started/launch-a-group.md" %}
-[launch-a-group.md](getting-started/launch-a-group.md)
 {% endcontent-ref %}
 
 ## Who These Docs Are For
