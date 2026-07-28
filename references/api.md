@@ -44,14 +44,29 @@ Download the Flaunch Memecoin API Postman Collection
 ### Base API URI
 
 ```
-https://web2-api.flaunch.gg/livez
+https://web2-api.flaunch.gg
 ```
+
+### Supported Chains
+
+The `:chain` segment accepts these slugs. Aliases and numeric chain IDs are
+rejected with a `400`.
+
+<table><thead><tr><th width="180">Slug</th><th width="110">Chain ID</th><th>Launches</th><th>Managers</th></tr></thead><tbody><tr><td><code>base</code></td><td>8453</td><td>Yes</td><td>Yes</td></tr><tr><td><code>base-sepolia</code></td><td>84532</td><td>Yes</td><td>Yes</td></tr><tr><td><code>robinhood</code></td><td>4663</td><td>Yes</td><td>Not yet</td></tr></tbody></table>
+
+On Robinhood, a fee split created *at launch* uses the dynamic split manager, and
+`revenueManagerAddress` / `feeSplitManagerAddress` are rejected with
+`Manager operations are not supported on this chain`. The standalone
+create-manager endpoints are Base and Base Sepolia only.
+
+Chain support is machine-readable at [`/api/v1/config`](api.md#service-configuration), so you should not need to hardcode this table.
 
 ## Health Check
 
 <mark style="color:green;">`GET`</mark> `/livez`
 
-Checks if the API is running and returns the network configuration.
+Reports the API's dependency health. `status` is `ok` when every check passes and
+`degraded` otherwise; the endpoint still returns `200` either way.
 
 **Headers**
 
@@ -64,8 +79,45 @@ Checks if the API is running and returns the network configuration.
 ```json
 {
   "status": "ok",
-  "serverWallet": "0x4d7c5DFceC78E011E16BFe9F701D857841bbDFbB",
-  "network": "base-sepolia"
+  "serverWallet": "0xF1a700000087c011413C21C9b357A6962Aa256f9",
+  "checks": {
+    "rpc": true,
+    "redis": true
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+## Service Configuration
+
+<mark style="color:green;">`GET`</mark> `/api/v1/config`
+
+Returns the chains this deployment supports, their capabilities, and whether
+sandbox launches are accepted. Prefer this over hardcoding chain lists.
+
+**Response**
+
+{% tabs %}
+{% tab title="[200] Success Response" %}
+```json
+{
+  "success": true,
+  "sandbox": false,
+  "chains": [
+    {
+      "slug": "robinhood",
+      "chainId": 4663,
+      "name": "Robinhood Chain",
+      "nativeCurrency": "ETH",
+      "blockExplorerUrl": "https://robinhoodchain.blockscout.com",
+      "capabilities": {
+        "feeSplitLaunch": true,
+        "existingManager": false,
+        "standaloneManager": false
+      }
+    }
+  ]
 }
 ```
 {% endtab %}
@@ -588,16 +640,10 @@ You can use the `streamUrl` and `thumbnail` in your app to showcase your videos.
 
 ## Launch Token
 
-<mark style="color:yellow;">`POST`</mark> `/api/v1/{{ base | base-sepolia }}/launch-memecoin`
+<mark style="color:yellow;">`POST`</mark> `/api/v1/{{ base | base-sepolia | robinhood }}/launch-memecoin`
 
 {% hint style="info" %}
-Tokens can be launched on either `base` or `base-sepolia` based on the parameter passed in the API call.
-{% endhint %}
-
-{% hint style="success" %}
-ANTISNIPE protection now available!\
-\
-Default behaviour is maintained, add `sniperProtection: true` to the optional fields will add
+Tokens can be launched on `base`, `base-sepolia` or `robinhood`. See [Supported Chains](api.md#supported-chains) for what each one allows.
 {% endhint %}
 
 Creates a new memecoin token on the selected network with the following default parameters:
@@ -605,15 +651,20 @@ Creates a new memecoin token on the selected network with the following default 
 * $10k starting market cap
 * 80% dev / 20% community split
 * No revenue manager
+* Launched immediately; fair launch and sniper protection are currently paused
 
 After a token has been flaunched, a `jobId` will be returned in the response. This `jobId` signifies its position in a queue to be flaunched. It can then be referenced when querying the `launch-status` endpoint to retrieve the status of the token and subsequent deployed contract address of the token.<br>
 
 **Required Fields**
 
-<table><thead><tr><th width="270.1324462890625">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code></td><td>Token name.</td></tr><tr><td><code>symbol</code></td><td>Token symbol (max 8 characters).</td></tr><tr><td><code>description</code></td><td>Token description.</td></tr><tr><td><code>imageIpfs</code></td><td>IPFS hash from the image upload endpoint.</td></tr></tbody></table>
+<table><thead><tr><th width="270.1324462890625">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code></td><td>Token name.</td></tr><tr><td><code>symbol</code></td><td>Token symbol (max 8 characters).</td></tr><tr><td><code>imageIpfs</code></td><td>IPFS hash from the image upload endpoint. Optional only if you supply an approved <code>videoUID</code> instead, in which case the video thumbnail is used.</td></tr></tbody></table>
+
+{% hint style="info" %}
+`description` is optional and defaults to an empty string.
+{% endhint %}
 
 \
-**Creator Authentication Options (MUST choose one)**
+**Creator Authentication Options (choose at most one)**
 
 <table><thead><tr><th width="269.556396484375">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>creatorAddress</code></td><td>Ethereum address to receive creator benefits.</td></tr><tr><td><code>creatorEmail</code></td><td>Email address to create a managed wallet via Privy.</td></tr><tr><td><code>creatorTwitterUsername</code></td><td>Twitter username for verification and wallet creation.</td></tr><tr><td><code>creatorFarcasterUsername</code></td><td>Farcaster username for verification and wallet creation.</td></tr></tbody></table>
 
@@ -621,7 +672,7 @@ If no creator authentication option is provided, the creator fees will go to the
 
 **Optional Fields**
 
-<table><thead><tr><th width="270.21417236328125">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>sniperProtection</code></td><td><code>boolean</code> : Enable wallet cap during fair<br>launch (default: <code>false</code> )<br><strong>NOTE:</strong> the default launch will change to <code>true</code> for default protection on all new tokens on the <strong>13th August 2025</strong></td></tr><tr><td><code>revenueManagerAddress</code></td><td>Ethereum address of a deployed revenue manager (must be valid address format)</td></tr><tr><td><code>feeSplitManagerAddress</code></td><td>Ethereum address of a deployed fee split manager (must be valid address format)</td></tr><tr><td><code>feeSplitRecipients</code></td><td>An array of Ethereum wallet addresses that will automatically receive an equal share of fees from the launched token <code>[0x123..., 0xabc...]</code></td></tr><tr><td><code>creatorShare</code></td><td>Only include when specifying <code>feeSplitRecipients</code> if you also want the creator to take a portion of the fees. (default: 0, basis points so 8000 = 80%)</td></tr><tr><td><code>marketCap</code></td><td>Initial market cap in USDC<br>(default: 10,000 = 10000000000)</td></tr><tr><td><code>creatorFeeSplit</code></td><td>Creator fee allocation in basis points<br>(default: 8000 = 80%)</td></tr><tr><td><code>websiteUrl</code></td><td>Website URL</td></tr><tr><td><code>telegramUrl</code></td><td>Telegram group URL</td></tr><tr><td><code>discordUrl</code></td><td>Discord server URL</td></tr><tr><td><code>twitterUrl</code></td><td>Twitter/X URL</td></tr></tbody></table>
+<table><thead><tr><th width="270.21417236328125">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>sniperProtection</code></td><td><code>boolean</code> : <strong>Currently paused.</strong> Must be omitted or <code>false</code>; sending <code>true</code> returns a <code>400</code>. See <a href="api.md#antibot-protection">Antibot Protection</a>.</td></tr><tr><td><code>revenueManagerAddress</code></td><td>Ethereum address of a deployed revenue manager (must be valid address format)</td></tr><tr><td><code>feeSplitManagerAddress</code></td><td>Ethereum address of a deployed fee split manager (must be valid address format)</td></tr><tr><td><code>feeSplitRecipients</code></td><td>An array of Ethereum wallet addresses that will automatically receive an equal share of fees from the launched token <code>[0x123..., 0xabc...]</code></td></tr><tr><td><code>creatorShare</code></td><td>Only include when specifying <code>feeSplitRecipients</code> if you also want the creator to take a portion of the fees. (default: 0, basis points so 8000 = 80%)</td></tr><tr><td><code>marketCap</code></td><td>Initial market cap in USDC<br>(default: 10,000 = 10000000000)</td></tr><tr><td><code>creatorFeeSplit</code></td><td>Creator fee allocation in basis points<br>(default: 8000 = 80%)</td></tr><tr><td><code>videoUID</code></td><td>UID of a video that has passed moderation. Attaches video metadata to the token and, when no <code>imageIpfs</code> is given, uses the video thumbnail as the image.</td></tr><tr><td><code>websiteUrl</code></td><td>Website URL</td></tr><tr><td><code>telegramUrl</code></td><td>Telegram group URL</td></tr><tr><td><code>discordUrl</code></td><td>Discord server URL</td></tr><tr><td><code>twitterUrl</code></td><td>Twitter/X URL</td></tr></tbody></table>
 
 {% hint style="info" %}
 **Rate Limits:** Maximum 2 memecoin launches per minute per IP address
@@ -629,60 +680,25 @@ If no creator authentication option is provided, the creator fees will go to the
 
 ### Antibot Protection
 
-#### Sniper Protection Parameter
+{% hint style="warning" %}
+**Currently paused.** Sniper protection depends on fair launch, and both are
+temporarily disabled. Sending `sniperProtection: true`, or a non-zero
+`fairLaunchSupply` or `fairLaunchDuration`, is rejected with a `400` before the
+launch is queued:
 
-The `sniperProtection` parameter provides antibot functionality by implementing a wallet cap during the fair launch phase. When enabled, it prevents any single wallet from acquiring more than 0.25% of the total token supply during the initial launch period.
-
-#### How Sniper Protection Works
-
-When sniperProtection is set to true:
-
-* A maximum wallet cap of 0.25% of total supply is enforced during fair launch
-* This prevents bots and snipers from accumulating large positions early
-* The cap is automatically removed after the fair launch period ends
-* Helps ensure fairer token distribution among genuine participants
-
-#### Example 1: Launch with Sniper Protection Enabled
-
-```javascript
+```json
 {
-  "name": "Snipe Protection",
-  "symbol": "ANTISNIPE",
-  "description": "A basic token with no fee management",
-  "imageIpfs": "QmX7UbPKJ7Drci3y6p6E8oi5TpUiG7NH3qSzcohPX9Xkvo",
-  "creatorAddress": "0x498E93Bc04955fCBAC04BCF1a3BA792f01Dbaa96"
-  "sniperProtection": true, // Enable antibot, default is false
-  }
-
+  "success": false,
+  "error": "Sniper protection has been temporarily paused (requires fair launch). Please omit this parameter or set to false."
+}
 ```
 
-#### Best Practices
+Omit these fields, or send `sniperProtection: false` and `"0"` for the fair
+launch values. This page will be updated when they are re-enabled.
+{% endhint %}
 
-**When to Use Sniper Protection**
-
-Enable sniper protection when:
-
-* Launching a community-focused token
-* Expecting high initial demand
-* Prioritizing fair distribution over liquidity depth
-* Concerned about bot manipulation during launch
-
-Consider disabling when:
-
-* Launching with a private/whitelisted community
-* Need maximum initial liquidity
-* Have alternative antibot measures in place
-* Running a test or experimental launch
-
-Technical Notes
-
-Add to your technical documentation:
-
-* The wallet cap is enforced at the smart contract level through feeCalculatorParams
-* The 0.25% cap applies to the total supply (100 billion tokens by default)
-* The restriction only applies during the fairLaunchDuration period
-* After fair launch ends, normal trading without restrictions begins
-* The cap includes all token acquisitions (purchases, transfers, etc.)
+When active, `sniperProtection` caps any single wallet at 0.25% of total supply
+for the duration of the fair launch, then lifts the cap once fair launch ends.
 
 ### Treasury Management Options for Token Launches
 
@@ -960,7 +976,8 @@ If you also want the `creatorAddress` to receive a portion of the fees you need 
 
 <mark style="color:green;">`GET`</mark> `/api/v1/launch-status/{{ jobId }}`
 
-Retrierves the launch status of a `jobId`.
+Retrieves the launch status of a `jobId`. This endpoint is chainless — the job
+already knows which chain it was queued for.
 
 **Headers**
 
@@ -986,12 +1003,22 @@ Retrierves the launch status of a `jobId`.
     "creator": "0x498E93Bc04955fCBAC04BCF1a3BA792f01Dbaa96"
   },
   "revenueManagerAddress": null,
-  // NEW: Fee split information
   "feeSplitManagerAddress": "0x6baa4ec493a9698dc7388c0f290e29ea3d149f99",
+
+  // Each entry carries the resolved wallet, its share, and the value you
+  // originally supplied (an email or handle resolves to an address here).
+  // `null` when the launch had no fee split.
   "feeSplitRecipients": [
-    "0x1234567890123456789012345678901234567890",
-    "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd", 
-    "0x9876543210987654321098765432109876543210"
+    {
+      "address": "0x1234567890123456789012345678901234567890",
+      "percentage": "40.00000",
+      "originalInput": "someone@example.com"
+    },
+    {
+      "address": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+      "percentage": "60.00000",
+      "originalInput": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd"
+    }
   ]
 }
 ```
@@ -1019,7 +1046,35 @@ Retrierves the launch status of a `jobId`.
 ```
 {% endtab %}
 
-{% tab title="[400] Job Unknown" %}
+{% tab title="[200] Job Failed" %}
+```json
+{
+  "success": true,
+  "state": "failed",
+  "queuePosition": 0,
+  "estimatedWaitTime": 0,
+  "transactionHash": null,
+  "error": "Reason the launch failed",
+  "collectionToken": null
+}
+```
+
+If the transaction was already broadcast before the failure, the hash is
+preserved and the response is annotated. **Check the block explorer before
+retrying — the launch may in fact have succeeded.**
+
+```json
+{
+  "success": true,
+  "state": "failed",
+  "transactionHash": "0x04e594ee...",
+  "transactionMayHaveSucceeded": true,
+  "error": "<reason>. Note: Transaction was submitted (0x04e594ee...) - please check block explorer to verify status."
+}
+```
+{% endtab %}
+
+{% tab title="[404] Job Unknown" %}
 ```json
 {
   "success": false,
