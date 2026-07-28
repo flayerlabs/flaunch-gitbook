@@ -52,14 +52,31 @@ https://web2-api.flaunch.gg
 The `:chain` segment accepts these slugs. Aliases and numeric chain IDs are
 rejected with a `400`.
 
-<table><thead><tr><th width="180">Slug</th><th width="110">Chain ID</th><th>Launches</th><th>Managers</th></tr></thead><tbody><tr><td><code>base</code></td><td>8453</td><td>Yes</td><td>Yes</td></tr><tr><td><code>base-sepolia</code></td><td>84532</td><td>Yes</td><td>Yes</td></tr><tr><td><code>robinhood</code></td><td>4663</td><td>Yes</td><td>Not yet</td></tr></tbody></table>
+<table><thead><tr><th width="150">Slug</th><th width="95">Chain ID</th><th>Launch</th><th>Fee split at launch</th><th>Existing manager</th><th>Create manager</th></tr></thead><tbody><tr><td><code>base</code></td><td>8453</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td><code>base-sepolia</code></td><td>84532</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td><code>robinhood</code></td><td>4663</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr></tbody></table>
 
-On Robinhood, a fee split created *at launch* uses the dynamic split manager, and
-`revenueManagerAddress` / `feeSplitManagerAddress` are rejected with
-`Manager operations are not supported on this chain`. The standalone
-create-manager endpoints are Base and Base Sepolia only.
+{% hint style="info" %}
+**Fee split at launch works on every chain, including Robinhood.** Passing
+`feeSplitRecipients` deploys a fee split manager as part of the launch — on
+Robinhood that is a `DynamicAddressFeeSplitManager`, on Base a static
+`AddressFeeSplitManager`. Recipient shares behave identically either way.
 
-Chain support is machine-readable at [`/api/v1/config`](api.md#service-configuration), so you should not need to hardcode this table.
+The distinction that matters is *which* manager gets deployed, not whether
+managers are supported.
+{% endhint %}
+
+Chain support is machine-readable at [`/api/v1/config`](api.md#service-configuration), so you should not need to hardcode this table. Check `capabilities` there before assuming a chain supports an operation:
+
+```json
+"capabilities": {
+  "feeSplitLaunch": true,     // feeSplitRecipients at launch
+  "existingManager": true,    // revenueManagerAddress / feeSplitManagerAddress
+  "standaloneManager": true   // create-revenue-manager / create-fee-split-manager
+}
+```
+
+A chain that does not support an operation rejects it with
+`Manager operations are not supported on this chain` before any side effect —
+no metadata is pinned, nothing is queued, and no RPC call is made.
 
 ## Health Check
 
@@ -125,7 +142,7 @@ sandbox launches are accepted. Prefer this over hardcoding chain lists.
 
 ## Create a Revenue Manager (Launchpad)
 
-<mark style="color:yellow;">`POST`</mark> `/api/v1/{{ base | base-sepolia }}/create-revenue-manager`
+<mark style="color:yellow;">`POST`</mark> `/api/v1/{{ base | base-sepolia | robinhood }}/create-revenue-manager`
 
 **Required Fields**
 
@@ -882,6 +899,16 @@ If you also want the `creatorAddress` to receive a portion of the fees you need 
   "feeSplitManagerAddress": "0xb31435D40c0cB02c27bf732940dB3d9e4A3b253A"
 }
 ```
+
+{% hint style="info" %}
+**Which manager gets deployed.** `feeSplitRecipients` deploys a fee split
+manager as part of the launch. On Base and Base Sepolia that is a static
+`AddressFeeSplitManager`; on Robinhood it is a `DynamicAddressFeeSplitManager`,
+whose recipient shares can be changed after deployment by the moderator (the
+resolved creator). The request and the response are the same either way — the
+deployed instance is returned as `feeSplitManagerAddress` on the status
+endpoint.
+{% endhint %}
 
 #### Option 4: Custom Fee Split (Even Distribution, no fees for the creator)
 
