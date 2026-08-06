@@ -17,3 +17,7 @@ A "per wallet cap" can also be set to facilitate a broader distribution amongst 
 {% endhint %}
 
 If you are a builder, it's possible to create your own custom implementation of Sniper Protection that can use any offchain data to grant access to the Fair Launch period. Reach out on [Discord](https://discord.gg/PcSmznqqqb) to discuss implementation.
+
+{% hint style="info" %}
+Sniper Protection asks whether you are a person. [Game Mode](../game-mode/README.md) goes further and asks what you did to deserve your allocation — access is earned by playing a game, and how much you can buy depends on how well you did.
+{% endhint %}
