@@ -23,6 +23,12 @@
 * [Auto Buybacks](core-features/auto-buybacks.md)
 * [Sniper Protection](core-features/sniper-protection.md)
 
+## Game Mode
+
+* [Game Mode](game-mode/README.md)
+* [Split the Arrow](game-mode/split-the-arrow.md)
+* [Build a Game](game-mode/build-a-game.md)
+
 ## A.I. Skills
 
 * [AI Skills Quick Start](artificial-intelligence/vibe-guide.md)
@@ -75,6 +81,9 @@
 * [Subgraph](references/subgraph/README.md)
 * [Solidity Cookbook](references/solidity-cookbook.md)
 * [Hooks](developer-resources/hooks/README.md)
+* [Spend-Gated Launches](developer-resources/spend-gate/README.md)
+  * [The Trusted Signer](developer-resources/spend-gate/signer.md)
+  * [Enforcement in the V4 Hook](developer-resources/spend-gate/hook-path.md)
 * [Zaps](developer-resources/zaps/README.md)
 * [Old Contract Addresses](developer-resources/contract-addresses.md)
 * [Groups (Legacy)](https://legacy.flaunch.gg)
