@@ -4,11 +4,11 @@ icon: gamepad-modern
 
 # Game Mode
 
-Flaunch is on a mission to give people fairer access to token launches while maximizing rewards for creators. Game Mode is a new innovation on that mission, powered by our Uniswap V4 hook.
+Flaunch is on a mission to give people fairer access to token launches while maximizing rewards for creators. Game Mode is a new innovation on that mission, powered by our Uniswap V4 hook: a **play-to-enter bonding curve**, the first of its kind. It's egalitarian, it's anti-bot and anti-bundler, and it's the future of token launches.
 
 A fair launch is meant to give everyone the same shot at a coin. In practice the first block goes to whoever has the best infrastructure. Bots watch the mempool, land their buys in the same second the pool opens, and sell into the people who arrived moments later. Technically nothing stopped you from buying; practically the good price was gone before you saw the coin.
 
-Game Mode replaces that race with a **window**. For as long as the window is open, the only way to buy the coin is to earn the right to, by playing a game. Nobody buys before the window opens, and nobody buys more than they earned. When the window closes, the coin trades like any other Flaunch coin.
+Game Mode replaces that race with a **window**. For as long as the window is open, the only way onto the curve is to earn it, by playing a game. Nobody buys before the window opens, and nobody buys more than they earned. When the window closes, the coin trades like any other Flaunch coin.
 
 ## How a round works
 
@@ -51,10 +51,18 @@ The full breakdown is in [this thread](https://x.com/flaunchgg/status/2085701754
 
 Game Mode changes what buyers compete over. Instead of latency, it's skill, knowledge or luck, and instead of a few automated wallets clearing the fair launch in one block, you get a room full of people who spent five minutes earning a position. That's a slower launch and a better holder list, which is the trade a creator is making when they turn it on.
 
+## Why games, why now
+
+Browser gaming is in the middle of a boom. three.js — the library most in-browser 3D is built on, including Split the Arrow — has been downloaded 826 million times from npm, and over half of that is projected to happen in 2026 alone.
+
+<figure><img src="../.gitbook/assets/game-mode-threejs-downloads.png" alt="three.js npm downloads over ten years, flat until 2024 then rising steeply, with a 2026 projection of roughly 513 million downloads"><figcaption>three.js npm downloads. The 2026 projection is ~513M — up 353% year on year.</figcaption></figure>
+
+That curve matters for launches because a real 3D game now runs in the same browser tab as the wallet, with nothing to install between a player and a round. Game Mode turns that into launch infrastructure: any dev can gate entry to a token launch with gameplay nobody else has.
+
 ## The games
 
 **[Split the Arrow](split-the-arrow.md)** is the first, and it's a real game rather than a buy button with a puzzle bolted to it: 3D archery with wind you have to read, a shot budget, and a leaderboard full of people you can watch shooting. It's playable now.
 
-More are coming from us, but the version of Game Mode we're most interested in is the one where the game isn't ours at all. A trivia round for a knowledge community, a reflex test, a raffle for a project that would rather gate on luck than skill. Anything that can score a player can issue allowance.
+More are coming from us, but Game Mode will be open to anyone's game — a trivia round for a knowledge community, a reflex test, a raffle for a project that would rather gate on luck than skill. Anything that can score a player can issue allowance, and the launch experience becomes whatever the game makes it.
 
 See **[Build a Game](build-a-game.md)** for where that stands.
