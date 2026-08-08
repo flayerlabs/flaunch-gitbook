@@ -4,6 +4,8 @@ icon: gamepad-modern
 
 # Game Mode
 
+Flaunch is on a mission to give people fairer access to token launches while maximizing rewards for creators. Game Mode is a new innovation on that mission, powered by our Uniswap V4 hook.
+
 A fair launch is meant to give everyone the same shot at a coin. In practice the first block goes to whoever has the best infrastructure. Bots watch the mempool, land their buys in the same second the pool opens, and sell into the people who arrived moments later. Technically nothing stopped you from buying; practically the good price was gone before you saw the coin.
 
 Game Mode replaces that race with a **window**. For as long as the window is open, the only way to buy the coin is to earn the right to, by playing a game. Nobody buys before the window opens, and nobody buys more than they earned. When the window closes, the coin trades like any other Flaunch coin.
@@ -30,6 +32,20 @@ That last one is the important one. Without an expiry, a coin would need our ser
 {% hint style="info" %}
 Game Mode is live on Robinhood chain. The technical details — the signing service, the contracts, and how enforcement works inside the Uniswap V4 hook — are documented under [Spend-Gated Launches](../developer-resources/spend-gate/README.md).
 {% endhint %}
+
+## What a launch looks like
+
+This is supply distribution through the window of a live Game Mode round, ten seconds at a time:
+
+<figure><img src="../.gitbook/assets/game-mode-launch-supply.jpg" alt="Supply bought through the gated window, ten seconds at a time: 0.72% across 2 wallets by ten seconds, 35.55% across 194 wallets at close"><figcaption>Ten seconds in: 0.72% of supply, held by two wallets. At close: 35.55%, spread across 194.</figcaption></figure>
+
+Ten seconds is first-block territory — in a sniped launch the whole story has already happened. Here, two wallets held 0.72% of the supply. From there it built the way a launch should: 51 wallets by thirty seconds, 138 by sixty, and 194 wallets holding 35.55% between them when the window closed. Supply was earned, not sniped.
+
+The bundlers still turned up. One cluster of fifteen wallets — the kind built to split a launch buy across itself — bought nothing at all during the window. One of the fifteen tried playing the round; none of them bought. The 9.27% of supply the cluster did acquire was bought on the open market after the gate lifted, at prices the players had already set. For the first time, the players front-ran the bundlers.
+
+<figure><img src="../.gitbook/assets/game-mode-launch-bundlers.jpg" alt="A fifteen-wallet bundler cluster acquired 0.00% of supply during the gated window and 9.27% on the open market afterwards"><figcaption>The fifteen-wallet cluster: nothing in the window, 9.27% after it.</figcaption></figure>
+
+The full breakdown is in [this thread](https://x.com/flaunchgg/status/2085701754864189580).
 
 ## What it changes for creators
 
