@@ -1,6 +1,6 @@
 # Terms of Service
 
-_Last Updated: 1st October 2024_
+_Last Updated: 10 August 2026_
 
 **PLEASE READ THESE TERMS OF USE BEFORE USING THE WEBSITE.**
 
@@ -20,9 +20,31 @@ As part of our Website, you may from time to time gain access to decentralized o
 
 Our Website may change and grow in numbers, which may require that we include additional terms for certain new parts of the Website (which, in such event, will be construed as part of the “Website”). We reserve the right in our sole discretion to modify or discontinue any parts of the Website at any time and without any liability.
 
+### Game Mode and Gated Launches <a href="#game-mode-and-gated-launches" id="game-mode-and-gated-launches"></a>
+
+Some token launches accessible through the Website open behind a gated launch window (“**Game Mode**”). During the window, the launch’s smart contract (the “**pool**”) accepts purchases only up to a spending allowance that a participant has earned by playing a game associated with that launch. Participation in Game Mode is entirely optional.
+
+**Skill, not chance.** A participant’s spending allowance is determined solely by that participant’s performance in the game: the game server independently re-validates every submitted move, and no random drawing, lottery, or other element of chance determines any allowance. An allowance is a ceiling on what you may spend, not an entitlement to anything: you purchase tokens yourself, onchain, with your own funds, within your earned allowance and at your own discretion. Tokens acquired through Game Mode are purchases — they are not prizes, winnings, or awards — and, consistent with the section above, we at no time have custody or control of them.
+
+**The gate expires onchain.** Every gated launch carries an expiry that is written into the pool’s smart contract at the moment of launch. Once that expiry passes, the gate is null and void automatically and permanently: the pool trades permissionlessly like any other token, without any transaction, approval, signature, or continued operation required from us, the game server, or the coin’s creator. None of us has the ability to extend the window, reimpose the gate, or delay the transition to permissionless trading. This is enforced by the smart contract itself and holds even if the game server or the Website is unavailable.
+
+**What we operate, and what we do not.** The game server that scores rounds and issues allowance authorizations is operated by us or our contractors. We may decline to accept new rounds at any time (for example, for maintenance), and we may modify or discontinue Game Mode as part of the Website in accordance with these Terms of Use — but neither affects a launch already written onchain: a scheduled round’s window and expiry proceed exactly as its smart contract provides.
+
+**Fair play.** We use automated and manual review to protect the integrity of rounds, including re-running gameplay from submitted inputs. Where we determine, in our sole discretion, that a participant has cheated, used automation, colluded, or otherwise exploited a round, we may void scores, decline to issue allowance authorizations, and exclude wallets from current or future rounds. Because the system is non-custodial, we cannot and do not seize tokens that have already been purchased onchain.
+
+**Limits and no guarantees.** Per-wallet spending caps are set at launch and apply to every participant equally. Scores and allowances have no cash value, are not transferable except as the relevant smart contract permits, and expire with the window. We make no representation or warranty as to the availability of any allocation, the execution or price of any purchase, or the present or future value of any token, and amounts spent participating in a round or purchasing tokens are not refundable by us.
+
+**Private rounds.** A creator may schedule a round that is joinable only through an invite link. Anyone who holds the link may join; safeguarding and distributing the link is the creator’s responsibility, and rounds and purchases remain publicly visible on the blockchain regardless of how a round is joined.
+
+**Eligibility.** Notwithstanding the “Who May Use the Website” section above, you must be at least 18 years of age (or the age of majority where you live, if higher) to participate in a Game Mode round. Paid skill contests are regulated in some jurisdictions; you are responsible for ensuring your participation is lawful where you are, and we may restrict the availability of Game Mode in any jurisdiction at our discretion.
+
+**Test networks.** Game Mode may from time to time be made available on blockchain test networks. Tokens, scores, and allowances on a test network have no monetary value, exist for testing only, and may be reset or discontinued at any time.
+
 ### Who May Use the Website <a href="#who-may-use-the-website" id="who-may-use-the-website"></a>
 
-The Website is offered and available to users who are 13 years of age or older. The Website is not intended for children under 13 years of age. By using the Website, you represent and warrant that you (i) are 13 years of age or older, (ii) are not barred to use the Website under any applicable law, and (iii) are using the Website only for your own personal use. If you do not meet these requirements, you must not access or use the Website.
+The Website is offered and available to users who are 13 years of age or older. The Website is not intended for children under 13 years of age. By using the Website, you represent and warrant that you (i) are 13 years of age or older, (ii) are not barred to use the Website under any applicable law, (iii) are using the Website only for your own personal use, (iv) are not a Sanctioned Person and are not located in, ordinarily resident in, or organized under the laws of any Sanctioned Jurisdiction, and (v) are not acting on behalf of, or for the benefit of, any Sanctioned Person or any person located in a Sanctioned Jurisdiction. If you do not meet these requirements, you must not access or use the Website.
+
+“**Sanctioned Jurisdiction**” means any country or region that is the subject of comprehensive sanctions administered or enforced by the U.S. Office of Foreign Assets Control (OFAC), the United Nations Security Council, the European Union, or His Majesty’s Treasury of the United Kingdom (as of the date above: Cuba, Iran, North Korea, Syria, and the Crimea, Donetsk, and Luhansk regions of Ukraine). “**Sanctioned Person**” means any person or entity that is listed on any sanctions list maintained by any of the foregoing authorities — including OFAC’s Specially Designated Nationals and Blocked Persons List — or that is directly or indirectly owned 50% or more, or controlled, by any such listed person or entity.
 
 ### Changes to the Terms of Use <a href="#changes-to-the-terms-of-use" id="changes-to-the-terms-of-use"></a>
 
@@ -52,6 +74,7 @@ Except as expressly provided herein, Flayer and its licensors do not grant any e
 You may use the Website only for lawful purposes and in accordance with these Terms of Use. You agree not to use the Website:
 
 * In any way that violates any applicable federal, state, local, or international law or regulation (including, without limitation, any laws regarding the export of data or software to and from the United States or other countries);
+* In any way that violates applicable economic or trade sanctions or export-control laws, or to evade the geographic and sanctions restrictions described in these Terms of Use, including through the use of any virtual private network, proxy, or other means of obscuring your location or identity;
 * For the purpose of exploiting, harming, or attempting to exploit or harm minors in any way by exposing them to inappropriate content, asking for personally identifiable information or otherwise;
 * To send, knowingly receive, upload, download, use, or re-use any material which does not comply with these Terms of Use;
 * To transmit, or procure the sending of, any advertising or promotional material without our prior written consent, including any “junk mail”, “chain letter”, “spam”, or any other similar solicitation;
@@ -94,6 +117,8 @@ If the Website contains links to other sites and resources provided by third par
 ### Geographic Restrictions <a href="#geographic-restrictions" id="geographic-restrictions"></a>
 
 The owner of the Website is based in the Cayman Islands. We make no claims that the Website or any of its content is accessible or appropriate outside of the Cayman Islands. Access to the Website may not be legal by certain persons or in certain countries. If you access the Website from outside the Cayman Islands, you do so on your own initiative and are responsible for compliance with local laws.
+
+Without limiting the foregoing, the Website is not offered to, and must not be accessed or used by, any Sanctioned Person or any person located in, ordinarily resident in, or organized under the laws of any Sanctioned Jurisdiction (each as defined in “Who May Use the Website” above). We reserve the right to restrict access to the Website, or any part of it, from any jurisdiction at any time.
 
 ### Disclaimer of Warranties <a href="#disclaimer-of-warranties" id="disclaimer-of-warranties"></a>
 
