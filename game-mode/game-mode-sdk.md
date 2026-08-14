@@ -1,3 +1,7 @@
+---
+icon: gear-code
+---
+
 # Game Mode SDK
 
 Build a game that players earn the right to buy a token in.
