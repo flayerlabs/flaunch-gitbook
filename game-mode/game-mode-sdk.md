@@ -4,9 +4,20 @@ icon: gear-code
 
 # Game Mode SDK
 
-Build a game that players earn the right to buy a token in.
+Build a game that other people's coin launches happen inside.
 
-A Game Mode attaches to a Flaunch launch. Players play, the game awards them points, and points become an allowance they can spend on the coin during the launch window. You write the game. Flaunch handles the wallet, the chain and the money.
+You are not launching a token, and your game does not get a coin. Coins are launched by creators on Flaunch, and a creator who launches in Game Mode picks a game to be the entrance: while the launch window is open, playing that game is the only way to earn the right to buy. Your game is the launch's distribution mechanism — a fairer and more fun one than an open pool, where the first block goes to whoever runs the fastest bot.
+
+Players play, the game awards them points, and points become an allowance they can spend on the coin during the launch window. You write the game. Flaunch handles the wallet, the chain and the money.
+
+### The two pieces
+
+A Game Mode game has two parts, and only one of them is yours to worry about at the start:
+
+* **The game** — a browser game, built to static files, zipped and uploaded at [flaunch.gg/game-mode/create](https://flaunch.gg/game-mode/create). Hosting is included — you upload the ZIP and we serve it, the way itch.io does. For the [Game Mode Hackathon](https://flaunch.gg/game-mode/hackathon), this is the whole submission.
+* **The gate** — a separate server that runs your game's rules, keeps score, and signs each player's spending allowance. This is the part that is unique to Game Mode, and **you do not need it to submit a game**: a game built on the SDK's `createMockRoom` runs a complete round in the browser with no server at all. The gate enters the picture when a real launch runs through your game — see [Running a server](#running-a-server).
+
+If you have deployed to itch.io before: the ZIP upload is that. Everything about signers, gates and servers further down this page is the second piece, and it can wait.
 
 ### What you need
 
@@ -159,7 +170,9 @@ Because rules are pure, the same inputs always give the same answer. If a test p
 
 ### Running a server
 
-Your game needs a gate: a small server that runs your rules, keeps score and signs the allowance a player spends.
+This is the second of [the two pieces](#the-two-pieces), and it is optional until a real launch runs through your game — a hackathon submission does not need it.
+
+When a launch does go live, the game needs a gate: a small server that runs your rules, keeps score and signs the allowance a player spends. One gate serves one game.
 
 To try one on your laptop:
 
@@ -177,12 +190,13 @@ For a live game you run the same gate with your own signing key, a Postgres data
 ### Going live on Flaunch
 
 1. Build your game to static files.
-2. Upload them as a ZIP. You get back a version that cannot change, so what was reviewed is what players get.
-3. Run your gate somewhere public.
-4. Launch your coin, naming your gate's signer and a per-wallet spending cap.
-5. Your game appears on the coin's page on flaunch.gg.
+2. Upload them as a ZIP at [flaunch.gg/game-mode/create](https://flaunch.gg/game-mode/create). You get back a version that cannot change, so what was reviewed is what players get.
+3. Games are reviewed, and the best join the official Game Mode library.
+4. A creator launches a coin through your game. The launch names the gate's signer and a per-wallet spending cap, and your game appears on the coin's page on flaunch.gg.
 
-Games are reviewed before they appear. Contact the Flaunch team to start that.
+Step 4 is not yours: the coin belongs to whoever launches it, and a library game can carry any number of launches. What you get from each one is a share of it — games in the official library earn 5% of the trading fees of every coin that launches through them.
+
+If your game runs its own gate rather than the demo one, this is the point where it goes up somewhere public — [Running a server](#running-a-server) lists what that takes, and the submission form has a field for its address. Talk to us on [Discord](https://discord.gg/PcSmznqqqb) before you get here — we would rather help wire it than have you guess.
 
 ### Limits that protect players
 
