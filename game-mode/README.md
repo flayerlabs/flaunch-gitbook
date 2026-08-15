@@ -63,6 +63,8 @@ That curve matters for launches because a real 3D game now runs in the same brow
 
 **[Split the Arrow](split-the-arrow.md)** is the first, and it's a real game rather than a buy button with a puzzle bolted to it: 3D archery with wind you have to read, a shot budget, and a leaderboard full of people you can watch shooting. It's playable now.
 
-More are coming from us, but Game Mode will be open to anyone's game — a trivia round for a knowledge community, a reflex test, a raffle for a project that would rather gate on luck than skill. Anything that can score a player can issue allowance, and the launch experience becomes whatever the game makes it.
+More are coming from us, but Game Mode is open to anyone's game — a trivia round for a knowledge community, a reflex test, a raffle for a project that would rather gate on luck than skill. Anything that can score a player can issue allowance, and the launch experience becomes whatever the game makes it.
 
-See **[Build a Game](build-a-game.md)** for where that stands.
+One thing worth being precise about, because it's easy to assume the opposite: the games themselves are never tokenized. A game has no coin of its own, and building one involves no launch. Game developers supply the entrance, creators launch coins through it, and a game in the official library earns a share of the trading fees of every coin that launches through it.
+
+See **[Build a Game](build-a-game.md)** for where that stands, including the open [Game Mode Hackathon](https://flaunch.gg/game-mode/hackathon).

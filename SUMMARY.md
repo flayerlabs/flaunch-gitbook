@@ -26,9 +26,9 @@
 ## Game Mode
 
 * [Game Mode](game-mode/README.md)
-* [Game Mode SDK](game-mode/game-mode-sdk.md)
 * [Split the Arrow](game-mode/split-the-arrow.md)
 * [Build a Game](game-mode/build-a-game.md)
+* [Game Mode SDK](game-mode/game-mode-sdk.md)
 
 ## A.I. Skills
 
