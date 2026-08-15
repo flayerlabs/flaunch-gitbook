@@ -51,7 +51,9 @@ The scaffold gives you a complete working game with passing tests. Change it rat
 Your game is one file of pure functions called a rules module. It runs on the server, which is what stops a player editing their score in the browser.
 
 ```ts
-export const game: GameModule<Config, State, Event, Action, PublicView, PlayerView> = {
+import { defineGame } from '@flayerlabs/gamemode-spec'
+
+export const rules = defineGame<Config, State, Event, Action, PublicView, PlayerView>({
   id: 'my-game',
 
   parseAction(input) { ... },              // reject anything malformed
@@ -62,8 +64,10 @@ export const game: GameModule<Config, State, Event, Action, PublicView, PlayerVi
   playerView(state, player) { ... },        // what one player sees
   nextWakeAt(state) { ... },                // when the game needs waking
   rewardBounds(config) { ... },             // the most one player can earn
-}
+})
 ```
+
+`defineGame` exists for type inference — it does nothing at runtime, and saves you naming six type arguments by hand everywhere the module is used.
 
 #### Deciding and evolving
 
@@ -109,7 +113,7 @@ Your browser code talks to one object, the room.
 ```ts
 import { createMockRoom } from '@flayerlabs/gamemode-client'
 
-const room = createMockRoom(game, { config })
+const room = createMockRoom(rules, { config })
 
 room.subscribe(({ publicView, playerView }) => render(publicView, playerView))
 await room.send({ kind: 'answer', choice: 'a' })
@@ -147,26 +151,27 @@ Market data comes from Flaunch. On your laptop there is none, so the chart would
 ```ts
 import { createMockRoom, replayMarket, BUSY_LAUNCH } from '@flayerlabs/gamemode-client'
 
-const room = createMockRoom(game, { config, platform: { market: replayMarket(BUSY_LAUNCH) } })
+const room = createMockRoom(rules, { config, platform: { market: replayMarket(BUSY_LAUNCH) } })
 ```
 
 `BUSY_LAUNCH` has a price spike in it on purpose. A chart that looks right on flat data and wrong on a spike is the usual result of building against nothing.
 
 ### Testing
 
-Test the rules module directly. No server, no browser, no mocks.
+Test the rules module directly. No server, no browser, no mocks. The spec package ships a round driver that runs your rules the way the server does — send commands, move time forward, read the result:
 
 ```ts
-const state = game.initRound(config, 1, window)
-const decision = game.decide(state, { kind: 'action', player: '0xabc', action, at: 1_000 })
+import { Round } from '@flayerlabs/gamemode-spec/round'
 
-expect(decision).toEqual({
-  events: [{ type: 'answered', player: '0xabc', choice: 'a' }],
-  awards: [{ player: '0xabc', points: 100 }],
-})
+const round = Round.start(rules, config, 42, { opensAt: 1_000_000, closesAt: 1_300_000 })
+round.send({ kind: 'action', player: '0xabc', action: { choice: 'a' }, at: 1_001_000 })
+round.advanceTo(1_012_000) // time only moves when you say so
+
+expect(round.pointsFor('0xabc')).toBe(100)
+expect(round.playerView('0xabc').wasRight).toBe(true)
 ```
 
-Because rules are pure, the same inputs always give the same answer. If a test passes here, it passes on the server.
+Because rules are pure, the same inputs always give the same answer. If a test passes here, it passes on the server. The scaffold's `test/rules.test.ts` starts you off, including a check that secrets stay out of `publicView`.
 
 ### Running a server
 
@@ -179,13 +184,23 @@ To try one on your laptop:
 ```ts
 import { createDemoGate } from '@flayerlabs/gamemode-gate'
 
-const { app } = await createDemoGate({ game, config })
+const { app } = await createDemoGate({ game: rules, config })
 await app.listen({ port: 4000 })
 ```
 
-This is a real gate with a real database and real signatures. Only the chain is faked: purchases are recorded rather than submitted. It needs Postgres, which the scaffold can start for you with Docker.
+This is a real gate with a real database and real signatures. Only the chain is faked: purchases are recorded rather than submitted. It needs Postgres, and one Docker command matches its default connection string:
 
-For a live game you run the same gate with your own signing key, a Postgres database and an RPC endpoint, on a public address with HTTPS and WebSockets.
+```bash
+docker run -d --rm --name gamemode-pg -e POSTGRES_PASSWORD=gamemode \
+  -e POSTGRES_DB=gamemode -p 55439:5432 postgres:16-alpine
+```
+
+(Or point `DATABASE_URL` at a Postgres you already have.)
+
+For a live game you run the same gate with your own signing key, a Postgres database and an RPC endpoint, on a public address with HTTPS and WebSockets. Everything the demo assembles is exported for that assembly — `createGate`, `PayloadSigner`, `Discovery`, `Settlement`, `Sessions`, `Claims` and `migrate` — and the contract addresses `Discovery` verifies launches against are listed under [Spend-Gated Launches](../developer-resources/spend-gate/README.md). Two options worth knowing about:
+
+* **`admit`** decides who the gate will talk to — one hook, consulted before a session is issued and before allowance is committed. `createTurnstileAdmit` ships in the gate package if Cloudflare Turnstile is your human check; anything else is a function returning ok or a refusal written for the player to read.
+* **`config`** can be a function of the verified launch instead of a constant, resolved once per round — for a game whose rules differ from coin to coin.
 
 ### Going live on Flaunch
 
@@ -208,7 +223,7 @@ Your signing key only ever affects your own launches.
 
 | Package                       | Use it for                                  |
 | ----------------------------- | ------------------------------------------- |
-| `@flayerlabs/gamemode-spec`   | the types both sides share                  |
+| `@flayerlabs/gamemode-spec`   | the types both sides share, and the round driver your tests use |
 | `@flayerlabs/gamemode-client` | browser code: the room, the mock, the embed |
 | `@flayerlabs/gamemode-gate`   | the server                                  |
 | `@flayerlabs/gamemode-cli`    | `gamemode new` and `gamemode check`         |
@@ -217,9 +232,10 @@ Your game's browser bundle uses `client` and `spec`. Your server uses `gate` and
 
 ### Commands
 
-| Command                     | What it does                           |
-| --------------------------- | -------------------------------------- |
-| `npx gamemode new <name>`   | create a game you can play immediately |
-| `npx gamemode check [file]` | check your rules are pure              |
-| `pnpm dev`                  | play it, with no server and no wallet  |
-| `pnpm test`                 | run your tests                         |
+| Command                     | What it does                                    |
+| --------------------------- | ----------------------------------------------- |
+| `npx gamemode new <name>`   | create a game you can play immediately          |
+| `npx gamemode check [file]` | check your rules are pure                       |
+| `pnpm dev`                  | play it, with no server and no wallet           |
+| `pnpm test`                 | check the rules are pure, then run your tests   |
+| `pnpm typecheck`            | check the types                                 |
