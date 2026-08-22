@@ -23,7 +23,7 @@ And "game" carries no blockchain qualifier. There is no requirement that a Game 
 
 The [Game Mode Hackathon](https://flaunch.gg/game-mode/hackathon) is open now, and submitting is deliberately itch.io-shaped: build your game with the [Game Mode SDK](game-mode-sdk.md), zip the static build, and upload it at [flaunch.gg/game-mode/create](https://flaunch.gg/game-mode/create) with a name, a category and a short description. Hosting is included — we serve the game for you.
 
-That is the whole submission. The gate — the signer and enforcement half described above — is a separate server that only matters when a real launch runs through your game, and **it is not part of a hackathon submission**: a game built on the SDK's `createMockRoom` runs a complete round in the browser with no server at all. If you do want to demo against a real gate, the SDK ships one and the submission form takes its address; the [SDK page](game-mode-sdk.md#running-a-server) covers both paths.
+That is the whole submission. The gate — the signer and enforcement half described above — is a server, but not a *second* one: the gate **is** your game's server, running your rules and signing what they award. It only matters when a real launch runs through your game, and **it is not part of a hackathon submission**: a game built on the SDK's `createMockRoom` runs a complete round in the browser with no server at all. If you do want to demo against a real gate, the SDK ships one and the submission form takes its address; the [SDK page](game-mode-sdk.md#running-a-server) covers both paths.
 
 The best submissions join the official Game Mode library, and library games earn **5% of the trading fees of every coin that launches through them** — for as long as creators keep choosing your game.
 

@@ -15,7 +15,7 @@ Players play, the game awards them points, and points become an allowance they c
 A Game Mode game has two parts, and only one of them is yours to worry about at the start:
 
 * **The game** — a browser game, built to static files, zipped and uploaded at [flaunch.gg/game-mode/create](https://flaunch.gg/game-mode/create). Hosting is included — you upload the ZIP and we serve it, the way itch.io does. For the [Game Mode Hackathon](https://flaunch.gg/game-mode/hackathon), this is the whole submission.
-* **The gate** — a separate server that runs your game's rules, keeps score, and signs each player's spending allowance. This is the part that is unique to Game Mode, and **you do not need it to submit a game**: a game built on the SDK's `createMockRoom` runs a complete round in the browser with no server at all. The gate enters the picture when a real launch runs through your game — see [Running a server](#running-a-server).
+* **The gate** — the server side of your game: it runs your game's rules, keeps score, and signs each player's spending allowance. This is the part that is unique to Game Mode, and **you do not need it to submit a game**: a game built on the SDK's `createMockRoom` runs a complete round in the browser with no server at all. The gate enters the picture when a real launch runs through your game — see [Running a server](#running-a-server).
 
 If you have deployed to itch.io before: the ZIP upload is that. Everything about signers, gates and servers further down this page is the second piece, and it can wait.
 
@@ -177,7 +177,7 @@ Because rules are pure, the same inputs always give the same answer. If a test p
 
 This is the second of [the two pieces](#the-two-pieces), and it is optional until a real launch runs through your game — a hackathon submission does not need it.
 
-When a launch does go live, the game needs a gate: a small server that runs your rules, keeps score and signs the allowance a player spends. One gate serves one game.
+When a launch does go live, the game needs a gate: a small server that runs your rules, keeps score and signs the allowance a player spends. One gate serves one game, and it is your game's only server — the same process that runs the simulation is the one that signs.
 
 To try one on your laptop:
 
