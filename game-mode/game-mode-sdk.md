@@ -46,6 +46,20 @@ Add `@flayerlabs/gamemode-gate` as well if you are running your own server.
 
 The scaffold gives you a complete working game with passing tests. Change it rather than starting from an empty file.
 
+### Already have a game? Port it
+
+You do not have to start from the scaffold. If a browser game already exists — yours, or any permissively-licensed open-source game — the `port-game-mode` AI skill turns porting it into a checklist your coding agent can run:
+
+```bash
+npx skills add https://github.com/flayerlabs/flaunch-skills --skill port-game-mode
+```
+
+The skill carries the whole route: licensing and provenance gates, a scoring economy bounded by the game's own rules, the room wiring for coin metadata, the live chart and buying, the launch framing players expect (tutorial, practice lobby, round timer with an end-of-round summary, leaderboard, the coin's art inside the game world), a headless QA harness that proves the loop, and the ZIP you upload. It is built on the same SDK surfaces documented on this page — nothing about a ported game is special once it ships.
+
+{% hint style="info" %}
+Building from scratch instead? The `build-game-mode` skill ships inside the `@flayerlabs/gamemode-cli` package and covers rules authoring, testing and the trust boundary in depth.
+{% endhint %}
+
 ### How a game is structured
 
 Your game is one file of pure functions called a rules module. It runs on the server, which is what stops a player editing their score in the browser.

@@ -33,10 +33,23 @@ The installed skill can guide an AI coding agent through:
 * Building A Launchpad
 * Choosing Between The API, SDK, And Manager Paths
 * Working With Revenue, Staking, Or Buyback Managers
+* Porting An Existing Open-Source Game Into Game Mode
 
 The main manager-development skill is `skills/core/manager/SKILL.md`.
 
 Use the wrapper-zap skill only when the launch flow itself must enforce a manager policy.
+
+## Port A Game Into Game Mode
+
+If the goal is to take an existing open-source browser game and attach it to a token launch as a [Game Mode](../game-mode/README.md), install the porting skill directly:
+
+```bash
+npx skills add https://github.com/flayerlabs/flaunch-skills --skill port-game-mode
+```
+
+It walks the agent through the whole port: the licensing and provenance gates, a claims-bounded scoring economy, the coin metadata / chart / buy surfaces, the launch framing players expect (tutorial, practice lobby, round timer, leaderboard), a headless QA harness, and the ZIP you upload at [flaunch.gg/game-mode/create](https://flaunch.gg/game-mode/create).
+
+For building a Game Mode from scratch, the `build-game-mode` skill ships inside the `@flayerlabs/gamemode-cli` npm package — see the [Game Mode SDK](../game-mode/game-mode-sdk.md).
 
 ## Quick Start
 
@@ -83,6 +96,7 @@ For custom treasury behavior, the skill will route toward the manager path.
 * `Use flaunch: Help me choose whether this launchpad should use the API, SDK, or a custom manager.`
 * `Use flaunch: Build a TypeScript launch flow with @flaunch/sdk on Base Sepolia.`
 * `Use flaunch: Create a revenue manager through the Web2 API.`
+* `Use port-game-mode: Port this open-source browser game into a Flaunch Game Mode.`
 
 ## Build Paths
 
