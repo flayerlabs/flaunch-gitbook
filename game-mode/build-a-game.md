@@ -25,6 +25,12 @@ The [Game Mode Hackathon](https://flaunch.gg/game-mode/hackathon) is open now, a
 
 That is the whole submission. The gate — the signer and enforcement half described above — is a server, but not a *second* one: the gate **is** your game's server, running your rules and signing what they award. It only matters when a real launch runs through your game, and **it is not part of a hackathon submission**: a game built on the SDK's `createMockRoom` runs a complete round in the browser with no server at all. If you do want to demo against a real gate, the SDK ships one and the submission form takes its address; the [SDK page](game-mode-sdk.md#running-a-server) covers both paths.
 
+You also don't need to build from zero. If a browser game already exists — including a permissively-licensed open-source one — hand your AI coding agent the [`port-game-mode` skill](game-mode-sdk.md#already-have-a-game-port-it) and it will walk the whole port: the scoring economy, the coin surfaces, the launch framing, and the ZIP.
+
+```bash
+npx skills add https://github.com/flayerlabs/flaunch-skills --skill port-game-mode
+```
+
 The best submissions join the official Game Mode library, and library games earn **5% of the trading fees of every coin that launches through them** — for as long as creators keep choosing your game.
 
 ## Under the hood
