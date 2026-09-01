@@ -74,6 +74,7 @@ The main files to know are:
 * `skills/advanced/manager-builder/SKILL.md`
 * `skills/advanced/manager-zap-wrapper/SKILL.md`
 * `skills/advanced/port-game-mode/SKILL.md`
+* `skills/advanced/run-a-game-server/SKILL.md`
 
 ## When To Use Which Skill
 
@@ -83,7 +84,7 @@ Use `token-launchpad` when the goal is to build a launchpad and the first questi
 
 Use the manager skills when the launchpad needs custom treasury or payout behavior after launch.
 
-Use `port-game-mode` when an existing open-source browser game should become a [Game Mode](../game-mode/README.md): it carries the licensing and provenance gates, the scoring-economy design, the launch framing checklist, templates, and a QA harness. Its counterpart for building a game from scratch, `build-game-mode`, ships inside the `@flayerlabs/gamemode-cli` npm package rather than this repository.
+Use `run-a-game-server` when a Game Mode runs its own authoritative multiplayer server and the gate, `/config`, join tickets and platform submission need to line up. Use `port-game-mode` when an existing open-source browser game should become a [Game Mode](../game-mode/README.md): it carries the licensing and provenance gates, the scoring-economy design, the launch framing checklist, templates, and a QA harness. Its counterpart for building a game from scratch, `build-game-mode`, ships inside the `@flayerlabs/gamemode-cli` npm package rather than this repository.
 
 ## Continue Reading
 
