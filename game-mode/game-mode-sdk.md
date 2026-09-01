@@ -211,10 +211,39 @@ docker run -d --rm --name gamemode-pg -e POSTGRES_PASSWORD=gamemode \
 
 (Or point `DATABASE_URL` at a Postgres you already have.)
 
-For a live game you run the same gate with your own signing key, a Postgres database and an RPC endpoint, on a public address with HTTPS and WebSockets. Everything the demo assembles is exported for that assembly — `createGate`, `PayloadSigner`, `Discovery`, `Settlement`, `Sessions`, `Claims` and `migrate` — and the contract addresses `Discovery` verifies launches against are listed under [Spend-Gated Launches](../developer-resources/spend-gate/README.md). Two options worth knowing about:
+For a live game, `startGate()` is the paved road: your rules module and an environment in, a verified, announced, running gate out.
+
+```ts
+import { startGate } from '@flayerlabs/gamemode-gate'
+import { rules, config } from './src/game/rules.js'
+
+const { port, signer } = await startGate(rules, config)
+```
+
+It reads its configuration from the environment (`CHAIN_ID`, `RPC_URL`, `SIGNER_PRIVATE_KEY`, `DATABASE_URL`, `SESSION_SECRET`, `SIGN_IN_DOMAIN`, `GATE_ORIGIN`, `ALLOWED_ORIGINS` — the full contract is in the [`@flayerlabs/gamemode-gate` README](https://www.npmjs.com/package/@flayerlabs/gamemode-gate) and the DEPLOY.md that ships in the package), refuses loudly on anything misconfigured, runs its own migrations, and serves the `/config` endpoint the launch form reads — a gate that boots is a gate a launch can actually be written against. The `signer` it prints is the address launches will trust; generate its key fresh and never share it, least of all with us.
+
+One rule that catches people: `ALLOWED_ORIGINS` must name both browser callers — your hosted game's origin (`https://*.games.moongate.com`; the hostname changes on every upload, so use the wildcard) and the flaunch page origins, because the coin page itself calls your gate to adopt the round. Leave the page out and every launched coin fails on a CORS error.
+
+Everything `startGate` assembles is also exported for wiring the gate yourself — `createGate`, `PayloadSigner`, `Discovery`, `Settlement`, `Sessions`, `Claims` and `migrate` — for the rare setup the paved road cannot express; the contract addresses `Discovery` verifies launches against are listed under [Spend-Gated Launches](../developer-resources/spend-gate/README.md). Two options worth knowing about:
 
 * **`admit`** decides who the gate will talk to — one hook, consulted before a session is issued and before allowance is committed. `createTurnstileAdmit` ships in the gate package if Cloudflare Turnstile is your human check; anything else is a function returning ok or a refusal written for the player to read.
 * **`config`** can be a function of the verified launch instead of a constant, resolved once per round — for a game whose rules differ from coin to coin.
+
+### Bring your own multiplayer server
+
+Everything above assumes your rules run inside the gate. A game with its own authoritative realtime server — custom netcode, region fleets, anything where a 100ms round trip is gameplay — keeps that server, and the platform does not host or relay its traffic. The integration stays light:
+
+* Your gate uses `createGameServerGate()` instead of running rules: your server reports scores through an authenticated award route, and the gate still owns sessions, points, allowances and settlement. This path serves `/config` only when you pass `announce` — the launch form refuses a gate without it.
+* The submission form's game server addresses field lists your server origins (up to four, exact https, no wildcards) — that list is what your hosted game's security policy permits, alongside your gate. The same list goes into `createGameServerGate()` as `gameServerOrigins`, and players prove their wallet to your server with a short-lived join ticket scoped to one of those exact origins.
+* Region rotation belongs behind stable hostnames — the reviewed list is not meant to churn.
+
+The full walkthrough — env semantics, the announce block, ticket verification, smoke tests — is the `run-a-game-server` AI skill:
+
+```bash
+npx skills add https://github.com/flayerlabs/flaunch-skills --skill run-a-game-server
+```
+
+with the same material in the [`@flayerlabs/gamemode-gate` README](https://www.npmjs.com/package/@flayerlabs/gamemode-gate). Talk to us on [Discord](https://discord.gg/PcSmznqqqb) before building this tier — it is the newest path and we would rather walk it with you.
 
 ### Going live on Flaunch
 
@@ -225,7 +254,7 @@ For a live game you run the same gate with your own signing key, a Postgres data
 
 Step 4 is not yours: the coin belongs to whoever launches it, and a library game can carry any number of launches. What you get from each one is a share of it — games in the official library earn 5% of the trading fees of every coin that launches through them.
 
-If your game runs its own gate rather than the demo one, this is the point where it goes up somewhere public — [Running a server](#running-a-server) lists what that takes, and the submission form has a field for its address. Talk to us on [Discord](https://discord.gg/PcSmznqqqb) before you get here — we would rather help wire it than have you guess.
+If your game runs its own gate rather than the demo one, this is the point where it goes up somewhere public — [Running a server](#running-a-server) lists what that takes, and the submission form has a field for its address (plus, for a game with its own multiplayer servers, a field for their addresses — see [Bring your own multiplayer server](#bring-your-own-multiplayer-server)). Talk to us on [Discord](https://discord.gg/PcSmznqqqb) before you get here — we would rather help wire it than have you guess.
 
 ### Limits that protect players
 
