@@ -141,7 +141,7 @@ The room also carries everything the platform provides:
 | `room.launch`     | coin, pool and the round's timings                               |
 | `room.connection` | `connecting`, `connected`, `reconnecting`, `superseded`, `ended` |
 | `room.economy`    | what a player earned, holds, and buy progress                    |
-| `room.market`     | price history and trades                                         |
+| `room.market`     | the coin's price history, trades and current market cap          |
 | `room.identity`   | names and avatars for wallet addresses                           |
 | `room.presence`   | how many players are connected                                   |
 | `room.social`     | reactions                                                        |
@@ -158,9 +158,28 @@ const result = await room.economy.buy(maxSpendWei)
 
 Your game asks. The page around it builds the transaction and asks the player to approve it. Your game never constructs a transaction and cannot, which is why a bug in your game cannot lose anyone money.
 
+#### Where market data comes from
+
+`room.market` carries the coin's price history and its current market cap in USD, and the source is the **coin page**, not your gate. Your gate knows the round's ledger — who earned what, who holds what — and nothing at all about the coin's price. So the page pushes its own live feed into the game: the same feed drawing the chart beside you, which is why the two never disagree on a number.
+
+For a game built on rules inside the gate, `joinRoom` wires this for you. For a game with its own server, `joinEconomy` needs telling once — miss it and `market.status` stays `unavailable` for the whole round:
+
+```ts
+const embedded = await connectHost()
+
+const gameMode = await joinEconomy({
+  gateUrl: embedded.context.gateUrl,
+  roundId: embedded.context.roundId,
+  host: embedded.host,
+  platform: { market: embedded.market },
+})
+```
+
+`market.status` is the cue for what you are looking at: `unavailable` means the page has no feed and the honest thing to draw is an empty chart, not a spinner that never resolves.
+
 #### Building a chart with no chain
 
-Market data comes from Flaunch. On your laptop there is none, so the chart would be empty. Use the replay fixture instead:
+On your laptop there is no page and no chain, so the chart would be empty. Use the replay fixture instead:
 
 ```ts
 import { createMockRoom, replayMarket, BUSY_LAUNCH } from '@flayerlabs/gamemode-client'
@@ -169,6 +188,8 @@ const room = createMockRoom(rules, { config, platform: { market: replayMarket(BU
 ```
 
 `BUSY_LAUNCH` has a price spike in it on purpose. A chart that looks right on flat data and wrong on a spike is the usual result of building against nothing.
+
+One thing the fixture will not catch: show `marketCapUsd` as it arrives. It is already the coin's current market cap, so scaling it by the round's price move counts that move twice — and puts a number in your game that contradicts the one on the page.
 
 ### Testing
 
