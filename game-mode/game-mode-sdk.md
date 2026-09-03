@@ -54,6 +54,8 @@ You do not have to start from the scaffold. If a browser game already exists —
 npx skills add https://github.com/flayerlabs/flaunch-skills --skill port-game-mode
 ```
 
+A port is the one case with a licence requirement: the upstream game must carry a permissive open-source licence, because that is what gives you the right to redistribute a modified version of someone else's work. Porting your own game has no such requirement — see [Your game stays yours](#your-game-stays-yours).
+
 The skill carries the whole route: licensing and provenance gates, a scoring economy bounded by the game's own rules, the room wiring for coin metadata, the live chart and buying, the launch framing players expect (tutorial, practice lobby, round timer with an end-of-round summary, leaderboard, the coin's art inside the game world), a headless QA harness that proves the loop, and the ZIP you upload. It is built on the same SDK surfaces documented on this page — nothing about a ported game is special once it ships.
 
 {% hint style="info" %}
@@ -276,6 +278,20 @@ with the same material in the [`@flayerlabs/gamemode-gate` README](https://www.n
 Step 4 is not yours: the coin belongs to whoever launches it, and a library game can carry any number of launches. What you get from each one is a share of it — games in the official library earn 5% of the trading fees of every coin that launches through them.
 
 If your game runs its own gate rather than the demo one, this is the point where it goes up somewhere public — [Running a server](#running-a-server) lists what that takes, and the submission form has a field for its address (plus, for a game with its own multiplayer servers, a field for their addresses — see [Bring your own multiplayer server](#bring-your-own-multiplayer-server)). Talk to us on [Discord](https://discord.gg/PcSmznqqqb) before you get here — we would rather help wire it than have you guess.
+
+### Your game stays yours
+
+You do not have to open-source a game you wrote to put it on Flaunch, and we do not ask for ownership of it. Your code, your art and your IP stay yours.
+
+What we need is narrow: permission to host and serve your game inside Game Mode, and to show its name, tagline and cover art in the library and on the coin pages where it runs. Hosting a game means copying it to our servers and serving it to players, so some permission is unavoidable — but it stops there. Not exclusive, no right to modify it beyond the packaging needed to serve it, and no claim on anything you do with the game anywhere else.
+
+One consequence worth knowing before you submit, because it cannot be undone afterwards: **a launch is permanent.** Each ZIP becomes a version that cannot change, and a coin launched through it embeds that exact version on its page forever. If you later withdraw your game from the library, we stop offering it for new launches — but coins already launched through it keep working, which means we keep serving that version to their players. Withdrawing is not deletion.
+
+The open-source requirement you may have seen applies only to [porting someone else's game](#already-have-a-game-port-it). A permissive licence there is how a port proves it has the right to redistribute the original, alongside the provenance file naming the upstream repo, author and commit. It has nothing to do with a game of your own.
+
+{% hint style="info" %}
+This section describes the position in plain terms; [Games You Submit](../terms/terms-of-service.md#games-you-submit) in the Terms of Service governs. If your game needs something different — a specific attribution, a licence you are already bound by, an asset pack with its own terms — raise it on [Discord](https://discord.gg/PcSmznqqqb) before you submit rather than after.
+{% endhint %}
 
 ### Limits that protect players
 
