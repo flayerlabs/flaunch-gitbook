@@ -290,7 +290,7 @@ One consequence worth knowing before you submit, because it cannot be undone aft
 The open-source requirement you may have seen applies only to [porting someone else's game](#already-have-a-game-port-it). A permissive licence there is how a port proves it has the right to redistribute the original, alongside the provenance file naming the upstream repo, author and commit. It has nothing to do with a game of your own.
 
 {% hint style="info" %}
-This section describes the position in plain terms; the [Terms of Service](../terms/terms-of-service.md) govern. If your game needs something different — a specific attribution, a licence you are already bound by, an asset pack with its own terms — raise it on [Discord](https://discord.gg/PcSmznqqqb) before you submit rather than after.
+This section describes the position in plain terms; [Games You Submit](../terms/terms-of-service.md#games-you-submit) in the Terms of Service governs. If your game needs something different — a specific attribution, a licence you are already bound by, an asset pack with its own terms — raise it on [Discord](https://discord.gg/PcSmznqqqb) before you submit rather than after.
 {% endhint %}
 
 ### Limits that protect players
