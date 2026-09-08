@@ -319,3 +319,7 @@ Your game's browser bundle uses `client` and `spec`. Your server uses `gate` and
 | `pnpm dev`                  | play it, with no server and no wallet           |
 | `pnpm test`                 | check the rules are pure, then run your tests   |
 | `pnpm typecheck`            | check the types                                 |
+
+### Support more than one network
+
+Run one gate per game and chain, and register the Gate URL for each network when uploading. Read [Networks, review and availability](networks-and-review.md) for immutable build review, signed readiness checks and recovery.
