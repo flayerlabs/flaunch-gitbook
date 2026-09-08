@@ -40,3 +40,7 @@ The contracts are live on Robinhood chain and documented in full under [Spend-Ga
 {% hint style="success" %}
 If you're building one, come and talk to us on [Discord](https://discord.gg/PcSmznqqqb) — we play every submission, and we'd rather help you ship than have you guess.
 {% endhint %}
+
+## Add networks and submit for review
+
+A single ZIP can support multiple networks when you register a gate for each one. See [Networks, review and availability](networks-and-review.md) before deploying gates or adding another network.
