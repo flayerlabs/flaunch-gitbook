@@ -35,7 +35,7 @@ The best submissions join the official Game Mode library, and library games earn
 
 ## Under the hood
 
-The contracts are live on Robinhood chain and documented in full under [Spend-Gated Launches](../developer-resources/spend-gate/README.md) — the launch parameters, the signature format, and every way enforcement can refuse a swap. You do not need any of it to build or submit a game; it is there for the curious and for anyone integrating at the contract level.
+The contracts are live on Robinhood chain and Base and documented in full under [Spend-Gated Launches](../developer-resources/spend-gate/README.md) — the launch parameters, the signature format, and every way enforcement can refuse a swap. You do not need any of it to build or submit a game; it is there for the curious and for anyone integrating at the contract level.
 
 {% hint style="success" %}
 If you're building one, come and talk to us on [Discord](https://discord.gg/PcSmznqqqb) — we play every submission, and we'd rather help you ship than have you guess.
