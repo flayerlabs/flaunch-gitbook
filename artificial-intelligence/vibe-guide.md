@@ -49,7 +49,7 @@ npx skills add https://github.com/flayerlabs/flaunch-skills --skill port-game-mo
 
 It walks the agent through the whole port: the licensing and provenance gates, a claims-bounded scoring economy, the coin metadata / chart / buy surfaces, the launch framing players expect (tutorial, practice lobby, round timer, leaderboard), a headless QA harness, and the ZIP you upload at [flaunch.gg/game-mode/create](https://flaunch.gg/game-mode/create).
 
-For building a Game Mode from scratch, the `build-game-mode` skill ships inside the `@flayerlabs/gamemode-cli` npm package — see the [Game Mode SDK](../game-mode/game-mode-sdk.md).
+For building a Game Mode from scratch, install `build-game-mode` the same way; `run-a-game-server` covers a game with its own multiplayer server. All three Game Mode skills live in the Flaunch skills repository and are kept in step with each Game Mode SDK release.
 
 ## Quick Start
 

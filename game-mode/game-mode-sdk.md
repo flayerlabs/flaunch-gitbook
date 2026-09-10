@@ -71,7 +71,11 @@ A port is the one case with a licence requirement: the upstream game must carry 
 The skill carries the whole route: licensing and provenance gates, a scoring economy bounded by the game's own rules, the room wiring for coin metadata, the live chart and buying, the launch framing players expect (tutorial, practice lobby, round timer with an end-of-round summary, leaderboard, the coin's art inside the game world), a headless QA harness that proves the loop, and the ZIP you upload. It is built on the same SDK surfaces documented on this page — nothing about a ported game is special once it ships.
 
 {% hint style="info" %}
-Building from scratch instead? The `build-game-mode` skill ships inside the `@flayerlabs/gamemode-cli` package and covers rules authoring, testing and the trust boundary in depth.
+Building from scratch instead? Install the `build-game-mode` skill from the same repository — it covers rules authoring, testing and the trust boundary in depth, and `npx gamemode new` also drops a copy into every scaffolded project.
+
+```bash
+npx skills add https://github.com/flayerlabs/flaunch-skills --skill build-game-mode
+```
 {% endhint %}
 
 ### How a game is structured
