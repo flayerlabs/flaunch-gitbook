@@ -14,8 +14,8 @@ Players play, the game awards them points, and points become an allowance they c
 
 A Game Mode game has two parts, and only one of them is yours to worry about at the start:
 
-* **The game** — a browser game, built to static files, zipped and uploaded at [flaunch.gg/game-mode/create](https://flaunch.gg/game-mode/create). Hosting is included — you upload the ZIP and we serve it, the way itch.io does. For the [Game Mode Hackathon](https://flaunch.gg/game-mode/hackathon), this is the whole submission.
-* **The gate** — the server side of your game: it runs your game's rules, keeps score, and signs each player's spending allowance. This is the part that is unique to Game Mode, and **you do not need it to submit a game**: a game built on the SDK's `createMockRoom` runs a complete round in the browser with no server at all. The gate enters the picture when a real launch runs through your game — see [Running a server](#running-a-server).
+* **The game** — a browser game, built to static files, zipped and uploaded from the [developer dashboard](https://flaunch.gg/game-mode/dashboard). Hosting is included — you upload the ZIP and we serve it, the way itch.io does. For the [Game Mode Hackathon](https://flaunch.gg/game-mode/hackathon), this is the whole submission.
+* **The gate** — the server side of your game: it runs your game's rules, keeps score, and signs each player's spending allowance. This is the part that is unique to Game Mode, and **you do not need it to start**: a game built on the SDK's `createMockRoom` runs a complete round in the browser with no server at all, and that is all a hackathon submission needs. The gate enters the picture when your game goes live for real launches — see [Running a server](#running-a-server) and [The developer dashboard](#the-developer-dashboard).
 
 If you have deployed to itch.io before: the ZIP upload is that. Everything about signers, gates and servers further down this page is the second piece, and it can wait.
 
@@ -36,6 +36,18 @@ npm install --save-dev @flayerlabs/gamemode-cli
 ```
 
 Add `@flayerlabs/gamemode-gate` as well if you are running your own server.
+
+#### Minimum version
+
+The dashboard accepts builds on `@flayerlabs/gamemode-client` **0.5.5 or later**. It reads the version marker from your built files, so an older build is refused at upload rather than at review. The same minimum applies to gates: a gate whose `/config` reports a `gateVersion` below it is refused when you declare it.
+
+On an existing project, upgrade, rebuild and re-upload:
+
+```bash
+npm i @flayerlabs/gamemode-client@latest @flayerlabs/gamemode-spec@latest
+```
+
+Add `@flayerlabs/gamemode-gate@latest` to that line if you run a server. Keep every package on the same version.
 
 ### Make a game in 4 steps
 
@@ -214,7 +226,7 @@ Because rules are pure, the same inputs always give the same answer. If a test p
 
 This is the second of [the two pieces](#the-two-pieces), and it is optional until a real launch runs through your game — a hackathon submission does not need it.
 
-When a launch does go live, the game needs a gate: a small server that runs your rules, keeps score and signs the allowance a player spends. One gate serves one game, and it is your game's only server — the same process that runs the simulation is the one that signs.
+When a launch does go live, the game needs a gate: a small server that runs your rules, keeps score and signs the allowance a player spends. One gate serves one game on one chain, and it is your game's only server — the same process that runs the simulation is the one that signs. A game live on two chains runs two gates; the [dashboard](#the-developer-dashboard) takes one address per network.
 
 To try one on your laptop:
 
@@ -245,6 +257,11 @@ const { port, signer } = await startGate(rules, config)
 
 It reads its configuration from the environment (`CHAIN_ID`, `RPC_URL`, `SIGNER_PRIVATE_KEY`, `DATABASE_URL`, `SESSION_SECRET`, `SIGN_IN_DOMAIN`, `GATE_ORIGIN`, `ALLOWED_ORIGINS` — the full contract is in the [`@flayerlabs/gamemode-gate` README](https://www.npmjs.com/package/@flayerlabs/gamemode-gate) and the DEPLOY.md that ships in the package), refuses loudly on anything misconfigured, runs its own migrations, and serves the `/config` endpoint the launch form reads — a gate that boots is a gate a launch can actually be written against. The `signer` it prints is the address launches will trust; generate its key fresh and never share it, least of all with us.
 
+Three routes the dashboard reads, all documented in the [gate README](https://www.npmjs.com/package/@flayerlabs/gamemode-gate):
+
+* `GET /config` and `GET /stats` report `gateVersion`, the version of `@flayerlabs/gamemode-gate` the process is running. The dashboard checks it against the [minimum](#minimum-version) when you declare the gate.
+* `GET /stats/plays` is new in 0.5.5. The gate records one gameplay session per wallet per round and serves the totals here; it is where the dashboard's play counts come from.
+
 One rule that catches people: `ALLOWED_ORIGINS` must name both browser callers — your hosted game's origin (`https://*.games.moongate.com`; the hostname changes on every upload, so use the wildcard) and the flaunch page origins, because the coin page itself calls your gate to adopt the round. Leave the page out and every launched coin fails on a CORS error.
 
 Everything `startGate` assembles is also exported for wiring the gate yourself — `createGate`, `PayloadSigner`, `Discovery`, `Settlement`, `Sessions`, `Claims` and `migrate` — for the rare setup the paved road cannot express; the contract addresses `Discovery` verifies launches against are listed under [Spend-Gated Launches](../developer-resources/spend-gate/README.md). Two options worth knowing about:
@@ -257,7 +274,7 @@ Everything `startGate` assembles is also exported for wiring the gate yourself �
 Everything above assumes your rules run inside the gate. A game with its own authoritative realtime server — custom netcode, region fleets, anything where a 100ms round trip is gameplay — keeps that server, and the platform does not host or relay its traffic. The integration stays light:
 
 * Your gate uses `createGameServerGate()` instead of running rules: your server reports scores through an authenticated award route, and the gate still owns sessions, points, allowances and settlement. This path serves `/config` only when you pass `announce` — the launch form refuses a gate without it.
-* The submission form's game server addresses field lists your server origins (up to four, exact https, no wildcards) — that list is what your hosted game's security policy permits, alongside your gate. The same list goes into `createGameServerGate()` as `gameServerOrigins`, and players prove their wallet to your server with a short-lived join ticket scoped to one of those exact origins.
+* The dashboard's game server addresses field lists your server origins (up to four, exact https, no wildcards) — that list is what your hosted game's security policy permits, alongside your gate. The same list goes into `createGameServerGate()` as `gameServerOrigins`, and players prove their wallet to your server with a short-lived join ticket scoped to one of those exact origins.
 * Region rotation belongs behind stable hostnames — the reviewed list is not meant to churn.
 
 The full walkthrough — env semantics, the announce block, ticket verification, smoke tests — is the `run-a-game-server` AI skill:
@@ -268,16 +285,64 @@ npx skills add https://github.com/flayerlabs/flaunch-skills --skill run-a-game-s
 
 with the same material in the [`@flayerlabs/gamemode-gate` README](https://www.npmjs.com/package/@flayerlabs/gamemode-gate). Talk to us on [Discord](https://discord.gg/PcSmznqqqb) before building this tier — it is the newest path and we would rather walk it with you.
 
+### The developer dashboard
+
+Your games are managed at [flaunch.gg/game-mode/dashboard](https://flaunch.gg/game-mode/dashboard). Sign in with your wallet; it is also in the wallet menu under **Games**. Everything from the first upload to the version a creator launches through happens here.
+
+{% hint style="info" %}
+The dashboard replaces uploading at `flaunch.gg/game-mode/create`. That URL now redirects to the dashboard.
+{% endhint %}
+
+#### Upload
+
+Upload a ZIP of your static build with a name, a category and a short description. It is stored as a **private draft**: nobody outside your dashboard can see it until it has been reviewed and approved. A ZIP without a current `@flayerlabs/gamemode-client` is refused — see [Minimum version](#minimum-version).
+
+#### Readiness checklist
+
+Each game carries a checklist of what is still missing before it can be submitted — a network without a working gate, a build on an old SDK — and what to do about each item. When the list is clear, submit.
+
+#### Networks
+
+You declare a gate for each chain your game runs on:
+
+| Chain        | Chain ID | Role                                                        |
+| ------------ | -------- | ----------------------------------------------------------- |
+| Base Sepolia | 84532    | **Required.** Where you and the Flaunch team test your game. |
+| Base         | 8453     | Production. Creators can launch here.                       |
+| Robinhood    | 4663     | Production. Creators can launch here.                       |
+
+Each network row shows whether the gate is reachable, is on the chain it was declared for, is on a current SDK version, and has had its config captured. One gate serves one chain, so a game live on two chains runs two gates — see [Running a server](#running-a-server).
+
+#### Testing a build
+
+Two ways, both from the dashboard:
+
+* **Practice** opens the build in a new tab with no gate and no token, the way `pnpm dev` does. Tick **supports practice mode** on the game to enable it. A build that runs on `createMockRoom` with no gate qualifies, which it already does if you built from the scaffold.
+* **Test launch** creates a real test coin on Base Sepolia with your game embedded on its coin page, the same way a creator's launch would. This is the one that exercises your gate.
+
+#### Mobile friendly
+
+Mark whether the game plays well on a phone. The flag shows in the library, and reviewers may correct it.
+
+#### Versions
+
+Every save is an immutable version, and the dashboard lists them. Approval publishes the version that was reviewed. If you upload an update to an approved game, the approved version stays live until the new one is approved in turn. Coins launched through a version keep it forever; see [Your game stays yours](#your-game-stays-yours).
+
+#### Plays
+
+Gates on 0.5.5 or later record one gameplay session per wallet per round, and the dashboard shows plays per game from that. Practice rounds and Base Sepolia rounds are not counted. A game on an older gate shows **tracking unavailable** until the gate is upgraded.
+
 ### Going live on Flaunch
 
 1. Build your game to static files.
-2. Upload them as a ZIP at [flaunch.gg/game-mode/create](https://flaunch.gg/game-mode/create). You get back a version that cannot change, so what was reviewed is what players get.
-3. Games are reviewed, and the best join the official Game Mode library.
-4. A creator launches a coin through your game. The launch names the gate's signer and a per-wallet spending cap, and your game appears on the coin's page on flaunch.gg.
+2. Upload them as a ZIP from the [developer dashboard](https://flaunch.gg/game-mode/dashboard). You get back a version that cannot change, so what was reviewed is what players get.
+3. Declare your gates, run a test launch on Base Sepolia, and submit for review once the readiness checklist is clear.
+4. Games are reviewed, and the best join the official Game Mode library.
+5. A creator launches a coin through your game. The launch names the gate's signer and a per-wallet spending cap, and your game appears on the coin's page on flaunch.gg.
 
-Step 4 is not yours: the coin belongs to whoever launches it, and a library game can carry any number of launches. What you get from each one is a share of it — games in the official library earn 5% of the trading fees of every coin that launches through them.
+Step 5 is not yours: the coin belongs to whoever launches it, and a library game can carry any number of launches. What you get from each one is a share of it — games in the official library earn **5% of the trading fees of every coin that launches through them, for the life of the coin**. Earnings reporting in the dashboard is coming.
 
-If your game runs its own gate rather than the demo one, this is the point where it goes up somewhere public — [Running a server](#running-a-server) lists what that takes, and the submission form has a field for its address (plus, for a game with its own multiplayer servers, a field for their addresses — see [Bring your own multiplayer server](#bring-your-own-multiplayer-server)). Talk to us on [Discord](https://discord.gg/PcSmznqqqb) before you get here — we would rather help wire it than have you guess.
+If your game runs its own gate rather than the demo one, this is the point where it goes up somewhere public — [Running a server](#running-a-server) lists what that takes, and the dashboard takes its address under [Networks](#networks), one per chain (plus, for a game with its own multiplayer servers, a field for their addresses — see [Bring your own multiplayer server](#bring-your-own-multiplayer-server)). Talk to us on [Discord](https://discord.gg/PcSmznqqqb) before you get here — we would rather help wire it than have you guess.
 
 ### Your game stays yours
 
