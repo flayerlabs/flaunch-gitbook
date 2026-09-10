@@ -114,18 +114,18 @@ A launch that names a signer but no settler is refused outright (`SettlerRequire
 
 ## Deployments
 
-Game Mode runs on **Robinhood chain (4663)**.
+Game Mode runs on **Robinhood chain (4663)** and **Base (8453)**, with a test stack on **Base Sepolia (84532)**. Each chain's current stack is the Flaunch v1.3 generation, which measures spend in the pool's own paired token: ETH, or any token the chain's `PairedTokenRegistry` has approved.
 
-<table><thead><tr><th width="280">Contract</th><th>Address</th></tr></thead><tbody><tr><td><code>FeeCalculatorDispatcher</code></td><td><code>0x04cDDed83da53cD32E7fcD0242b21e38C279d613</code></td></tr><tr><td><code>SpendGatedSignerFeeCalculator</code></td><td><code>0xc65fC67Fa953869dF97ab2DBa96fA58F2bDC9891</code></td></tr><tr><td><code>PositionManager</code></td><td><code>0x5Cf8e499C7c466C7E2cf127BDF129F57151E65Dc</code></td></tr><tr><td><code>PoolSwap</code> (reports <code>msgSender()</code>)</td><td><code>0xb45e89f435CD33F759755Df193024310BEe7C35A</code></td></tr><tr><td><code>UniversalRouter</code></td><td><code>0x8876789976dEcBfCbBbe364623C63652db8C0904</code></td></tr></tbody></table>
+<table><thead><tr><th width="280">Contract</th><th>Robinhood (4663)</th><th>Base (8453)</th><th>Base Sepolia (84532)</th></tr></thead><tbody><tr><td><code>PositionManager</code></td><td><code>0x588C683EcC450F8b2aAdb13D7f63792b840425DC</code></td><td><code>0x588C683EcC450F8b2aAdb13D7f63792b840425DC</code></td><td><code>0x8D346f24278C5CD786309161aAC0fC2bbe4c25dc</code></td></tr><tr><td><code>FeeCalculatorDispatcher</code></td><td><code>0xe3fDDf48E305dAB9A74BFa5b9858Db1aAc1D80F8</code></td><td><code>0xdbc2f399bbac8cd766f20c9b917a9a6ecad5bc4b</code></td><td><code>0xd381f8ea57df43c57cfe6e5b19a0a4700396f28c</code></td></tr><tr><td><code>SpendGatedSignerFeeCalculator</code></td><td><code>0xB246b270bB05d9Fa76c4456408ce3e8600d916bf</code></td><td><code>0xd8e46a2ca31915d9b76cc8e6b365b7ed46b77b01</code></td><td><code>0x54cdcf0bcbc3a33f470e07134c10582f93058a32</code></td></tr><tr><td><code>PoolSwap</code> (approved router, reports <code>msgSender()</code>)</td><td><code>0x8476ED156f731335ECA8Cc8A8eE759330ee4A91f</code></td><td><code>0x1B8065a099AdcD7aa7c5e241e3596B56ec98bA5a</code></td><td><code>0xf0f388a31a1745a5e2378b812ed51525f70595be</code></td></tr><tr><td><code>PairedTokenRegistry</code></td><td><code>0xC3F4E72DE4D37988F12C101b0766Fd8462F6Faf9</code></td><td><code>0x26958422636655b5a4eCE23a062e2EB61332c6da</code></td><td><code>0x23cb441d18CA75c6a14964B06806dF668d45A1C6</code></td></tr></tbody></table>
 
-The dispatcher is installed on the `PositionManager`, with the chain's `StaticFeeCalculator` as its fallback — every non-game launch passes through untouched.
+The `PositionManager` is a CREATE3 deploy, which is why Robinhood and Base share its address; every other contract is chain-specific. The dispatcher is installed on the `PositionManager`, with the chain's `StaticFeeCalculator` as its fallback — every non-game launch passes through untouched. The `PositionManager` names its registry on chain (`pairedTokenRegistry()`), so a gate discovers the approved pairings and their price calculators without configuration.
 
 {% hint style="info" %}
-**Base Sepolia (84532)** carries a self-owned test stack of the same contracts. **Base mainnet (8453)** does not have the spend gate deployed.
+Robinhood's first-generation stack (`PositionManager` `0x5Cf8e499…`, dispatcher `0x04cDDed8…`, calculator `0xc65fC67F…`, `PoolSwap` `0xb45e89f4…`) predates paired tokens and keeps serving the coins launched on it; coins never migrate. New launches use the table above.
 {% endhint %}
 
 ## Limitations worth knowing before you build
 
-* **The gate assumes an ETH-paired pool.** Spend is measured on the native side of the pool key, and a swap against a pool paired with anything else is refused with `InvalidPoolKey`.
+* **Spend is measured in the pool's paired token.** On the current stack that is ETH or any token the chain's `PairedTokenRegistry` approves, and every signed amount is in that token's base units — `maxSpendWei` keeps its name for signature compatibility but is not always wei. Only the retired first-generation Robinhood calculator assumed an ETH-paired pool and refused anything else with `InvalidPoolKey`.
 * **Exact-output swaps are refused.** They cannot be measured safely — see [the enforcement page](hook-path.md) for why a zero-measured buy would otherwise be repeatable.
 * **One gate, one signer, one pool.** There is no notion of multiple concurrent signers per pool; the per-pool signer overrides the protocol-wide trusted set entirely.
