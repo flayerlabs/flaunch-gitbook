@@ -29,6 +29,7 @@
 * [Split the Arrow](game-mode/split-the-arrow.md)
 * [Build a Game](game-mode/build-a-game.md)
 * [Game Mode SDK](game-mode/game-mode-sdk.md)
+* [Launch calendar](game-mode/launch-calendar.md)
 
 ## A.I. Skills
 
