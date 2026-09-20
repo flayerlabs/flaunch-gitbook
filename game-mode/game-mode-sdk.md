@@ -259,7 +259,7 @@ Everything `startGate` assembles is also exported for wiring the gate yourself �
 Everything above assumes your rules run inside the gate. A game with its own authoritative realtime server — custom netcode, region fleets, anything where a 100ms round trip is gameplay — keeps that server, and the platform does not host or relay its traffic. The integration stays light:
 
 * Your gate uses `createGameServerGate()` instead of running rules: your server reports scores through an authenticated award route, and the gate still owns sessions, points, allowances and settlement. This path serves `/config` only when you pass `announce` — the launch form refuses a gate without it.
-* The submission form's game server addresses field lists your server origins (up to four, exact https, no wildcards) — that list is what your hosted game's security policy permits, alongside your gate. The same list goes into `createGameServerGate()` as `gameServerOrigins`, and players prove their wallet to your server with a short-lived join ticket scoped to one of those exact origins.
+* The submission form's game server addresses field lists your server origins (up to twenty, exact https, no wildcards) — that list is what your hosted game's security policy permits, alongside your gate. The same list goes into `createGameServerGate()` as `gameServerOrigins`, and players prove their wallet to your server with a short-lived join ticket scoped to one of those exact origins.
 * Region rotation belongs behind stable hostnames — the reviewed list is not meant to churn.
 
 The full walkthrough — env semantics, the announce block, ticket verification, smoke tests — is the `run-a-game-server` AI skill:
@@ -294,6 +294,10 @@ The open-source requirement you may have seen applies only to [porting someone e
 {% hint style="info" %}
 This section describes the position in plain terms; [Games You Submit](../terms/terms-of-service.md#games-you-submit) in the Terms of Service governs. If your game needs something different — a specific attribution, a licence you are already bound by, an asset pack with its own terms — raise it on [Discord](https://discord.gg/PcSmznqqqb) before you submit rather than after.
 {% endhint %}
+
+### Linking out of your game
+
+Your game runs inside a sandboxed frame on the coin page. It can open your site, Discord or X in a new tab — `target="_blank"` on a link, or `window.open` inside the click handler; browsers refuse openers that run without a user gesture. The new tab is a normal page, not sandboxed. What the frame cannot do is move the coin page itself or submit forms to it: `window.top`, `location.assign()` and `target="_top"` are blocked, by design.
 
 ### Limits that protect players
 
