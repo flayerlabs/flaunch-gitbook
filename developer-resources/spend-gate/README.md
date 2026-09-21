@@ -131,14 +131,14 @@ FLAUNCH_VARIANT=v1_3
 ```
 
 {% hint style="info" %}
-**Ethereum** has the spend gate but not yet the vested launch stack or the game developer fee-split manager that Base, Robinhood and Arbitrum received on 2026-09-17, so a game coin launched there today is a plain launch: no vesting, no developer fee row. That rollout is tracked separately.
+**Ethereum** joined the Game Mode parity set on 2026-09-21: the vested launch stack, the v2 calculator and the game developer fee-split manager sit at the same addresses as on Base, Robinhood and Arbitrum, and the protocol Safe has wired them (factory role, indexer mapping, calculator registration, manager approval). Contracts release v1.5.0 carries the record.
 {% endhint %}
 
 {% hint style="info" %}
 **Superseded stacks keep serving their coins; coins never migrate.** Robinhood's v1.3.1 stack (`PositionManager` `0x588C683E…`, dispatcher `0xe3fDDf48…`, calculator `0xB246b270…`, `PoolSwap` `0x8476ED15…`) and its first-generation stack (`PositionManager` `0x5Cf8e499…`, dispatcher `0x04cDDed8…`, calculator `0xc65fC67F…`, `PoolSwap` `0xb45e89f4…`) predate the table above. Router approval is per calculator, so a gate pointed at a superseded router refuses every smart-wallet buy. New launches use the table above.
 {% endhint %}
 
-A second calculator, `SpendGatedSignerFeeCalculator` **v2** (cumulative spend ceilings) is registered on Base, Robinhood and Arbitrum at `0x91938A66323725252043c03ad3066542Ac793057`; a gate switches to it between rounds once a released gate version supports it. It is not on Ethereum.
+A second calculator, `SpendGatedSignerFeeCalculator` **v2** (cumulative spend ceilings) is registered on all four mainnets at `0x91938A66323725252043c03ad3066542Ac793057` (Ethereum since 2026-09-21). Game Mode SDK 0.7.0 gates sign against it; a gate switches to it between rounds, after its last v1 round's books close.
 
 ## Limitations worth knowing before you build
 
