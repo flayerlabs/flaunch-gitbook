@@ -138,7 +138,7 @@ POOL_SWAP=0x206cD26d8567Ea76Ffa719995251a3878073Fb8A
 FLAUNCH_VARIANT=v1_3
 ```
 
-A gate that served v1 rounds switches to v2 only after its last v1 round has passed its books close. The SDK's [run-a-gate guide](https://github.com/flayerlabs/gamemode-sdk/blob/main/docs/guides/run-a-gate.md) has the full environment.
+A gate that served v1 rounds switches to v2 only after its last v1 round has passed its books close. The [`@flayerlabs/gamemode-gate` package](https://www.npmjs.com/package/@flayerlabs/gamemode-gate) has the full environment in its `DEPLOY.md`.
 
 {% hint style="info" %}
 **Ethereum** joined the Game Mode parity set on 2026-09-21: the vested launch stack, the v2 calculator and the game developer fee-split manager sit at the same addresses as on Base, Robinhood and Arbitrum, and the protocol Safe has wired them (factory role, indexer mapping, calculator registration, manager approval). Contracts release v1.5.0 carries the record.
