@@ -4,7 +4,11 @@ icon: file-signature
 
 # The Trusted Signer
 
-The signer is the off-chain half of a spend-gated launch. It decides how much ETH a wallet may spend against a pool, and says so in an EIP-712 signature the [calculator](hook-path.md) verifies on every swap.
+The signer is the offchain half of a spend-gated launch. It decides how much a wallet may have spent against a pool in total, and says so in an EIP-712 signature the [calculator](hook-path.md) verifies on every swap.
+
+This page describes version 2 of `SpendGatedSignerFeeCalculator`, the cumulative spend ceiling model that Game Mode SDK 0.7.0 and later sign against. Version 1 signed a per-purchase `maxSpendWei` with a nonce; its pools keep working, but no current gate signs for it.
+
+In Game Mode from SDK 0.9.0, the signer is Flaunch's platform gate for the chain. Game developers do not run one. The rest of this page is for anyone building their own signer against the contracts.
 
 Nothing about the signer is Flaunch-specific. It is a key, a rule for deciding allowance, and an endpoint that hands out signatures. In Game Mode the rule is "how well did you shoot"; it could as easily be "did you answer the question", "were you on the allowlist", or "did you win the raffle".
 
@@ -12,18 +16,18 @@ Nothing about the signer is Flaunch-specific. It is a key, a rule for deciding a
 
 ```solidity
 bytes32 constant SPEND_AUTHORIZATION_TYPEHASH = keccak256(
-    'SpendAuthorization(address buyer,bytes32 poolId,uint256 deadline,uint256 maxSpendWei,uint256 nonce)'
+    'SpendAuthorization(address buyer,bytes32 poolId,uint256 deadline,uint256 spendCeilingWei)'
 );
 ```
 
-<table><thead><tr><th width="170">Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>buyer</code></td><td>The wallet this authorization belongs to. Binding it is what stops a front-runner copying the message out of public calldata.</td></tr><tr><td><code>poolId</code></td><td>The pool it is valid against. A signature for one pool is worthless on another.</td></tr><tr><td><code>deadline</code></td><td>Expiry timestamp. Keep it short — it is the window in which a leaked signature is useful.</td></tr><tr><td><code>maxSpendWei</code></td><td>The maximum native input the swap may consume. Measured against the swap's real ETH input.</td></tr><tr><td><code>nonce</code></td><td>Distinguishes two otherwise-identical authorizations, so a retried buy is not mistaken for a replay of the first.</td></tr></tbody></table>
+<table><thead><tr><th width="170">Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>buyer</code></td><td>The wallet this authorization belongs to. Binding it is what stops a front-runner copying the message out of public calldata.</td></tr><tr><td><code>poolId</code></td><td>The pool it is valid against. A signature for one pool is worthless on another.</td></tr><tr><td><code>deadline</code></td><td>Expiry timestamp. Game Mode sets it to the round's books close, the end of the settlement tail after the round.</td></tr><tr><td><code>spendCeilingWei</code></td><td>The most the buyer may have spent on this pool in total, including this swap. The calculator refuses any swap that would take the buyer's <code>walletSpentWei</code> past it. Game Mode signs <code>min(earned, walletCap)</code> at the moment of issue.</td></tr></tbody></table>
 
 The EIP-712 domain is:
 
 ```typescript
 const domain = {
   name: 'FlaunchSpendGate',
-  version: '1',
+  version: '2',
   chainId,             // the chain the pool is on
   verifyingContract,   // the SpendGatedSignerFeeCalculator
 };
@@ -34,7 +38,7 @@ const domain = {
 
 ```solidity
 function hashSpendAuthorization(
-    address _buyer, bytes32 _poolId, uint _deadline, uint _maxSpendWei, uint _nonce
+    address _buyer, bytes32 _poolId, uint _deadline, uint _spendCeilingWei
 ) public view returns (bytes32 digest_);
 ```
 
@@ -43,7 +47,7 @@ That function is public for exactly this reason. A domain mismatch is otherwise 
 
 ### Why the domain matters
 
-Earlier revisions signed an EIP-191 personal-sign over `keccak256(abi.encodePacked(...))`. That preimage committed to the five fields and nothing else — no chain id, no verifying contract.
+Earlier revisions signed an EIP-191 personal-sign over `keccak256(abi.encodePacked(...))`. That preimage committed to the signed fields and nothing else: no chain id, no verifying contract.
 
 Flaunch deploys deterministically across chains, so the same `poolId` genuinely recurs on more than one of them. One signing key shared between two environments therefore made an authorization issued for one valid on the other. The EIP-712 domain closes it by construction.
 
@@ -57,8 +61,7 @@ const SPEND_AUTHORIZATION_TYPES = {
     { name: 'buyer', type: 'address' },
     { name: 'poolId', type: 'bytes32' },
     { name: 'deadline', type: 'uint256' },
-    { name: 'maxSpendWei', type: 'uint256' },
-    { name: 'nonce', type: 'uint256' },
+    { name: 'spendCeilingWei', type: 'uint256' },
   ],
 } as const;
 
@@ -68,27 +71,19 @@ const signature = await account.signTypedData({
   domain,
   types: SPEND_AUTHORIZATION_TYPES,
   primaryType: 'SpendAuthorization',
-  message: { buyer, poolId, deadline, maxSpendWei, nonce },
+  message: { buyer, poolId, deadline, spendCeilingWei },
 });
 ```
 
-### Nonces
+### Why one signature can be reused
 
-The chain only needs each nonce to be **unique** — it feeds the digest so two otherwise-identical claims stay distinct. Replay protection is the contract's consumed-signature ledger, not the nonce, and ordering carries no meaning.
+The same signature is valid for repeated buys until its deadline, by design. The calculator keeps a running total, `walletSpentWei[poolId][buyer]`, and refuses any swap that would take it past the signed ceiling (`CeilingExceeded`). Two authorizations with the same ceiling therefore cannot add up to more than the ceiling, so there is no nonce, no consumed-signature ledger, and nothing to hold back while a wallet prompt is open. A declined or failed buy changes nothing; the next one starts from the same position.
 
-A time-major layout keeps nonces unique across process restarts with no persistence at all:
-
-```typescript
-let seq = 0n;
-function nextNonce(): bigint {
-  seq = (seq + 1n) & 0xfffffn;
-  return (BigInt(Date.now()) << 20n) | seq;
-}
-```
+Ceilings only rise as a player earns, so a later authorization never needs to take back an earlier one.
 
 ## Encoding the swap
 
-The authorization travels as Uniswap V4 `hookData`, behind the referrer field Flaunch already puts there:
+The authorization travels as Uniswap V4 `hookData`, behind the referrer field Flaunch already puts there. Game Mode requires that referrer to be the zero address.
 
 ```solidity
 abi.encode(
@@ -97,8 +92,7 @@ abi.encode(
         address buyer;
         bytes32 poolId;
         uint256 deadline;
-        uint256 maxSpendWei;
-        uint256 nonce;
+        uint256 spendCeilingWei;
         bytes   signature;
     }
 )
@@ -114,13 +108,12 @@ const hookData = encodeAbiParameters(
         { name: 'buyer', type: 'address' },
         { name: 'poolId', type: 'bytes32' },
         { name: 'deadline', type: 'uint256' },
-        { name: 'maxSpendWei', type: 'uint256' },
-        { name: 'nonce', type: 'uint256' },
+        { name: 'spendCeilingWei', type: 'uint256' },
         { name: 'signature', type: 'bytes' },
       ],
     },
   ],
-  [referrer, { buyer, poolId, deadline, maxSpendWei, nonce, signature }],
+  [zeroAddress, { buyer, poolId, deadline, spendCeilingWei, signature }],
 );
 ```
 
@@ -137,12 +130,10 @@ Zeroing the per-pool signer is the gate's off-switch: enforcement stops and the 
 
 ## Running one in production
 
-**Clamp what you issue to what the chain will accept.** Read `walletSpentWei[poolId][buyer]` and cap each authorization at `walletCapWei − walletSpentWei`. Otherwise you will hand out allowance the gate refuses with `WalletCapExceeded` — users earning spend they cannot use, which reads to them as a broken product rather than a cap working as designed.
+**Clamp the ceiling to what the chain will accept.** Sign `min(earned, walletCapWei)`, never more. A ceiling above the pool's `walletCapWei` hands out allowance the gate refuses with `WalletCapExceeded`, which reads to users as a broken product rather than a cap working as designed. What a player can still spend is `ceiling - walletSpentWei[poolId][buyer]`.
 
-**Keep deadlines short.** The signature is public calldata the moment it is submitted. The buyer binding means a copy is useless to anyone else, but a short deadline bounds the damage if your own key or your own issuance logic misbehaves.
+**The deadline can be long.** Ceilings only rise, so a long-lived signature is never more generous than the next one you would issue. Game Mode uses the round's books close. The answer to a leaked signer key is rotation (`setTrustedPoolKeySigner`), not a short lifetime.
 
-**Persist issuance.** If your server forgets which authorizations it has already handed out, a restart re-offers the same allowance — and now two live signatures exist against one balance. The contract's replay ledger stops the *same* signature being used twice; it does nothing about two distinct signatures you never meant to issue.
+**Read spend from the chain.** The calculator's `walletSpentWei[poolId][buyer]` is the whole story of what a wallet has spent. Settle against it at a confirmed block rather than inferring spend from browser messages or individual swap events. The calculator also emits `SpendRecorded(poolId, buyer, ethSpent)` when it records spend, if you want the stream as well.
 
-**One key, one chain.** The domain binds `chainId` and `verifyingContract`, so a key used on two deployments is safe in a way it was not before. Sharing state between them is still not: pool ids, addresses and spend records mean nothing outside their own chain.
-
-**Reconcile.** The calculator emits `SpendRecorded(poolId, buyer, ethSpent)` on every enforced swap, including sells, where the amount is zero. Comparing that stream against what you issued is the only way to notice a divergence between your ledger and the chain's.
+**One key, one chain.** The domain binds `chainId` and `verifyingContract`, so a signature for one deployment is meaningless on another. Sharing state between chains is still a mistake: pool ids, addresses and spend records mean nothing outside their own chain.
