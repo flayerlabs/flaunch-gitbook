@@ -6,7 +6,7 @@ icon: calendar-clock
 
 Game Mode launches on Flaunch share one calendar, so two rounds of the same game do not fight for the same players.
 
-When a creator schedules a Game Mode launch, the picker shows start times in five-minute steps for the next 24 hours. Some are greyed out as unavailable. Whether a time is open depends on the game they picked, not on a fixed grid: each game decides how long a launch occupies the calendar and how many of its rounds may overlap.
+Launches start on a fixed slot grid set by Flaunch (every 15 minutes by default), the same slots shown on the launch rail and on the create page. When a creator schedules a Game Mode launch, the picker offers those slot times for the next 24 hours. Some are greyed out as unavailable: a slot can only take so many launches across all games, and each game decides how long a launch occupies the calendar and how many of its rounds may overlap.
 
 ### How a launch occupies the calendar
 
