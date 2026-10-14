@@ -6,6 +6,8 @@ icon: fishing-rod
 
 Flaunch's `PositionManager` is a Uniswap V4 hook. On every swap it calls the protocol's fee calculator, which — on a spend-gated pool — is `SpendGatedSignerFeeCalculator`, reached through the [dispatcher](README.md).
 
+This page describes version 2 of the calculator (cumulative spend ceilings), which Game Mode SDK 0.7.0 and later sign against. Version 1, which checked a per-purchase `maxSpendWei` and burned each signature, still serves the pools launched on it.
+
 Two entry points matter:
 
 * `determineSwapFee` runs in `beforeSwap` and, for this calculator, does nothing. The gate never alters the fee; it returns the base fee unchanged.
@@ -13,7 +15,7 @@ Two entry points matter:
 
 Enforcement lives in `afterSwap` because that is the only place the swap's **real** native input is knowable. A gate that checked an intended amount beforehand would be checking a promise.
 
-## What `trackSwap` checks, in order
+## What `trackSwap` checks
 
 ```solidity
 function trackSwap(
@@ -25,23 +27,27 @@ function trackSwap(
 ) public nonReentrant;
 ```
 
+First, whether the pool is gated at all:
+
 1. **Caller holds `POSITION_MANAGER`.** In a dispatcher deployment that role belongs to the dispatcher. Anyone else reverts `CallerNotPositionManager`.
-2. **Gate enabled?** If not, return immediately — nothing to enforce.
+2. **Gate enabled?** If not, return immediately. Nothing to enforce.
 3. **Past `endsAt`?** Return. The gate has expired on its own and the pool is now ordinary.
 4. **Per-pool signer zeroed?** Return. This is the settler's early off-switch.
-5. **Decode and pre-check the authorization** — `deadline` not passed, `poolId` matches.
-6. **Bind the buyer to the submitter.**
-7. **Reject a consumed signature.**
-8. **Recover the signer** and check it against the per-pool signer, or the protocol-wide trusted set.
-9. **Refuse exact output.**
-10. **Measure native spend** and enforce `maxSpendWei`.
-11. **Accumulate against the wallet cap**, emit `SpendRecorded`, burn the signature.
 
-Steps 2–4 are the three ways a gated pool stops being gated, and none of them need a transaction from the game server.
+Steps 2 to 4 are the three ways a gated pool stops being gated, and none of them need a transaction from the game's gate.
+
+Then, for a swap on a live gate:
+
+* **Sells are refused** with `SellsClosedUntilGateEnds(endsAt)`. Trading opens at `endsAt`, or earlier if the settler opens it.
+* **The authorization is decoded and pre-checked:** `deadline` not passed, `poolId` matches.
+* **The buyer is bound to the submitter.**
+* **The signer is recovered** and checked against the per-pool signer, or the protocol-wide trusted set.
+* **Exact output is refused.**
+* **Spend is measured**, added to the buyer's `walletSpentWei`, and checked against the signed `spendCeilingWei` and the pool's `walletCapWei`.
 
 ## Buyer binding
 
-The signed message is public calldata. Without a binding, a front-runner could copy a victim's authorization out of the mempool, receive the tokens, consume the victim's allowance, and burn the signature.
+The signed message is public calldata. Without a binding, a front-runner could copy a victim's authorization out of the mempool, receive the tokens, and spend against the victim's ceiling.
 
 ```solidity
 if (signedMessage.buyer != tx.origin) {
@@ -79,34 +85,36 @@ The primary measure is the swap's `BalanceDelta` — a negative native-side amou
 
 The delta `afterSwap` receives is already net of any `beforeSwapDelta`, and Flaunch's `InternalSwapPool` fills buys out of accrued memecoin inventory through exactly that mechanism. Native taken for such a fill never appears in the delta, and the `amountSpecified` backstop only covers exact input.
 
-An exact-output buy that inventory could cover outright would therefore measure as **zero spend**. Zero passes any `maxSpendWei` and never reaches `walletSpentWei`, so neither cap could see it — and the buy would be repeatable with every fresh authorization.
+An exact-output buy that inventory could cover outright would therefore measure as **zero spend**. Zero never moves `walletSpentWei`, so neither the signed ceiling nor the wallet cap could see it, and the buy would be repeatable for as long as the authorization lasted.
 
 Refusing exact output is the safe direction. The gate exists to bound native input, and every buy path a gated round actually uses is exact-input native.
 
 ## The revert matrix
 
-<table><thead><tr><th width="270">Revert</th><th>Cause</th></tr></thead><tbody><tr><td><code>TokenNotFlaunched</code></td><td>A buy before the window opens. Raised by the <code>PositionManager</code> from the launch's <code>flaunchAt</code>, so it binds the game server exactly as hard as it binds a player.</td></tr><tr><td><code>CallerNotPositionManager</code></td><td>Something other than the PositionManager (or the dispatcher acting for it) tried to report a swap.</td></tr><tr><td><code>DeadlineExpired</code></td><td>The authorization is past its <code>deadline</code>.</td></tr><tr><td><code>InvalidPoolKey</code></td><td>The authorization was signed for a different pool. On the retired first-generation Robinhood calculator, also what a non-ETH-paired pool hit; the current stack measures spend in the pool's paired token.</td></tr><tr><td><code>BuyerNotSubmitter</code></td><td>Someone other than the signed buyer submitted it, via an unapproved router or a mismatched <code>msgSender()</code>.</td></tr><tr><td><code>SignatureAlreadyUsed</code></td><td>The digest has been consumed.</td></tr><tr><td><code>InvalidSigner</code></td><td>Recovered signer is not the pool's signer, nor in the trusted set. Very often a domain mismatch rather than a wrong key — see <a href="signer.md">the signer page</a>.</td></tr><tr><td><code>ExactOutputNotSupported</code></td><td><code>amountSpecified &#x3E; 0</code>. Unmeasurable, so refused.</td></tr><tr><td><code>SpendCapExceeded</code></td><td>The swap's real native input exceeded the signed <code>maxSpendWei</code>.</td></tr><tr><td><code>WalletCapExceeded</code></td><td>Cumulative spend for this wallet on this pool passed <code>walletCapWei</code>.</td></tr><tr><td><code>UnrecognisedGateParams</code></td><td>Launch params were neither the tagged 192-byte form nor the 64-byte short form.</td></tr><tr><td><code>SettlerRequired</code></td><td>An enforcing gate named a signer but no settler — nobody could ever lift it.</td></tr><tr><td><code>GateExpiryRequired</code> / <code>GateExpiryTooDistant</code></td><td>An enforcing gate had no <code>endsAt</code>, or one beyond <code>MAX_GATE_DURATION</code>.</td></tr><tr><td><code>GateAlreadyConfigured</code></td><td>A second attempt to write gate params for a pool.</td></tr></tbody></table>
+<table><thead><tr><th width="270">Revert</th><th>Cause</th></tr></thead><tbody><tr><td><code>TokenNotFlaunched</code></td><td>A buy before the window opens. Raised by the <code>PositionManager</code> from the launch's <code>flaunchAt</code>, so it binds the gate exactly as hard as it binds a player.</td></tr><tr><td><code>CallerNotPositionManager</code></td><td>Something other than the PositionManager (or the dispatcher acting for it) tried to report a swap.</td></tr><tr><td><code>DeadlineExpired</code></td><td>The authorization is past its <code>deadline</code>.</td></tr><tr><td><code>InvalidPoolKey</code></td><td>The authorization was signed for a different pool. On the retired first-generation Robinhood calculator, also what a non-ETH-paired pool hit; the current stack measures spend in the pool's paired token.</td></tr><tr><td><code>BuyerNotSubmitter</code></td><td>Someone other than the signed buyer submitted it, via an unapproved router or a mismatched <code>msgSender()</code>.</td></tr><tr><td><code>InvalidSigner</code></td><td>Recovered signer is not the pool's signer, nor in the trusted set. Very often a domain mismatch rather than a wrong key; see <a href="signer.md">the signer page</a>.</td></tr><tr><td><code>ExactOutputNotSupported</code></td><td><code>amountSpecified &#x3E; 0</code>. Unmeasurable, so refused.</td></tr><tr><td><code>SellsClosedUntilGateEnds</code></td><td>A sell while the gate is live. Trading opens at <code>endsAt</code>, or when the settler opens it.</td></tr><tr><td><code>CeilingExceeded</code></td><td>The swap would take the buyer's cumulative <code>walletSpentWei</code> on this pool past the signed <code>spendCeilingWei</code>.</td></tr><tr><td><code>WalletCapExceeded</code></td><td>Cumulative spend for this wallet on this pool passed <code>walletCapWei</code>.</td></tr><tr><td><code>UnrecognisedGateParams</code></td><td>Launch params were neither the tagged 192-byte form nor the 64-byte short form.</td></tr><tr><td><code>SettlerRequired</code></td><td>An enforcing gate named a signer but no settler, so nobody could ever lift it.</td></tr><tr><td><code>GateExpiryRequired</code> / <code>GateExpiryTooDistant</code></td><td>An enforcing gate had no <code>endsAt</code>, or one beyond <code>MAX_GATE_DURATION</code>.</td></tr><tr><td><code>GateAlreadyConfigured</code></td><td>A second attempt to write gate params for a pool.</td></tr></tbody></table>
 
 ## Recording spend
 
-```solidity
-uint walletSpent = walletSpentWei[poolId][signedMessage.buyer] + ethSpent;
-if (settings.walletCapWei != 0 && walletSpent > settings.walletCapWei) {
-    revert WalletCapExceeded(walletSpent, settings.walletCapWei);
-}
+A simplified view of the last step:
 
-walletSpentWei[poolId][signedMessage.buyer] = walletSpent;
-emit SpendRecorded(poolId, signedMessage.buyer, ethSpent);
-_usedSignatures[messageHash] = true;
+```solidity
+uint walletSpent = walletSpentWei[poolId][buyer] + spent;
+if (walletSpent > signedMessage.spendCeilingWei) revert CeilingExceeded(walletSpent, signedMessage.spendCeilingWei);
+if (settings.walletCapWei != 0 && walletSpent > settings.walletCapWei) revert WalletCapExceeded(walletSpent, settings.walletCapWei);
+
+walletSpentWei[poolId][buyer] = walletSpent;
+emit SpendRecorded(poolId, buyer, spent);
 ```
 
-The write and the event are unconditional, **including when the amount is zero**. A zero is a sell — the swapper receives native — which legitimately consumes an authorization without spending anything. Emitting it anyway keeps the on-chain record complete for off-chain reconciliation; guarding on a non-zero amount meant a consumed signature could leave no trace at all.
+Nothing is burned. The running total is what bounds a wallet, not the signature, so the same authorization can be used for several buys until its deadline and the total still cannot pass the ceiling. A signer that wants a player to spend more issues a new authorization with a higher ceiling. The launch-level `walletCapWei` stays the backstop beneath every ceiling.
+
+Because sells are refused while the gate is live, every swap that reaches this step is a buy.
 
 ## Two endings
 
 A gated pool becomes an ordinary pool in one of two ways, and the difference matters:
 
 * **The settler zeroes the signer.** Immediate, and requires a transaction from a live key. This is how a round opens trading early.
-* **`endsAt` passes.** Automatic, on chain, requiring nothing from anyone. This is the guarantee that survives the game server vanishing mid-round.
+* **`endsAt` passes.** Automatic, on chain, requiring nothing from anyone. This is the guarantee that survives the gate vanishing mid-round.
 
 Design for the second and treat the first as an optimisation. A gate whose only exit needs the gatekeeper to come back is not a gate.

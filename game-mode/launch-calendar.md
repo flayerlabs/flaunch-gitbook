@@ -16,7 +16,7 @@ A launch takes up the calendar from its start until its round ends, plus a short
 occupied = [ start, start + round length + grace )
 ```
 
-* **Round length** comes from your gate's `/config` (`roundDurationMs`), frozen when your game was approved on that network. A 90-second arcade round occupies a minute and a half; a week-long strategy game occupies a week.
+* **Round length** comes from `roundDurationMs` in your game's `gamemode.json`, frozen when that build was approved on that network. A 90-second arcade round occupies a minute and a half; a week-long strategy game occupies a week.
 * **Grace** is set by Flaunch per game (60 seconds by default). It keeps the next launch from starting the instant your round settles.
 * **Rounds in parallel** is also set per game (1 by default). A three-minute game usually allows one round at a time, so the next start is at least three minutes plus grace later. A seven-day game might allow twenty overlapping rounds, because nobody expects a week-long round to have the field to itself.
 
@@ -33,7 +33,7 @@ Launches that do not pick a game share a per-network "default gate" calendar wit
 
 ### Launches made elsewhere
 
-The calendar governs launches made through flaunch.gg. Other launchers are free to run their own queues; a round they start does not block a time here, and a Flaunch reservation does not block them. If a Flaunch launch's confirmation is lost in transit, the backend still recognises the coin when the game's gate reports the round and keeps the time occupied.
+The calendar governs launches made through flaunch.gg. Other launchers are free to run their own queues; a round they start does not block a time here, and a Flaunch reservation does not block them. If a Flaunch launch's confirmation is lost in transit, the backend still recognizes the coin when the gate reports the round and keeps the time occupied.
 
 ### Scope and the off switch
 
@@ -41,4 +41,4 @@ Flaunch can limit enforcement to mainnet chains, to testnets, or run it everywhe
 
 ### For game developers
 
-You do not configure any of this in your game or gate. Your round length is read from `/config`, and Flaunch sets grace and parallel rounds when your game is reviewed. If your game is designed for long, overlapping rounds, say so in your submission so the limit is set to match. If you change `roundDurationMs` in a new build, the calendar picks up the new length once that revision is approved; launches already on the calendar keep the window they were given.
+You do not configure any of this in your game. Your round length is read from `roundDurationMs` in `gamemode.json` (a game that still runs its own gate reports it from its `/config`), and Flaunch sets grace and parallel rounds when your game is reviewed. If your game is designed for long, overlapping rounds, say so in your submission so the limit is set to match. If you change `roundDurationMs` in a new build, the calendar picks up the new length once that revision is approved; launches already on the calendar keep the window they were given.

@@ -6,65 +6,79 @@ icon: gear-code
 
 Build a game that other people's coin launches happen inside.
 
-You are not launching a token, and your game does not get a coin. Coins are launched by creators on Flaunch, and a creator who launches in Game Mode picks a game to be the entrance: while the launch window is open, playing that game is the only way to earn the right to buy. Your game is the launch's distribution mechanism — a fairer and more fun one than an open pool, where the first block goes to whoever runs the fastest bot.
+You are not launching a token, and your game does not get a coin. Coins are launched by creators on Flaunch, and a creator who launches in Game Mode picks a game to be the entrance: while the launch window is open, playing that game is the only way to earn the right to buy. Your game is the launch's distribution mechanism. It is fairer and more fun than an open pool, where the first block goes to whoever runs the fastest bot.
 
-Players play, the game awards them points, and points become an allowance they can spend on the coin during the launch window. You write the game. Flaunch handles the wallet, the chain and the money.
+Players play, the game awards them points, and points become an allowance they can spend on the coin during the launch window. You write the game. Flaunch handles the wallet, the chain, the money and the server that keeps score.
 
-### The two pieces
+{% hint style="info" %}
+This page describes SDK 0.9.0. If you built a game on 0.8.0 or earlier, read [What's new in 0.9.0](whats-new-0-9-0.md) first.
+{% endhint %}
 
-A Game Mode game has two parts, and only one of them is yours to worry about at the start:
+## How shipping works
 
-* **The game** — a browser game, built to static files, zipped and uploaded at [flaunch.gg/game-mode/create](https://flaunch.gg/game-mode/create). Hosting is included — you upload the ZIP and we serve it, the way itch.io does. For the [Game Mode Hackathon](https://flaunch.gg/game-mode/hackathon), this is the whole submission.
-* **The gate** — the server side of your game: it runs your game's rules, keeps score, and signs each player's spending allowance. This is the part that is unique to Game Mode, and **you do not need it to submit a game**: a game built on the SDK's `createMockRoom` runs a complete round in the browser with no server at all. The gate enters the picture when a real launch runs through your game — see [Running a server](#running-a-server).
+From SDK 0.9.0, Flaunch runs one Game Mode gate per chain, and every game on that chain plays through it. You ship a static build and a small manifest. You do not run a gate, hold a signing key, run a database, declare origins or set up Turnstile.
 
-If you have deployed to itch.io before: the ZIP upload is that. Everything about signers, gates and servers further down this page is the second piece, and it can wait.
+1. **Build** your game with the SDK and play it locally against a mock room.
+2. **Run `pnpm build`.** It builds the game into `dist/` and writes `gamemode.json` (and, for a rules game, `gamemode.rules.js`) beside `index.html`.
+3. **Zip `dist/`** and **upload** it at [flaunch.gg/game-mode/dashboard](https://flaunch.gg/game-mode/dashboard).
+4. **Test it on Base Sepolia.** An upload is playable there straight away.
+5. **Submit for mainnet.** Mainnet networks open after review.
 
-### What you need
+Your scoring runs in one of two places, and `gamemode.json` says which:
+
+* **Rules games** (`"tier": "rules"`). Your rules module runs inside Flaunch's gate, in a sandbox. The browser sends actions, and the gate is the only thing that credits points. Most games are this kind.
+* **Server games** (`"tier": "server"`). Your own server owns gameplay, for example real-time multiplayer with its own netcode. It keeps running where it runs today and posts raw scores to Flaunch's gate with an award token issued by the dashboard. See [Games with their own server](#games-with-their-own-server).
+
+## What you need
 
 * Node 20 or later
 * pnpm
-* Docker, only if you want to run a server locally
 * a code editor, or an AI coding agent
 
 You do not need to know anything about blockchains. Your game never sees a wallet, a key or a transaction.
 
-### Install
+## Make a game
+
+1. Create a project you can play straight away:
+
+   ```bash
+   pnpm dlx @flayerlabs/gamemode-cli new my-game
+   cd my-game
+   pnpm install
+   ```
+2. Open `src/game/rules.ts` and write your game. Put the round's config and length in `src/game/config.ts`.
+3. Run `pnpm dev` to play it in a browser. No server, no wallet, no chain.
+4. Run `pnpm test` to check it still works.
+5. Run `pnpm build` when you are ready to upload. See [Ship it](#ship-it).
+
+The scaffold gives you a complete working game with passing tests. Change it rather than starting from an empty file.
+
+To add the SDK to an existing project instead:
 
 ```bash
 npm install @flayerlabs/gamemode-client @flayerlabs/gamemode-spec
 npm install --save-dev @flayerlabs/gamemode-cli
 ```
 
-Add `@flayerlabs/gamemode-gate` as well if you are running your own server.
+## Already have a game? Port it
 
-### Make a game in 4 steps
-
-1. Run `npx gamemode new my-game` to create a project you can play straight away.
-2. Open `src/game/rules.ts` and write your game.
-3. Run `pnpm dev` to play it in a browser. No server, no wallet, no chain.
-4. Run `pnpm test` to check it still works.
-
-The scaffold gives you a complete working game with passing tests. Change it rather than starting from an empty file.
-
-### Already have a game? Port it
-
-You do not have to start from the scaffold. If a browser game already exists — yours, or any permissively-licensed open-source game — the `port-game-mode` AI skill turns porting it into a checklist your coding agent can run:
+You do not have to start from the scaffold. If a browser game already exists, yours or any permissively licensed open-source game, the `port-game-mode` AI skill turns porting it into a checklist your coding agent can run:
 
 ```bash
 npx skills add https://github.com/flayerlabs/flaunch-skills --skill port-game-mode
 ```
 
-A port is the one case with a licence requirement: the upstream game must carry a permissive open-source licence, because that is what gives you the right to redistribute a modified version of someone else's work. Porting your own game has no such requirement — see [Your game stays yours](#your-game-stays-yours).
+A port is the one case with a license requirement: the upstream game must carry a permissive open-source license, because that is what gives you the right to redistribute a modified version of someone else's work. Porting your own game has no such requirement. See [Your game stays yours](#your-game-stays-yours).
 
-The skill carries the whole route: licensing and provenance gates, a scoring economy bounded by the game's own rules, the room wiring for coin metadata, the live chart and buying, the launch framing players expect (tutorial, practice lobby, round timer with an end-of-round summary, leaderboard, the coin's art inside the game world), a headless QA harness that proves the loop, and the ZIP you upload. It is built on the same SDK surfaces documented on this page — nothing about a ported game is special once it ships.
+The skill carries the whole route: licensing and provenance checks, a scoring economy bounded by the game's own rules, the room wiring for coin metadata, the live chart and buying, the launch framing players expect (tutorial, practice lobby, round timer with an end-of-round summary, leaderboard, the coin's art inside the game world), a headless QA harness that proves the loop, and the ZIP you upload. It is built on the same SDK surfaces documented on this page, so nothing about a ported game is special once it ships.
 
 {% hint style="info" %}
 Building from scratch instead? The `build-game-mode` skill ships inside the `@flayerlabs/gamemode-cli` package and covers rules authoring, testing and the trust boundary in depth.
 {% endhint %}
 
-### How a game is structured
+## How a game is structured
 
-Your game is one file of pure functions called a rules module. It runs on the server, which is what stops a player editing their score in the browser.
+Your game's scoring is one file of pure functions called a rules module. It runs inside Flaunch's gate, which is what stops a player editing their score in the browser.
 
 ```ts
 import { defineGame } from '@flayerlabs/gamemode-spec'
@@ -83,11 +97,11 @@ export const rules = defineGame<Config, State, Event, Action, PublicView, Player
 })
 ```
 
-`defineGame` exists for type inference — it does nothing at runtime, and saves you naming six type arguments by hand everywhere the module is used.
+`defineGame` exists for type inference. It does nothing at runtime, and saves you naming six type arguments by hand everywhere the module is used.
 
-#### Deciding and evolving
+### Deciding and evolving
 
-`decide` answers "what should happen?" and `evolve` answers "what does the state look like afterwards?". Keeping them apart is what lets the server replay a round exactly, and lets you test a game without running a server.
+`decide` answers "what should happen?" and `evolve` answers "what does the state look like afterwards?". Keeping them apart is what lets the gate replay a round exactly, and lets you test a game without running a server.
 
 `decide` returns events, and optionally awards:
 
@@ -105,7 +119,7 @@ decide(state, command) {
 
 You do not have to award points at the moment a player acts. A quiz can accept answers during a question and pay everyone at the reveal. Both use the same shape.
 
-#### Rules must be pure
+### Rules must be pure
 
 Your rules module must not use:
 
@@ -114,15 +128,15 @@ Your rules module must not use:
 * network calls, files, or databases
 * variables that change between calls
 
-Time arrives on every command as `command.at`. Randomness comes from the `seed` given to `initRound`. Run `npx gamemode check` and it will tell you if you have broken this.
+Time arrives on every command as `command.at`. Randomness comes from the `seed` given to `initRound`. Run `pnpm check` (or `npx gamemode check`) and it will tell you if you have broken this. `gamemode bundle` runs the same check on your rules file and on every local file it imports, and refuses to build an impure module.
 
-This matters because the server replays rounds. A rules module that reads the clock gives a different answer on replay, and a game that disagrees with itself cannot pay anyone reliably.
+This matters for two reasons. The gate replays rounds, and a rules module that reads the clock gives a different answer on replay. And the gate runs one copy of your module for every round of your game at once, so state kept between calls would leak from one round into another.
 
-#### Keeping answers secret
+### Keeping answers secret
 
-`publicView` is sent to everyone, including spectators. If a value must stay hidden, leave it out of the type. Do not return it and hide it in the interface — a quiz that puts the correct answer in `publicView` has already leaked it, whatever the screen shows.
+`publicView` is sent to everyone, including spectators. If a value must stay hidden, leave it out of the type. Do not return it and hide it in the interface: a quiz that puts the correct answer in `publicView` has already leaked it, whatever the screen shows.
 
-### What your game talks to
+## What your game talks to
 
 Your browser code talks to one object, the room.
 
@@ -136,13 +150,15 @@ await room.send({ kind: 'answer', choice: 'a' })
 room.now()
 ```
 
+On Flaunch, the scaffold swaps the mock for the real room: `connectHost()` reads the launch context the coin page hands the game, and `joinRoom()` joins the round on the gate it names. Your render code does not change.
+
 The room also carries everything the platform provides:
 
 | Capability        | What it gives you                                                |
 | ----------------- | ---------------------------------------------------------------- |
 | `room.launch`     | coin, pool and the round's timings                               |
 | `room.connection` | `connecting`, `connected`, `reconnecting`, `superseded`, `ended` |
-| `room.economy`    | what a player earned, holds, and buy progress                    |
+| `room.economy`    | what a player earned, has spent, and has available               |
 | `room.market`     | the coin's price history, trades and current market cap          |
 | `room.identity`   | names and avatars for wallet addresses                           |
 | `room.presence`   | how many players are connected                                   |
@@ -150,21 +166,22 @@ The room also carries everything the platform provides:
 
 Every `subscribe` gives you the current value immediately, then updates.
 
-Use `room.now()` for anything a player sees counting down. It corrects for a wrong clock on their device. `Date.now()` in a game is a bug: two players in different timezones will see different games.
+Use `room.now()` for anything a player sees counting down. It corrects for a wrong clock on their device. `Date.now()` in a game is a bug: two players with different device clocks will see different games.
 
-#### Buying
+### Buying
 
 ```ts
-const result = await room.economy.buy(maxSpendWei)
+const { available } = room.economy.current()
+const result = await room.economy.buy(available)
 ```
 
-Your game asks. The page around it builds the transaction and asks the player to approve it. Your game never constructs a transaction and cannot, which is why a bug in your game cannot lose anyone money.
+Your game asks. The page around it builds the transaction and asks the player to approve it. Your game never constructs a transaction and cannot, which is why a bug in your game cannot lose anyone money. A player who closes the wallet prompt loses nothing and can try again at once.
 
-#### Where market data comes from
+### Where market data comes from
 
-`room.market` carries the coin's price history and its current market cap in USD, and the source is the **coin page**, not your gate. Your gate knows the round's ledger — who earned what, who holds what — and nothing at all about the coin's price. So the page pushes its own live feed into the game: the same feed drawing the chart beside you, which is why the two never disagree on a number.
+`room.market` carries the coin's price history and its current market cap in USD, and the source is the **coin page**, not the gate. The gate knows the round's ledger (who earned what, who spent what) and nothing at all about the coin's price. So the page pushes its own live feed into the game: the same feed drawing the chart beside you, which is why the two never disagree on a number.
 
-For a game built on rules inside the gate, `joinRoom` wires this for you. For a game with its own server, `joinEconomy` needs telling once — miss it and `market.status` stays `unavailable` for the whole round:
+For a rules game, `joinRoom` wires this for you. For a server game, `joinEconomy` needs telling once. Miss it and `market.status` stays `unavailable` for the whole round:
 
 ```ts
 const embedded = await connectHost()
@@ -179,7 +196,7 @@ const gameMode = await joinEconomy({
 
 `market.status` is the cue for what you are looking at: `unavailable` means the page has no feed and the honest thing to draw is an empty chart, not a spinner that never resolves.
 
-#### Building a chart with no chain
+### Building a chart with no chain
 
 On your laptop there is no page and no chain, so the chart would be empty. Use the replay fixture instead:
 
@@ -191,11 +208,11 @@ const room = createMockRoom(rules, { config, platform: { market: replayMarket(BU
 
 `BUSY_LAUNCH` has a price spike in it on purpose. A chart that looks right on flat data and wrong on a spike is the usual result of building against nothing.
 
-One thing the fixture will not catch: show `marketCapUsd` as it arrives. It is already the coin's current market cap, so scaling it by the round's price move counts that move twice — and puts a number in your game that contradicts the one on the page.
+One thing the fixture will not catch: show `marketCapUsd` as it arrives. It is already the coin's current market cap, so scaling it by the round's price move counts that move twice, and puts a number in your game that contradicts the one on the page.
 
-### Testing
+## Testing
 
-Test the rules module directly. No server, no browser, no mocks. The spec package ships a round driver that runs your rules the way the server does — send commands, move time forward, read the result:
+Test the rules module directly. No server, no browser, no mocks. The spec package ships a round driver that runs your rules the way the gate does: send commands, move time forward, read the result.
 
 ```ts
 import { Round } from '@flayerlabs/gamemode-spec/round'
@@ -208,120 +225,157 @@ expect(round.pointsFor('0xabc')).toBe(100)
 expect(round.playerView('0xabc').wasRight).toBe(true)
 ```
 
-Because rules are pure, the same inputs always give the same answer. If a test passes here, it passes on the server. The scaffold's `test/rules.test.ts` starts you off, including a check that secrets stay out of `publicView`.
+Because rules are pure, the same inputs always give the same answer. If a test passes here, it passes on the gate. The scaffold's `test/rules.test.ts` starts you off, including a check that secrets stay out of `publicView`.
 
-### Running a server
+## Ship it
 
-This is the second of [the two pieces](#the-two-pieces), and it is optional until a real launch runs through your game — a hackathon submission does not need it.
-
-When a launch does go live, the game needs a gate: a small server that runs your rules, keeps score and signs the allowance a player spends. One gate serves one game, and it is your game's only server — the same process that runs the simulation is the one that signs.
-
-To try one on your laptop:
-
-```ts
-import { createDemoGate } from '@flayerlabs/gamemode-gate'
-
-const { app } = await createDemoGate({ game: rules, config })
-await app.listen({ port: 4000 })
-```
-
-This is a real gate with a real database and real signatures. Only the chain is faked: purchases are recorded rather than submitted. It needs Postgres, and one Docker command matches its default connection string:
+### Build
 
 ```bash
-docker run -d --rm --name gamemode-pg -e POSTGRES_PASSWORD=gamemode \
-  -e POSTGRES_DB=gamemode -p 55439:5432 postgres:16-alpine
+pnpm build
 ```
 
-(Or point `DATABASE_URL` at a Postgres you already have.)
+In a scaffolded project this runs `vite build && gamemode bundle`. The game is built into `dist/`, and `gamemode bundle` adds two files beside `index.html`:
 
-For a live game, `startGate()` is the paved road: your rules module and an environment in, a verified, announced, running gate out.
+* `gamemode.rules.js`: your rules module bundled as a classic script (an IIFE) that the gate runs in a sandbox. It is at most 2 MiB, so keep assets and UI code out of it.
+* `gamemode.json`: the manifest. `gamemode bundle` writes it from `src/game/config.ts` (which exports `config` and `roundDurationMs`) and from your module's `rewardBounds(config)`.
 
-```ts
-import { startGate } from '@flayerlabs/gamemode-gate'
-import { rules, config } from './src/game/rules.js'
+If you do not use the scaffold, run `npx gamemode bundle` after your own build. It reads `src/game/rules.ts` and `src/game/config.ts` and writes to `dist/`.
 
-const { port, signer } = await startGate(rules, config)
+### `gamemode.json`
+
+The manifest sits at the root of the ZIP, next to `index.html`. Flaunch validates it on upload and shows any refusal to you word for word.
+
+A rules game:
+
+```json
+{
+  "tier": "rules",
+  "maxPointsPerPlayer": 1000,
+  "roundDurationMs": 180000,
+  "rules": { "module": "gamemode.rules.js", "config": { "targets": 12 }, "maxActionsPerMinute": 600 }
+}
 ```
 
-It reads its configuration from the environment (`CHAIN_ID`, `RPC_URL`, `SIGNER_PRIVATE_KEY`, `DATABASE_URL`, `SESSION_SECRET`, `SIGN_IN_DOMAIN`, `GATE_ORIGIN`, `ALLOWED_ORIGINS` — the full contract is in the [`@flayerlabs/gamemode-gate` README](https://www.npmjs.com/package/@flayerlabs/gamemode-gate) and the DEPLOY.md that ships in the package), refuses loudly on anything misconfigured, runs its own migrations, and serves the `/config` endpoint the launch form reads — a gate that boots is a gate a launch can actually be written against. The `signer` it prints is the address launches will trust; generate its key fresh and never share it, least of all with us.
+A server game:
 
-One rule that catches people: `ALLOWED_ORIGINS` must name both browser callers — your hosted game's origin (`https://*.games.moongate.com`; the hostname changes on every upload, so use the wildcard) and the flaunch page origins, because the coin page itself calls your gate to adopt the round. Leave the page out and every launched coin fails on a CORS error.
+```json
+{
+  "tier": "server",
+  "maxPointsPerPlayer": 1000,
+  "roundDurationMs": 180000,
+  "server": { "origins": ["https://coop.quiz.example"] }
+}
+```
 
-Pairings need nothing from you. A coin can be paired with ETH or with any token the chain's `PairedTokenRegistry` has approved (on Robinhood chain that includes tokenised stocks; on Base, LAPTOP), and from SDK 0.5.6 the gate prices whichever one a launch arrives with by itself: it reads the registry from its `PositionManager`, quotes the token through the calculator it was registered with, and sizes the round from that. A pairing approved tomorrow works with the gate you deployed today. `SPEND_TOKENS` still exists for pinning a price, but there is no list to maintain, and a launch on a token the registry does not approve is refused, as the launch itself would have been.
+<table><thead><tr><th width="250">Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>tier</code></td><td>Required. <code>"rules"</code> or <code>"server"</code>.</td></tr><tr><td><code>maxPointsPerPlayer</code></td><td>Required. A positive whole number: the most points one player can earn in a round. A rules module's own <code>rewardBounds</code> can lower the round's ceiling but never raise it past this value.</td></tr><tr><td><code>roundDurationMs</code></td><td>Required. How long a launch's round lasts, in milliseconds. At least 60000 (one minute) and at most seven days.</td></tr><tr><td><code>rules.module</code></td><td>Rules games only. The name of the rules file at the ZIP root, at most 2 MiB. It must be a classic script that assigns your <code>GameModule</code> to <code>globalThis.gamemodeRules</code>, and must pass <code>gamemode check</code>. An ES module is refused. <code>gamemode bundle</code> writes <code>gamemode.rules.js</code> in this form.</td></tr><tr><td><code>rules.config</code></td><td>Rules games only, optional. A JSON object handed to your rules as their config.</td></tr><tr><td><code>rules.maxActionsPerMinute</code></td><td>Rules games only, optional. A positive whole number: the highest action rate per player your game expects.</td></tr><tr><td><code>server.origins</code></td><td>Server games only, optional. Up to 4 exact HTTPS origins your browser game connects to, such as your realtime server. No wildcards, paths or plain HTTP. Flaunch's gate is always allowed and is never declared.</td></tr></tbody></table>
 
-Everything `startGate` assembles is also exported for wiring the gate yourself — `createGate`, `PayloadSigner`, `Discovery`, `Settlement`, `Sessions`, `Claims` and `migrate` — for the rare setup the paved road cannot express; the contract addresses `Discovery` verifies launches against are listed under [Spend-Gated Launches](../developer-resources/spend-gate/README.md). Two options worth knowing about:
+A rules game has no `server` block and a server game has no `rules` block. Any other field is refused.
 
-* **`admit`** decides who the gate will talk to — one hook, consulted before a session is issued and before allowance is committed. `createTurnstileAdmit` ships in the gate package if Cloudflare Turnstile is your human check; anything else is a function returning ok or a refusal written for the player to read.
-* **`config`** can be a function of the verified launch instead of a constant, resolved once per round — for a game whose rules differ from coin to coin.
+### Zip and upload
 
-### Bring your own multiplayer server
+Zip the **contents** of `dist/`, so `index.html` is at the top level of the archive. Zipping the `dist` folder itself also works, as long as the archive holds that one folder and `index.html` is directly inside it. `gamemode.json` and the rules file are read from the same place.
 
-Everything above assumes your rules run inside the gate. A game with its own authoritative realtime server — custom netcode, region fleets, anything where a 100ms round trip is gameplay — keeps that server, and the platform does not host or relay its traffic. The integration stays light:
+Upload the ZIP at [flaunch.gg/game-mode/dashboard](https://flaunch.gg/game-mode/dashboard) with a name, a category and a short description. Hosting is included: you upload the ZIP and Flaunch serves it, the way itch.io does.
 
-* Your gate uses `createGameServerGate()` instead of running rules: your server reports scores through an authenticated award route, and the gate still owns sessions, points, allowances and settlement. This path serves `/config` only when you pass `announce` — the launch form refuses a gate without it.
-* The submission form's game server addresses field lists your server origins (up to twenty, exact https, no wildcards) — that list is what your hosted game's security policy permits, alongside your gate. The same list goes into `createGameServerGate()` as `gameServerOrigins`, and players prove their wallet to your server with a short-lived join ticket scoped to one of those exact origins.
-* Region rotation belongs behind stable hostnames — the reviewed list is not meant to churn.
+Upload limits:
 
-The full walkthrough — env semantics, the announce block, ticket verification, smoke tests — is the `run-a-game-server` AI skill:
+* 20 MiB for the compressed ZIP
+* 50 MiB unpacked
+* `index.html` at the top level, or inside a single top-level folder
+
+macOS `__MACOSX/` folders and `.DS_Store` files are dropped before these checks. Large engine exports (an uncompressed Godot `.pck` or a Unity `Build/*.data`) are the builds most likely to hit the limits, so compress assets before you zip.
+
+Each upload becomes a build that cannot change, so what was reviewed is what players get.
+
+### Test on Base Sepolia
+
+An upload is playable on Base Sepolia straight away, before any review. Use it to run a real round end to end: the coin page, the wallet, buying, the leaderboard and settlement, on testnet funds. Fix what you find, rebuild, and upload again.
+
+### Submit for mainnet
+
+Mainnet networks open after Flaunch reviews the build. The best games join the official Game Mode library, and a library game earns 5% of the trading fees of every coin that launches through it.
+
+Once a revision is approved, your game has a stable play URL, `https://<your-game-slug>.games.moongate.com/`, that always serves the approved build. Draft uploads do not move it. Each individual upload also has its own address, which changes on every upload because it is derived from the build's contents.
+
+Uploading a new build creates a new revision for review. Your previous approved revision stays live while the new one is reviewed, and a rejection does not remove it. Coins already launched through your game keep the exact build they launched with.
+
+A creator then launches a coin through your game and it appears on the coin's page on flaunch.gg. The coin belongs to whoever launches it, and a library game can carry any number of launches.
+
+## Games with their own server
+
+A game with its own authoritative realtime server (custom netcode, region fleets, anything where a 100ms round trip is gameplay) keeps that server. Flaunch does not host or relay its traffic, and you still do not run a gate. Flaunch's gate owns wallet sessions, points, allowances and settlement; your server decides scores and reports them.
+
+1. **Declare the server in `gamemode.json`.** Set `"tier": "server"` and list your server's exact HTTPS origins in `server.origins` (up to 4). That list is what your hosted game's security policy lets the browser reach. Put region rotation behind stable hostnames, because the list is fixed for each build.
+2. **Get an award token from the dashboard.** The token has the form `gmt_<slug>_<64 hex characters>` and is shown once. Keep it on your server only. Rotating it issues a new one, and the old one keeps working for 10 minutes: update the token on your server and redeploy within that time. The dashboard refuses a rotation while one of your rounds is live or starts within 5 minutes.
+3. **Connect the browser.** Use `joinEconomy()` instead of `joinRoom()`. It signs the player in to Flaunch's gate and gives you `gameMode.joinTicket(origin)`, a short-lived proof of the player's wallet scoped to one of your declared origins. Send it as the first message on your socket, never in a URL.
+4. **Check the ticket on your server.** Post it to the gate's `POST /internal/rounds/:id/tickets/consume` with your award token as the bearer. The gate checks it and accepts each ticket once. If you verify locally with `verifyPlayerJoinTicket`, pass your award token; it also accepts tickets Flaunch's gate signs.
+5. **Post raw scores.** Send `POST /internal/rounds/:id/awards` with `{ eventId, player, points }` and your award token as the bearer. Post the score your server computed. The gate clamps each award to the player's ceiling and the receipt says how much was `credited`, so your server never tracks caps. Retry with the same `eventId` after a timeout; it is never paid twice.
+
+Your browser code receives the gate's URL for the round as `embedded.context.gateUrl`. Your server calls the same gate. Treat `503 { "refuse": "gate.unavailable" }` as retryable.
+
+The full walkthrough (ticket handling, award errors, score baselines and boots) is in the `run-a-game-server` AI skill and in the SDK's guides:
 
 ```bash
 npx skills add https://github.com/flayerlabs/flaunch-skills --skill run-a-game-server
 ```
 
-with the same material in the [`@flayerlabs/gamemode-gate` README](https://www.npmjs.com/package/@flayerlabs/gamemode-gate). Talk to us on [Discord](https://discord.gg/PcSmznqqqb) before building this tier — it is the newest path and we would rather walk it with you.
+Talk to us on [Discord](https://discord.gg/PcSmznqqqb) before building this tier. We would rather walk it with you.
 
-### Going live on Flaunch
+## Limits that protect players
 
-1. Build your game to static files.
-2. Upload them as a ZIP at [flaunch.gg/game-mode/create](https://flaunch.gg/game-mode/create). You get back a version that cannot change, so what was reviewed is what players get.
-3. Games are reviewed, and the best join the official Game Mode library.
-4. A creator launches a coin through your game. The launch names the gate's signer and a per-wallet spending cap, and your game appears on the coin's page on flaunch.gg.
+Flaunch's gate enforces these for every game, so you do not build them:
 
-Step 4 is not yours: the coin belongs to whoever launches it, and a library game can carry any number of launches. What you get from each one is a share of it — games in the official library earn 5% of the trading fees of every coin that launches through them.
+* **Point caps.** No player earns more than the round's `maxPointsPerPlayer`. Awards past it are clamped, not refused.
+* **One wallet per account.** Every player signs in with a Flaunch player note that ties their game wallet to one account. An account's share of the cap follows it, whichever wallet it brings.
+* **Boots and cooldowns.** A server game can boot a player from a round through the gate. A booted account gets no further tickets, awards or buys in that round, whichever wallet it brings. Repeat boots within 30 days escalate to a cooldown of a day, then a week, and cooldowns expire on their own.
+* **Spending caps on chain.** The pool enforces a per-wallet spending cap and a signed spend ceiling on every buy. Your game cannot exceed them, whatever its rules say.
 
-If your game runs its own gate rather than the demo one, this is the point where it goes up somewhere public — [Running a server](#running-a-server) lists what that takes, and the submission form has a field for its address (plus, for a game with its own multiplayer servers, a field for their addresses — see [Bring your own multiplayer server](#bring-your-own-multiplayer-server)). Talk to us on [Discord](https://discord.gg/PcSmznqqqb) before you get here — we would rather help wire it than have you guess.
-
-### Your game stays yours
+## Your game stays yours
 
 You do not have to open-source a game you wrote to put it on Flaunch, and we do not ask for ownership of it. Your code, your art and your IP stay yours.
 
-What we need is narrow: permission to host and serve your game inside Game Mode, and to show its name, tagline and cover art in the library and on the coin pages where it runs. Hosting a game means copying it to our servers and serving it to players, so some permission is unavoidable — but it stops there. Not exclusive, no right to modify it beyond the packaging needed to serve it, and no claim on anything you do with the game anywhere else.
+What we need is narrow: permission to host and serve your game inside Game Mode, and to show its name, tagline and cover art in the library and on the coin pages where it runs. Hosting a game means copying it to our servers and serving it to players, so some permission is unavoidable, but it stops there. It is not exclusive, gives no right to modify the game beyond the packaging needed to serve it, and makes no claim on anything you do with the game anywhere else.
 
-One consequence worth knowing before you submit, because it cannot be undone afterwards: **a launch is permanent.** Each ZIP becomes a version that cannot change, and a coin launched through it embeds that exact version on its page forever. If you later withdraw your game from the library, we stop offering it for new launches — but coins already launched through it keep working, which means we keep serving that version to their players. Withdrawing is not deletion.
+One consequence worth knowing before you submit, because it cannot be undone afterwards: **a launch is permanent.** Each ZIP becomes a build that cannot change, and a coin launched through it embeds that exact build on its page forever. If you later withdraw your game from the library, we stop offering it for new launches, but coins already launched through it keep working, which means we keep serving that build to their players. Withdrawing is not deletion.
 
-The open-source requirement you may have seen applies only to [porting someone else's game](#already-have-a-game-port-it). A permissive licence there is how a port proves it has the right to redistribute the original, alongside the provenance file naming the upstream repo, author and commit. It has nothing to do with a game of your own.
+The open-source requirement you may have seen applies only to [porting someone else's game](#already-have-a-game-port-it). A permissive license there is how a port proves it has the right to redistribute the original, alongside the provenance file naming the upstream repo, author and commit. It has nothing to do with a game of your own.
 
 {% hint style="info" %}
-This section describes the position in plain terms; [Games You Submit](../terms/terms-of-service.md#games-you-submit) in the Terms of Service governs. If your game needs something different — a specific attribution, a licence you are already bound by, an asset pack with its own terms — raise it on [Discord](https://discord.gg/PcSmznqqqb) before you submit rather than after.
+This section describes the position in plain terms; [Games You Submit](../terms/terms-of-service.md#games-you-submit) in the Terms of Service governs. If your game needs something different (a specific attribution, a license you are already bound by, an asset pack with its own terms), raise it on [Discord](https://discord.gg/PcSmznqqqb) before you submit rather than after.
 {% endhint %}
 
-### Linking out of your game
+## Linking out of your game
 
-Your game runs inside a sandboxed frame on the coin page. It can open your site, Discord or X in a new tab — `target="_blank"` on a link, or `window.open` inside the click handler; browsers refuse openers that run without a user gesture. The new tab is a normal page, not sandboxed. What the frame cannot do is move the coin page itself or submit forms to it: `window.top`, `location.assign()` and `target="_top"` are blocked, by design.
+Your game runs inside a sandboxed frame on the coin page. It can open your site, Discord or X in a new tab: `target="_blank"` on a link, or `window.open` inside the click handler. Browsers refuse openers that run without a user gesture. The new tab is a normal page, not sandboxed. What the frame cannot do is move the coin page itself or submit forms to it: `window.top`, `location.assign()` and `target="_top"` are blocked, by design.
 
-### Limits that protect players
+## Packages
 
-The chain enforces a spending cap for each wallet on your pool. Your server cannot exceed it, whatever your rules say. If a perfect round would earn more than the cap allows, the gate refuses to start rather than showing players a reward they cannot spend.
+| Package                       | Use it for                                                       |
+| ----------------------------- | ---------------------------------------------------------------- |
+| `@flayerlabs/gamemode-spec`   | the types both sides share, and the round driver your tests use  |
+| `@flayerlabs/gamemode-client` | browser code: the room, the mock, the embed                      |
+| `@flayerlabs/gamemode-cli`    | `gamemode new`, `gamemode check` and `gamemode bundle`           |
+| `@flayerlabs/gamemode-gate`   | only for running your own gate, or verifying join tickets locally on a game server |
 
-Your signing key only ever affects your own launches.
+Your game's browser bundle uses `client` and `spec`. Keep all four packages at the same version, and rebuild and re-upload after upgrading them.
 
-### Packages
+## Commands
 
-| Package                       | Use it for                                  |
-| ----------------------------- | ------------------------------------------- |
-| `@flayerlabs/gamemode-spec`   | the types both sides share, and the round driver your tests use |
-| `@flayerlabs/gamemode-client` | browser code: the room, the mock, the embed |
-| `@flayerlabs/gamemode-gate`   | the server                                  |
-| `@flayerlabs/gamemode-cli`    | `gamemode new` and `gamemode check`         |
+| Command                     | What it does                                                         |
+| --------------------------- | -------------------------------------------------------------------- |
+| `gamemode new <name>`       | create a game you can play immediately                               |
+| `gamemode check [file]`     | check your rules are pure                                            |
+| `gamemode bundle`           | write `dist/gamemode.rules.js` and `dist/gamemode.json` for upload   |
+| `pnpm dev`                  | play it, with no server and no wallet                                |
+| `pnpm test`                 | check the rules are pure, then run your tests                        |
+| `pnpm typecheck`            | check the types                                                      |
+| `pnpm build`                | build the game and the rules bundle; zip `dist/` and upload it       |
 
-Your game's browser bundle uses `client` and `spec`. Your server uses `gate` and `spec`. Keeping them apart is what stops a database driver ending up in a browser.
+## Advanced: running your own gate
 
-### Commands
+Before 0.9.0, every game that hosted launches ran its own gate: a server with a signing key, a Postgres database, allowed origins and optional Turnstile, registered per network in the dashboard. That path still exists. Games already shipped on 0.8.0 keep working, and a ZIP without a `gamemode.json` is still treated as a game with its own gate.
 
-| Command                     | What it does                                    |
-| --------------------------- | ----------------------------------------------- |
-| `npx gamemode new <name>`   | create a game you can play immediately          |
-| `npx gamemode check [file]` | check your rules are pure                       |
-| `pnpm dev`                  | play it, with no server and no wallet           |
-| `pnpm test`                 | check the rules are pure, then run your tests   |
-| `pnpm typecheck`            | check the types                                 |
+You should not need it for a new game. If you do (for example, a launcher outside Flaunch that wants its own signer), the [`@flayerlabs/gamemode-gate` package](https://www.npmjs.com/package/@flayerlabs/gamemode-gate) covers `startGate()`, `createGameServerGate()`, the environment, admission and Turnstile in its README and `DEPLOY.md`. A self-run gate must sign against the version 2 spend-gated calculator for its chain, listed under [Spend-Gated Launches](../developer-resources/spend-gate/README.md#deployments).
+
+To move a 0.8.0 game onto Flaunch's gate, follow [What's new in 0.9.0](whats-new-0-9-0.md) and the `MIGRATING.md` that ships in every `@flayerlabs/gamemode-*` package on npm.

@@ -4,7 +4,7 @@ icon: shield-halved
 
 # Spend-Gated Launches
 
-A spend-gated launch is a Flaunch pool that refuses swaps unless they carry a signature from a nominated off-chain signer, and that signature names the maximum ETH the swap may spend. It is the mechanism behind [Game Mode](../../game-mode/README.md), and it is general: anything that can decide how much a given wallet should be allowed to spend can drive it.
+A spend-gated launch is a Flaunch pool that refuses swaps unless they carry a signature from a nominated offchain signer, and that signature names a cumulative spend ceiling: the most the buyer may have spent on the pool in total. It is the mechanism behind [Game Mode](../../game-mode/README.md), and it is general: anything that can decide how much a given wallet should be allowed to spend can drive it.
 
 This page covers the architecture. The two pages beside it go deeper on [the signer](signer.md) and on [enforcement inside the V4 hook](hook-path.md).
 
@@ -35,7 +35,7 @@ Only calculators the dispatcher's owner has registered can be routed to.
 ## The flow
 
 ```
-player ──────> game server ──────> signed SpendAuthorization
+player ──────> game gate ────────> signed SpendAuthorization
                                             │
                                             ▼
 player's wallet ─── swap(…, hookData) ──> PositionManager
@@ -46,11 +46,11 @@ player's wallet ─── swap(…, hookData) ──> PositionManager
                                             ▼
                           SpendGatedSignerFeeCalculator.trackSwap
                                     │
+                                    ├─ refuse sells while the gate is live
                                     ├─ recover signer, check against the pool's signer
                                     ├─ bind the authorization to its submitter
-                                    ├─ measure real ETH input against maxSpendWei
-                                    ├─ accumulate against the per-wallet cap
-                                    └─ burn the signature
+                                    ├─ measure real input, add it to walletSpentWei
+                                    └─ refuse if the total passes spendCeilingWei or the wallet cap
 ```
 
 Enforcement runs in `afterSwap`, so it measures what the swap actually did rather than what it claimed it would do.
@@ -102,6 +102,8 @@ The creator's exclusion is the surprising one, and it is deliberate. In Game Mod
 
 Nor could the power be pinned to the launching player even if you wanted to. `IMemecoin.creator()` reads the ERC-721 owner live, so the role transfers with a secondary sale of the NFT — it was sellable mid-round to someone the round had never met.
 
+In Game Mode from SDK 0.9.0, Flaunch runs one gate per chain, and that gate's platform signer is both the signer and the settler for every Game Mode launch on the chain. Game developers hold neither key.
+
 ## Expiry is the guarantee
 
 An enforcing gate **must** carry an `endsAt`, and it must be within `MAX_GATE_DURATION` (30 days) of launch. Past that timestamp the calculator stops enforcing outright: no signature demanded, no spend tracked, the pool is an ordinary pool.
@@ -116,19 +118,27 @@ A launch that names a signer but no settler is refused outright (`SettlerRequire
 
 Game Mode runs on **Ethereum (1)**, **Arbitrum One (42161)**, **Base (8453)** and **Robinhood chain (4663)**, with a test stack on **Base Sepolia (84532)**. Each chain's current stack is the Flaunch v1.3 generation (v1.4.x on Ethereum and Arbitrum, same ABI family), which measures spend in the pool's own paired token: ETH, or any token the chain's `PairedTokenRegistry` has approved.
 
-<table><thead><tr><th width="220">Contract</th><th>Ethereum (1)</th><th>Arbitrum One (42161)</th><th>Base (8453)</th><th>Robinhood (4663)</th><th>Base Sepolia (84532)</th></tr></thead><tbody><tr><td><code>PositionManager</code></td><td><code>0xb741a710E456FC6d7f76c88F5C56B27D05e8A5DC</code></td><td><code>0xCAb62e007AB6656877Ab556cEa330De27AE025DC</code></td><td><code>0x588C683EcC450F8b2aAdb13D7f63792b840425DC</code></td><td><code>0x8D346f24278C5CD786309161aAC0fC2bbe4c25dc</code></td><td><code>0x8D346f24278C5CD786309161aAC0fC2bbe4c25dc</code></td></tr><tr><td><code>FeeCalculatorDispatcher</code></td><td><code>0x99922f8E94E67AB29401F67eBa30163D1e9eb994</code></td><td><code>0xc5eE9697de8544Dc3f63A943A80Bd388Ac30968A</code></td><td><code>0xdbC2F399BbAC8CD766F20C9B917A9A6ECAD5bc4b</code></td><td><code>0x981b0F51667A250Af9DADB86056bf22914F53F27</code></td><td><code>0xd381f8ea57df43c57cfe6e5b19a0a4700396f28c</code></td></tr><tr><td><code>SpendGatedSignerFeeCalculator</code> (what a released gate signs against)</td><td><code>0x8eD725D61AA687951F430Dd6E76e3A0108436005</code></td><td><code>0x9Ef19e3033c23AEECEb96e4C28faCaa15098d0dA</code></td><td><code>0xd8e46a2ca31915d9b76cc8e6b365b7ed46b77b01</code></td><td><code>0x120a2e0f8f431136897dc78c24b069146a65d79a</code></td><td><code>0x54cdcf0bcbc3a33f470e07134c10582f93058a32</code></td></tr><tr><td><code>PoolSwap</code> (approved router, reports <code>msgSender()</code>)</td><td><code>0x05c6C717B2a985809a83D27F779044c2da27fd56</code></td><td><code>0x206cD26d8567Ea76Ffa719995251a3878073Fb8A</code></td><td><code>0x1B8065a099AdcD7aa7c5e241e3596B56ec98bA5a</code></td><td><code>0xD33dD3B3Aea607F2cC38cdd154eF5d48847Aa764</code></td><td><code>0xf0f388a31a1745a5e2378b812ed51525f70595be</code></td></tr><tr><td><code>PairedTokenRegistry</code></td><td><code>0xFc28B339376018727eFcD45fdb257D0A0861A391</code></td><td><code>0x16EF4F8e1d41cE4727d98ae0E9EC4e9cDDd14Ac4</code></td><td><code>0x26958422636655b5a4eCE23a062e2EB61332c6da</code></td><td><code>0xC3F4E72DE4D37988F12C101b0766Fd8462F6Faf9</code></td><td><code>0x23cb441d18CA75c6a14964B06806dF668d45A1C6</code></td></tr></tbody></table>
+<table><thead><tr><th width="220">Contract</th><th>Ethereum (1)</th><th>Arbitrum One (42161)</th><th>Base (8453)</th><th>Robinhood (4663)</th><th>Base Sepolia (84532)</th></tr></thead><tbody><tr><td><code>PositionManager</code></td><td><code>0xb741a710E456FC6d7f76c88F5C56B27D05e8A5DC</code></td><td><code>0xCAb62e007AB6656877Ab556cEa330De27AE025DC</code></td><td><code>0x588C683EcC450F8b2aAdb13D7f63792b840425DC</code></td><td><code>0x8D346f24278C5CD786309161aAC0fC2bbe4c25dc</code></td><td><code>0x8D346f24278C5CD786309161aAC0fC2bbe4c25dc</code></td></tr><tr><td><code>FeeCalculatorDispatcher</code></td><td><code>0x99922f8E94E67AB29401F67eBa30163D1e9eb994</code></td><td><code>0xc5eE9697de8544Dc3f63A943A80Bd388Ac30968A</code></td><td><code>0xdbC2F399BbAC8CD766F20C9B917A9A6ECAD5bc4b</code></td><td><code>0x981b0F51667A250Af9DADB86056bf22914F53F27</code></td><td><code>0xd381f8ea57df43c57cfe6e5b19a0a4700396f28c</code></td></tr><tr><td><code>SpendGatedSignerFeeCalculator</code> v2 (cumulative spend ceilings; what SDK 0.7.0 and later gates sign against)</td><td><code>0x91938A66323725252043c03ad3066542Ac793057</code></td><td><code>0x91938A66323725252043c03ad3066542Ac793057</code></td><td><code>0x91938A66323725252043c03ad3066542Ac793057</code></td><td><code>0x91938A66323725252043c03ad3066542Ac793057</code></td><td><code>0x8a36826253882c8b505D6D78a71B780Ac9c98eA9</code></td></tr><tr><td><code>SpendGatedSignerFeeCalculator</code> v1 (pools launched before v2 only)</td><td><code>0x8eD725D61AA687951F430Dd6E76e3A0108436005</code></td><td><code>0x9Ef19e3033c23AEECEb96e4C28faCaa15098d0dA</code></td><td><code>0xd8e46a2ca31915d9b76cc8e6b365b7ed46b77b01</code></td><td><code>0x120a2e0f8f431136897dc78c24b069146a65d79a</code></td><td><code>0x54cdcf0bcbc3a33f470e07134c10582f93058a32</code></td></tr><tr><td><code>PoolSwap</code> (approved router, reports <code>msgSender()</code>)</td><td><code>0x05c6C717B2a985809a83D27F779044c2da27fd56</code></td><td><code>0x206cD26d8567Ea76Ffa719995251a3878073Fb8A</code></td><td><code>0x1B8065a099AdcD7aa7c5e241e3596B56ec98bA5a</code></td><td><code>0xD33dD3B3Aea607F2cC38cdd154eF5d48847Aa764</code></td><td><code>0xf0f388a31a1745a5e2378b812ed51525f70595be</code></td></tr><tr><td><code>PairedTokenRegistry</code></td><td><code>0xFc28B339376018727eFcD45fdb257D0A0861A391</code></td><td><code>0x16EF4F8e1d41cE4727d98ae0E9EC4e9cDDd14Ac4</code></td><td><code>0x26958422636655b5a4eCE23a062e2EB61332c6da</code></td><td><code>0xC3F4E72DE4D37988F12C101b0766Fd8462F6Faf9</code></td><td><code>0x23cb441d18CA75c6a14964B06806dF668d45A1C6</code></td></tr></tbody></table>
 
-Every row was read back from its chain on 2026-09-20: each `PositionManager` reports its dispatcher from `feeCalculator()`, each dispatcher has its calculator in `registeredCalculators`, each calculator grants its dispatcher the `PositionManager` role and has its `PoolSwap` in `approvedRouters`. Those four reads are exactly what a gate performs at boot, so a stack that passes them here boots. The `PositionManager` names its registry on chain (`pairedTokenRegistry()`), so a gate discovers the approved pairings and their price calculators without configuration. The dispatcher is installed on the `PositionManager`, with the chain's `StaticFeeCalculator` as its fallback — every non-game launch passes through untouched.
+Every row was read back from its chain on 2026-09-20: each `PositionManager` reports its dispatcher from `feeCalculator()`, each dispatcher has its calculator in `registeredCalculators`, each calculator grants its dispatcher the `PositionManager` role and has its `PoolSwap` in `approvedRouters`. Those four reads are exactly what a gate performs at boot, so a stack that passes them here boots. The v2 calculator rows were read back again on 2026-10-12: each reports EIP-712 domain `FlaunchSpendGate` version `2` for its own chain id, is registered on that chain's dispatcher, and has that chain's `PoolSwap` approved. The `PositionManager` names its registry on chain (`pairedTokenRegistry()`), so a gate discovers the approved pairings and their price calculators without configuration. The dispatcher is installed on the `PositionManager`, with the chain's `StaticFeeCalculator` as its fallback, so every non-game launch passes through untouched.
 
-The gate package ships an address book only for Base Sepolia. On every other chain, name the stack in the environment and the gate verifies the wiring above before it serves anything:
+{% hint style="warning" %}
+**Sign against v2.** SDK 0.7.0 and later gates sign under domain version `2`, and from 0.8.0 a gate reads the calculator's `eip712Domain()` at boot and refuses to start against a version 1 calculator. The v1 rows are listed only because pools launched on them keep using them; never point a current gate at one. The Game Mode SDK's own address book (`packages/gate/src/chain/chains.ts`) records the v2 calculator only for Base Sepolia. The mainnet v2 address above comes from the chains themselves, not from the SDK.
+{% endhint %}
+
+### Running your own gate
+
+Game developers do not need this: from SDK 0.9.0 Flaunch runs the gate on every chain (see the [Game Mode SDK](../../game-mode/game-mode-sdk.md)). If you run a gate yourself, name the stack in the environment on every chain except Base Sepolia, and the gate verifies the wiring above before it serves anything:
 
 ```bash
 CHAIN_ID=42161
 POSITION_MANAGER=0xCAb62e007AB6656877Ab556cEa330De27AE025DC
-SPEND_GATED_CALCULATOR=0x9Ef19e3033c23AEECEb96e4C28faCaa15098d0dA
+SPEND_GATED_CALCULATOR=0x91938A66323725252043c03ad3066542Ac793057
 POOL_SWAP=0x206cD26d8567Ea76Ffa719995251a3878073Fb8A
 FLAUNCH_VARIANT=v1_3
 ```
+
+A gate that served v1 rounds switches to v2 only after its last v1 round has passed its books close. The [`@flayerlabs/gamemode-gate` package](https://www.npmjs.com/package/@flayerlabs/gamemode-gate) has the full environment in its `DEPLOY.md`.
 
 {% hint style="info" %}
 **Ethereum** joined the Game Mode parity set on 2026-09-21: the vested launch stack, the v2 calculator and the game developer fee-split manager sit at the same addresses as on Base, Robinhood and Arbitrum, and the protocol Safe has wired them (factory role, indexer mapping, calculator registration, manager approval). Contracts release v1.5.0 carries the record.
@@ -138,10 +148,9 @@ FLAUNCH_VARIANT=v1_3
 **Superseded stacks keep serving their coins; coins never migrate.** Robinhood's v1.3.1 stack (`PositionManager` `0x588C683E…`, dispatcher `0xe3fDDf48…`, calculator `0xB246b270…`, `PoolSwap` `0x8476ED15…`) and its first-generation stack (`PositionManager` `0x5Cf8e499…`, dispatcher `0x04cDDed8…`, calculator `0xc65fC67F…`, `PoolSwap` `0xb45e89f4…`) predate the table above. Router approval is per calculator, so a gate pointed at a superseded router refuses every smart-wallet buy. New launches use the table above.
 {% endhint %}
 
-A second calculator, `SpendGatedSignerFeeCalculator` **v2** (cumulative spend ceilings) is registered on all four mainnets at `0x91938A66323725252043c03ad3066542Ac793057` (Ethereum since 2026-09-21). Game Mode SDK 0.7.0 gates sign against it; a gate switches to it between rounds, after its last v1 round's books close.
-
 ## Limitations worth knowing before you build
 
-* **Spend is measured in the pool's paired token.** On the current stack that is ETH or any token the chain's `PairedTokenRegistry` approves, and every signed amount is in that token's base units — `maxSpendWei` keeps its name for signature compatibility but is not always wei. Only the retired first-generation Robinhood calculator assumed an ETH-paired pool and refused anything else with `InvalidPoolKey`.
+* **Spend is measured in the pool's paired token.** On the current stack that is ETH or any token the chain's `PairedTokenRegistry` approves, and every signed amount is in that token's base units. `spendCeilingWei` and `walletSpentWei` keep their names but are not always wei. Only the retired first-generation Robinhood calculator assumed an ETH-paired pool and refused anything else with `InvalidPoolKey`.
+* **Sells are closed while the gate is live.** The v2 calculator reverts a sell with `SellsClosedUntilGateEnds(endsAt)` until `endsAt`, or until the settler opens trading early.
 * **Exact-output swaps are refused.** They cannot be measured safely — see [the enforcement page](hook-path.md) for why a zero-measured buy would otherwise be repeatable.
 * **One gate, one signer, one pool.** There is no notion of multiple concurrent signers per pool; the per-pool signer overrides the protocol-wide trusted set entirely.
