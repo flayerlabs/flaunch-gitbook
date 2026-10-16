@@ -15,7 +15,7 @@ Game Mode replaces that race with a **window**. For as long as the window is ope
 1. **A coin launches with a window.** The creator schedules the launch and picks the game that will guard it. Until the window opens, every swap against the pool reverts, and that's the pool's own rule rather than something the game server has to enforce.
 2. **Players play.** Everyone in the round shares one window and one leaderboard. Scoring happens on the server, which re-runs every move from the player's inputs instead of trusting the browser.
 3. **Points become spending power.** Your score converts to an allowance in the coin's paired token (ETH, or an approved token such as a tokenised stock). Score more, buy more, up to a per-wallet cap that applies to everyone equally.
-4. **You buy what you earned.** Claiming your allowance produces a signed authorization for exactly that amount. The pool checks the signature and the amount on every swap.
+4. **You buy what you earned.** Claiming your allowance produces a signed authorization for exactly that amount. The pool checks the signature and the amount on every swap. You set a budget when you enter, and the round never spends past it: some games buy as you score (with an Auto buy switch to pause it), others buy when you cash out in the game, such as shooting a buy blimp.
 5. **The window closes and the gate lifts.** The coin is now an ordinary coin, trading permissionlessly.
 
 ## What you can rely on

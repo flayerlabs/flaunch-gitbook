@@ -30,6 +30,7 @@
 * [Build a Game](game-mode/build-a-game.md)
 * [Game Mode SDK](game-mode/game-mode-sdk.md)
 * [What's new in 0.9.0](game-mode/whats-new-0-9-0.md)
+* [What's new in 0.9.1 and 0.9.2](game-mode/whats-new-0-9-2.md)
 * [Launch calendar](game-mode/launch-calendar.md)
 
 ## A.I. Skills
