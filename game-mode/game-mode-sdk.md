@@ -177,6 +177,42 @@ const result = await room.economy.buy(available)
 
 Your game asks. The page around it builds the transaction and asks the player to approve it. Your game never constructs a transaction and cannot, which is why a bug in your game cannot lose anyone money. A player who closes the wallet prompt loses nothing and can try again at once.
 
+Every buy in a round spends from the one budget the player set when they entered. A buy your game starts spends at most what that budget has left, and with nothing left it is refused before the wallet is asked. The player raises the budget on the bar under the game.
+
+### Games that hold points until the player cashes out
+
+Most games credit points as they are scored, and flaunch.gg buys them as they become available, under the player's **Auto buy** switch and budget.
+
+Some games hold what a player earns until they act in the game: shooting a blimp, reaching an extraction point. That action is the buy. Declare it in `gamemode.json` and flaunch.gg shows no Auto buy switch for your game, buying what each cash-out releases within the player's budget:
+
+```json
+{ "tier": "server", "buying": "on-cash-out" }
+```
+
+Until it is banked, the gate has never heard of what the player is holding, so the bar under the game would read "Ready to buy $0" while they carry $30. Report it, and the bar shows it as **In play**:
+
+```ts
+// points held in the game, in the round's spend token; zero once banked
+room.economy.reportInPlay(BigInt(heldPoints) * room.terms.current().unitsPerPoint)
+```
+
+It is shown, never spent, and has no effect on what the gate pays. An unchanged value is ignored, so it is safe to call from a `room.economy` subscriber. Requires 0.9.2.
+
+### Showing the coin
+
+`room.launch.current()` carries the coin's `name`, `symbol` and `imageUrl`. The picture arrives as a `blob:` URL, because your game's page may load images only from itself, `data:` and `blob:`: the gate fetches the coin's art from its metadata, checks it is a PNG, JPEG, GIF or WebP of at most 5 MiB and 4096 px a side, and the client hands your game the bytes.
+
+The launch is published first with `imageUrl: null` and again once the picture is in, so subscribe rather than reading it once:
+
+```ts
+room.launch.subscribe((launch) => {
+  if (launch.imageUrl) art.src = launch.imageUrl
+  else art.hidden = true // no picture, or not yet: show the ticker, not a stand-in
+})
+```
+
+A coin with no picture, or one that cannot be fetched, keeps `imageUrl: null`. Requires 0.9.1.
+
 ### Where market data comes from
 
 `room.market` carries the coin's price history and its current market cap in USD, and the source is the **coin page**, not the gate. The gate knows the round's ledger (who earned what, who spent what) and nothing at all about the coin's price. So the page pushes its own live feed into the game: the same feed drawing the chart beside you, which is why the two never disagree on a number.
@@ -268,7 +304,7 @@ A server game:
 }
 ```
 
-<table><thead><tr><th width="250">Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>tier</code></td><td>Required. <code>"rules"</code> or <code>"server"</code>.</td></tr><tr><td><code>maxPointsPerPlayer</code></td><td>Required. A positive whole number: the most points one player can earn in a round. A rules module's own <code>rewardBounds</code> can lower the round's ceiling but never raise it past this value.</td></tr><tr><td><code>roundDurationMs</code></td><td>Required. How long a launch's round lasts, in milliseconds. At least 60000 (one minute) and at most seven days.</td></tr><tr><td><code>rules.module</code></td><td>Rules games only. The name of the rules file at the ZIP root, at most 2 MiB. It must be a classic script that assigns your <code>GameModule</code> to <code>globalThis.gamemodeRules</code>, and must pass <code>gamemode check</code>. An ES module is refused. <code>gamemode bundle</code> writes <code>gamemode.rules.js</code> in this form.</td></tr><tr><td><code>rules.config</code></td><td>Rules games only, optional. A JSON object handed to your rules as their config.</td></tr><tr><td><code>rules.maxActionsPerMinute</code></td><td>Rules games only, optional. A positive whole number: the highest action rate per player your game expects.</td></tr><tr><td><code>server.origins</code></td><td>Server games only, optional. Up to 4 exact HTTPS origins your browser game connects to, such as your realtime server. No wildcards, paths or plain HTTP. Flaunch's gate is always allowed and is never declared.</td></tr></tbody></table>
+<table><thead><tr><th width="250">Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>tier</code></td><td>Required. <code>"rules"</code> or <code>"server"</code>.</td></tr><tr><td><code>maxPointsPerPlayer</code></td><td>Required. A positive whole number: the most points one player can earn in a round. A rules module's own <code>rewardBounds</code> can lower the round's ceiling but never raise it past this value.</td></tr><tr><td><code>roundDurationMs</code></td><td>Required. How long a launch's round lasts, in milliseconds. At least 60000 (one minute) and at most seven days.</td></tr><tr><td><code>buying</code></td><td>Optional. <code>"as-earned"</code> (the default) or <code>"on-cash-out"</code>. Declare <code>"on-cash-out"</code> when your game holds points until the player acts in the game and that action is the buy: flaunch.gg then shows no Auto buy switch for it. It changes which controls the page shows, never what a buy can spend. A rules game sets it with <code>export const buying = 'on-cash-out'</code> in <code>src/game/config.ts</code>.</td></tr><tr><td><code>rules.module</code></td><td>Rules games only. The name of the rules file at the ZIP root, at most 2 MiB. It must be a classic script that assigns your <code>GameModule</code> to <code>globalThis.gamemodeRules</code>, and must pass <code>gamemode check</code>. An ES module is refused. <code>gamemode bundle</code> writes <code>gamemode.rules.js</code> in this form.</td></tr><tr><td><code>rules.config</code></td><td>Rules games only, optional. A JSON object handed to your rules as their config.</td></tr><tr><td><code>rules.maxActionsPerMinute</code></td><td>Rules games only, optional. A positive whole number: the highest action rate per player your game expects.</td></tr><tr><td><code>server.origins</code></td><td>Server games only, optional. Up to 4 exact HTTPS origins your browser game connects to, such as your realtime server. No wildcards, paths or plain HTTP. Flaunch's gate is always allowed and is never declared.</td></tr></tbody></table>
 
 A rules game has no `server` block and a server game has no `rules` block. Any other field is refused.
 
